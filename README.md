@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Sylius [![Build status...](https://secure.travis-ci.org/Sylius/Sylius.png?branch=master)](http://travis-ci.org/Sylius/Sylius)
 ======
 
@@ -70,3 +71,9 @@ Authors
 
 Sylius was originally created by [Paweł Jędrzejewski](http://pjedrzejewski.com).
 See the list of [contributors](https://github.com/Sylius/Sylius/contributors).
+=======
+symfony-commerce
+================
+
+Use sylius bundle to build ecommerce used in China
+>>>>>>> 227e0abdd43f0f4bafb79f5b1b9240887c085ab0

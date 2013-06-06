@@ -16,5 +16,5 @@ web/media/*
 
 bin/behat
 bin/doctrine*
-bin/phpspec
+bin/phpspe*
 vendor/*
