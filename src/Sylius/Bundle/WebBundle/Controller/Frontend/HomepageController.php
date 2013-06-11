@@ -20,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class HomepageController extends Controller
 {
+
     /**
      * Store front page.
      *
@@ -27,6 +28,8 @@ class HomepageController extends Controller
      */
     public function mainAction()
     {
-        return $this->render('SyliusWebBundle:Frontend/Homepage:main.html.twig');
+        $theme = $this->container->getParameter('twig.theme', 'default');
+        return $this->render('SyliusWebBundle:Frontend/' . $theme . '/Homepage:main.html.twig');
     }
+
 }

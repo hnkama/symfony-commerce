@@ -4,7 +4,7 @@ imports:
     - { resource: sylius.yml }
 
 framework:
-    translator:      { fallback: %sylius.locale% }
+    translator:      { fallback: %sylius.locale.fallback% }
     secret:          %sylius.secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
