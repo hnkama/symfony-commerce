@@ -26,7 +26,7 @@ class LoadTaxonomiesData extends DataFixture
     public function load(ObjectManager $manager)
     {
         $manager->persist($this->createTaxonomy('Category', array(
-            'T-Shirts', 'Stickers', 'Mugs', 'Books'
+            'T-Shirts' => array('sub1', 'sub2'), 'Stickers', 'Mugs', 'Books'
         )));
 
         $manager->persist($this->createTaxonomy('Brand', array(
@@ -42,16 +42,21 @@ class LoadTaxonomiesData extends DataFixture
      * @param string $name
      * @param array  $taxons
      */
-    private function createTaxonomy($name, array $taxons)
+    private function createTaxonomy($name, array $taxons, $taxon_parent = null, $is_root = true)
     {
-        $taxonomy = $this
-            ->getTaxonomyRepository()
-            ->createNew()
-        ;
+		if($is_root) {
+			$taxonomy = $this
+				->getTaxonomyRepository()
+				->createNew()
+			;
+        	$taxonomy->setName($name);
+		}
 
-        $taxonomy->setName($name);
 
-        foreach ($taxons as $taxonName) {
+        foreach ($taxons as $taxonName => $sub_taxons) {
+			if(!is_array($sub_taxons)) {
+				$taxonName = $sub_taxons;
+			}
             $taxon = $this
                 ->getTaxonRepository()
                 ->createNew()
@@ -59,13 +64,21 @@ class LoadTaxonomiesData extends DataFixture
 
             $taxon->setName($taxonName);
 
-            $taxonomy->addTaxon($taxon);
+			if(!$is_root) {
+				$taxon_parent->addChild($taxon);
+			} else {
+            	$taxonomy->addTaxon($taxon);
+			}
+			if(is_array($sub_taxons)) {
+				$this->createTaxonomy($name, $sub_taxons, $taxon, false);
+			} 
             $this->setReference('Sylius.Taxon.'.$taxonName, $taxon);
         }
 
-        $this->setReference('Sylius.Taxonomy.'.$name, $taxonomy);
-
-        return $taxonomy;
+		if(isset($taxonomy)) {
+        	$this->setReference('Sylius.Taxonomy.'.$name, $taxonomy);
+        	return $taxonomy;
+		}
     }
 
     public function getOrder()
