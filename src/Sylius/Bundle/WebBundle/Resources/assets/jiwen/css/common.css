@@ -87,7 +87,7 @@ ul.nav-list > li.current > a:hover {color:#fff; text-decoration:none;}
 .to-top{ width:47px; height:15px; display:block; background-color:#301f39; background-position:-217px -214px; cursor:pointer; color:#fff; text-align:left; padding-left:33px;}
 .flue{ z-index:10;}
 
-.bottom-ads{ background:#de282a; height:90px; margin-top:60px; position:relative; z-index:-1;}
+.bottom-ads{ background:#de282a; height:90px; margin-top:60px; position:relative; z-index:1;}
 .bta-wrap{ width:1020px; margin:0 auto;}
 .bta-inner{position:absolute; bottom:0;}
 .bta-inner > a{ float:left; border-right:1px dotted #fff;}
