@@ -125,67 +125,7 @@
     </div>
 	<nav id="nav-index">
     	<h2 class="png nav-hole">全部商品分类</h2>
-    	<ul class="nav-list">
-        	<li><a href="#">教会用品</a>
-            	<div id="submenu-wrap">
-                	<div class="smw-contents">
-                    	<img src="/assets/images/submenu-img.jpg" border="0" usemap="#Map2" class="smw-img1" width="410" height="333" style="right:0; bottom:20px;">
-                        <map name="Map2" id="Map2">
-                          <area shape="rect" coords="57,18,397,319" href="#" alt="">
-                        </map>
-                        <div class="smw-text">
-                            <h3><a href="#">教会用品</a></h3>
-                            <ul>
-                                <li><a href="#">圣诗服</a></li>
-                                <li><a href="#">桌 椅</a></li>
-                                <li><a href="#">板 凳</a></li>
-                                <li><a href="#">餐 具</a></li>
-                                <li><a href="#">丧 衣</a></li>
-                                <li><a href="#">奉献袋</a></li>
-                                <li><a href="#">饼 盘</a></li>
-                                <li><a href="#">杯 盘</a></li>
-                                <li><a href="#">圣经包</a></li>
-                                <li><a href="#">读经卡</a></li>
-                                <li><a href="#">祷告垫</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li><a href="#">图书音像</a>
-            	<div id="submenu-wrap">
-                	<div class="smw-contents">
-                    	<img src="/assets/images/submenu-img2.jpg" border="0" usemap="#Map" class="smw-img1" style="right:0; bottom:0px;">
-                        <map name="Map" id="Map">
-                          <area shape="rect" coords="57,18,397,319" href="#" alt="">
-                        </map>
-                        <div class="smw-text">
-                            <h3><a href="#">图书音像</a></h3>
-                            <ul>
-                                <li><a href="#">圣诗服</a></li>
-                                <li><a href="#">桌 椅</a></li>
-                                <li><a href="#">板 凳</a></li>
-                                <li><a href="#">餐 具</a></li>
-                                <li><a href="#">丧 衣</a></li>
-                                <li><a href="#">奉献袋</a></li>
-                                <li><a href="#">饼 盘</a></li>
-                                <li><a href="#">杯 盘</a></li>
-                                <li><a href="#">圣经包</a></li>
-                                <li><a href="#">读经卡</a></li>
-                                <li><a href="#">祷告垫</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li><a href="#">珠宝手表</a></li>
-            <li><a href="#">手机数码</a></li>
-            <li><a href="#">文具用品</a></li>
-            <li><a href="#">赞美乐器</a></li>
-            <li><a href="#">家居生活</a></li>
-            <li><a href="#">艺术收藏</a></li>
-            <li><a href="#">服饰鞋帽</a></li>
-        </ul>
+ 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
     </nav>
     <div id="banner-cycle">
     	<div class="bn-cycle-inner">

@@ -27,9 +27,9 @@ class LoadTaxonomiesData extends DataFixture
     {
         $manager->persist($this->createTaxonomy('Category', array(
             '教会用品' => array('圣诗服', '桌 椅','板 凳','餐 具','丧 衣','奉献袋','饼 盘','杯 盘','圣经包','读经卡','祷告垫',),
-			'图书音像',
+			'图书音像' => array('图书', '音像'),
 			'珠宝手表',
-			'手机数码',
+			'手机数码' => array('手机','圣经播放器'),
 			'文具用品',
 			'赞美乐器',
 			'家居生活',

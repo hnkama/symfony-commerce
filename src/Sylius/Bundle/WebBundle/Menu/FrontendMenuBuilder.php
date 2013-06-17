@@ -13,6 +13,10 @@ namespace Sylius\Bundle\WebBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Knp\Menu\Matcher\Matcher;
+use Knp\Menu\Matcher\Voter\UriVoter;
+use Knp\Menu\MenuFactory;
+use Knp\Menu\Renderer\ListRenderer;
 use Sylius\Bundle\CartBundle\Provider\CartProviderInterface;
 use Sylius\Bundle\MoneyBundle\Twig\SyliusMoneyExtension;
 use Sylius\Bundle\ResourceBundle\Model\RepositoryInterface;
@@ -151,29 +155,41 @@ class FrontendMenuBuilder extends MenuBuilder
     {
         $menu = $this->factory->createItem('root', array(
             'childrenAttributes' => array(
-                'class' => 'nav'
+                'class' => 'nav nav-list'
             )
         ));
 
         $menu->setCurrent($request->getRequestUri());
 
-        $childOptions = array(
-            'childrenAttributes' => array('class' => 'nav nav-list'),
-            'labelAttributes'    => array('class' => 'nav-header'),
-        );
+        $taxonomy = $this->taxonomyRepository->findOneByName('Category');
 
-        $taxonomies = $this->taxonomyRepository->findAll();
-
-        foreach ($taxonomies as $taxonomy) {
-            $child = $menu->addChild($taxonomy->getName(), $childOptions);
-            if ($taxonomy->getRoot()->hasPath()) {
-                $child->setLabelAttribute('data-image', $taxonomy->getRoot()->getPath());
-            }
-
-            $this->createTaxonomiesMenuNode($child, $taxonomy->getRoot());
-        }
+        $this->createTaxonomiesMenuNode($menu, $taxonomy->getRoot());
 
         return $menu;
+    }
+
+    /**
+     * Builds frontend taxonomies menu.
+     *
+     * @param Request $request
+     *
+     * @return ItemInterface
+     */
+    public function createTaxonomiesMenuArray(Request $request)
+    {
+        $menu = $this->factory->createItem('root', array(
+            'childrenAttributes' => array(
+                'class' => 'nav nav-list'
+            )
+        ));
+
+        $menu->setCurrent($request->getRequestUri());
+
+        $taxonomy = $this->taxonomyRepository->findOneByName('Category');
+
+        $this->createTaxonomiesMenuNode($menu, $taxonomy->getRoot());
+
+        return $menu->toArray();
     }
 
     private function createTaxonomiesMenuNode(ItemInterface $menu, TaxonInterface $taxon)

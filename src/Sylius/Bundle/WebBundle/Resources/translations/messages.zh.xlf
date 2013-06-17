@@ -4,243 +4,243 @@
     <body>
       <trans-unit id="94508ad78d6cdae4de43ed99efed1fc6" resname="sylius.add_to_cart">
         <source>sylius.add_to_cart</source>
-        <target>Add to cart</target>
+        <target>加入购物车</target>
       </trans-unit>
       <trans-unit id="b862b765ec4aedc20d6569059f66c34d" resname="sylius.address.city">
         <source>sylius.address.city</source>
-        <target>City</target>
+        <target>城市</target>
       </trans-unit>
       <trans-unit id="13bb7a2428b440096560dc9f179b29e7" resname="sylius.address.country">
         <source>sylius.address.country</source>
-        <target>Country</target>
+        <target>国家</target>
       </trans-unit>
       <trans-unit id="41289d84073d3bca039e147207c78037" resname="sylius.address.edit.header">
         <source>sylius.address.edit.header</source>
-        <target>sylius.address.edit.header</target>
+        <target>地址</target>
       </trans-unit>
       <trans-unit id="1ee551ccff556f9d96bd0c07d3e6628c" resname="sylius.address.firstname">
         <source>sylius.address.firstname</source>
-        <target>First name</target>
+        <target>名</target>
       </trans-unit>
       <trans-unit id="dba857a6ab7bc2dc4c05fe6470e25fb0" resname="sylius.address.lastname">
         <source>sylius.address.lastname</source>
-        <target>Last name</target>
+        <target>姓</target>
       </trans-unit>
       <trans-unit id="7df68fe61c4c8a32475734c2408fd2c6" resname="sylius.address.postcode">
         <source>sylius.address.postcode</source>
-        <target>Postcode</target>
+        <target>邮编</target>
       </trans-unit>
       <trans-unit id="d44476afc2a3907d73c947c6b63221af" resname="sylius.address.province">
         <source>sylius.address.province</source>
-        <target>Province</target>
+        <target>省</target>
       </trans-unit>
       <trans-unit id="e82a886986a385b0877e15d6964d2aa5" resname="sylius.address.street">
         <source>sylius.address.street</source>
-        <target>Street</target>
+        <target>街道</target>
       </trans-unit>
       <trans-unit id="4caead04937d3ca89a4ce8cba93ad34f" resname="sylius.alert.error">
         <source>sylius.alert.error</source>
-        <target>Error</target>
+        <target>错误</target>
       </trans-unit>
       <trans-unit id="5d6cb183378fa88f4f67f714935381f5" resname="sylius.alert.info">
         <source>sylius.alert.info</source>
-        <target>Information</target>
+        <target>信息</target>
       </trans-unit>
       <trans-unit id="52e0464eaedbd40d357f4b90a614a6ac" resname="sylius.alert.success">
         <source>sylius.alert.success</source>
-        <target>Success</target>
+        <target>成功</target>
       </trans-unit>
       <trans-unit id="7795745e72496354e88a2aceb0129565" resname="sylius.alert.warning">
         <source>sylius.alert.warning</source>
-        <target>Warning</target>
+        <target>警告</target>
       </trans-unit>
       <trans-unit id="a9e3ae5341c242e534a94454cf4755a8" resname="sylius.backend.alert.info">
         <source>sylius.backend.alert.info</source>
-        <target>Information</target>
+        <target>提示信息</target>
       </trans-unit>
       <trans-unit id="053fe0eb0c69cef6d5d3cf97a72cb119" resname="sylius.backend.dashboard.chart_order_count">
         <source>sylius.backend.dashboard.chart_order_count</source>
-        <target>Number of orders</target>
+        <target>订单数</target>
       </trans-unit>
       <trans-unit id="1b4e1ea54b0734e7b6d0799d84908231" resname="sylius.backend.dashboard.chart_order_total">
         <source>sylius.backend.dashboard.chart_order_total</source>
-        <target>Order value</target>
+        <target>订单总额</target>
       </trans-unit>
       <trans-unit id="bbcea09626f41ce367788861467aff0a" resname="sylius.backend.dashboard.header">
         <source>sylius.backend.dashboard.header</source>
-        <target>Administration dashboard</target>
+        <target>控制台</target>
       </trans-unit>
       <trans-unit id="fe7d02e958e8610f71e98e61c35aa2ec" resname="sylius.backend.dashboard.orders">
         <source>sylius.backend.dashboard.orders</source>
-        <target>Last week orders</target>
+        <target>上周的订单</target>
       </trans-unit>
       <trans-unit id="03acdf436d897846c5f90a9bf25e506d" resname="sylius.backend.dashboard.revenue">
         <source>sylius.backend.dashboard.revenue</source>
-        <target>Last week revenue</target>
+        <target>上周销售额</target>
       </trans-unit>
       <trans-unit id="e784f04ac63b827f80c224208db56fcc" resname="sylius.backend.dashboard.subheader">
         <source>sylius.backend.dashboard.subheader</source>
-        <target>Overview of your store</target>
+        <target>商城概况</target>
       </trans-unit>
       <trans-unit id="1c928a5890ba6f86642da79b1e7a2ea6" resname="sylius.cancel">
         <source>sylius.cancel</source>
-        <target>Cancel</target>
+        <target>取消</target>
       </trans-unit>
       <trans-unit id="45c17132cd7ab3894ace66f34ba62ecf" resname="sylius.cart.empty">
         <source>sylius.cart.empty</source>
-        <target>Your cart is empty</target>
+        <target>空购物车</target>
       </trans-unit>
       <trans-unit id="86c015752392f3a80ba2ba37f08d8255" resname="sylius.cart.summary.checkout">
         <source>sylius.cart.summary.checkout</source>
-        <target>Checkout</target>
+        <target>结帐</target>
       </trans-unit>
       <trans-unit id="429f1376806abe22eefd4c3ebf173b01" resname="sylius.cart.summary.clear">
         <source>sylius.cart.summary.clear</source>
-        <target>Clear cart</target>
+        <target>清理购物车</target>
       </trans-unit>
       <trans-unit id="76ad42b64ed46c66473400a275b421c0" resname="sylius.cart.summary.grand_total">
         <source>sylius.cart.summary.grand_total</source>
-        <target>Grand total</target>
+        <target>总额</target>
       </trans-unit>
       <trans-unit id="97b025647d38149979964dac80905c22" resname="sylius.cart.summary.product">
         <source>sylius.cart.summary.product</source>
-        <target>Product</target>
+        <target>产品</target>
       </trans-unit>
       <trans-unit id="ea90851d40795415b82b4f9c98bc3cf0" resname="sylius.cart.summary.quantity">
         <source>sylius.cart.summary.quantity</source>
-        <target>Qty</target>
+        <target>数量</target>
       </trans-unit>
       <trans-unit id="a4392cf4e8a3c693a76105648772f7a5" resname="sylius.cart.summary.save">
         <source>sylius.cart.summary.save</source>
-        <target>Save</target>
+        <target>保存</target>
       </trans-unit>
       <trans-unit id="21e122fd8c8aaae88af5c5e6c8269efb" resname="sylius.cart.summary.total">
         <source>sylius.cart.summary.total</source>
-        <target>Total</target>
+        <target>总额</target>
       </trans-unit>
       <trans-unit id="dabbbba26bc831c84196c0de990a1811" resname="sylius.cart.summary.unit_price">
         <source>sylius.cart.summary.unit_price</source>
-        <target>Price</target>
+        <target>价格</target>
       </trans-unit>
       <trans-unit id="e724fee903f3dba03a99d441ab7d4354" resname="sylius.cart.summary_header">
         <source>sylius.cart.summary_header</source>
-        <target>Cart summary</target>
+        <target>购物车</target>
       </trans-unit>
       <trans-unit id="eb35ce86be60840d71c11b769058114c" resname="sylius.cart.total_items">
         <source>sylius.cart.total_items</source>
-        <target>1 item|%count% items</target>
+        <target>%count%个产品</target>
       </trans-unit>
       <trans-unit id="dd5ac82f2e02d496e9ec53e58471ee4f" resname="sylius.checkout.addressing.header">
         <source>sylius.checkout.addressing.header</source>
-        <target>Addressing step</target>
+        <target>地址</target>
       </trans-unit>
       <trans-unit id="a75d96514d32c516bdf3fc2cf661f90d" resname="sylius.checkout.back">
         <source>sylius.checkout.back</source>
-        <target>Back</target>
+        <target>后退</target>
       </trans-unit>
       <trans-unit id="bfcb5a875c681ca4643b70902c784f50" resname="sylius.checkout.finalize.address.city">
         <source>sylius.checkout.finalize.address.city</source>
-        <target>City</target>
+        <target>城市</target>
       </trans-unit>
       <trans-unit id="40499b41553e1f1a17f6dd67437da27b" resname="sylius.checkout.finalize.address.country">
         <source>sylius.checkout.finalize.address.country</source>
-        <target>Country</target>
+        <target>国家</target>
       </trans-unit>
       <trans-unit id="ae73533a3490f4c0715254a6d8ea5c00" resname="sylius.checkout.finalize.address.firstname">
         <source>sylius.checkout.finalize.address.firstname</source>
-        <target>First name</target>
+        <target>名</target>
       </trans-unit>
       <trans-unit id="454aad0ec80be9a29b4ee5c30ee68838" resname="sylius.checkout.finalize.address.lastname">
         <source>sylius.checkout.finalize.address.lastname</source>
-        <target>Last name</target>
+        <target>姓</target>
       </trans-unit>
       <trans-unit id="bd0538d5ccdcbc2768f580b1bc69e5e6" resname="sylius.checkout.finalize.address.postcode">
         <source>sylius.checkout.finalize.address.postcode</source>
-        <target>Postcode</target>
+        <target>邮编</target>
       </trans-unit>
       <trans-unit id="7cf7d9235fd6b96d7c10de3b21b25ef1" resname="sylius.checkout.finalize.address.province">
         <source>sylius.checkout.finalize.address.province</source>
-        <target>Province</target>
+        <target>省</target>
       </trans-unit>
       <trans-unit id="d233f54ed094db8a48e1663348503140" resname="sylius.checkout.finalize.address.street">
         <source>sylius.checkout.finalize.address.street</source>
-        <target>Street</target>
+        <target>街道</target>
       </trans-unit>
       <trans-unit id="5f06816d9ca143c99d8a2198f5582193" resname="sylius.checkout.finalize.header">
         <source>sylius.checkout.finalize.header</source>
-        <target>Order summary</target>
+        <target>购物</target>
       </trans-unit>
       <trans-unit id="19de196fb704ba61b6470621e82609ab" resname="sylius.checkout.finalize.order.billing_address">
         <source>sylius.checkout.finalize.order.billing_address</source>
-        <target>Billing address</target>
+        <target>账单地址</target>
       </trans-unit>
       <trans-unit id="0d1429fdb2aa785a6ff600e5114f84b2" resname="sylius.checkout.finalize.order.items_total">
         <source>sylius.checkout.finalize.order.items_total</source>
-        <target>Items total</target>
+        <target>商品总数</target>
       </trans-unit>
       <trans-unit id="9e989b9a5bb1558d67442a524bf59aee" resname="sylius.checkout.finalize.order.no_items">
         <source>sylius.checkout.finalize.order.no_items</source>
-        <target>This order does not contain any items</target>
+        <target>没有选中商品</target>
       </trans-unit>
       <trans-unit id="601084462d00a53549fa099c24efc0e8" resname="sylius.checkout.finalize.order.no_promotion">
         <source>sylius.checkout.finalize.order.no_promotion</source>
-        <target>No promotion applied</target>
+        <target>没有优惠商品</target>
       </trans-unit>
       <trans-unit id="bd7f35ab43b1d560166eaf64f38a0b10" resname="sylius.checkout.finalize.order.no_shipping_charges">
         <source>sylius.checkout.finalize.order.no_shipping_charges</source>
-        <target>No shipping charges applied</target>
+        <target>没有运费</target>
       </trans-unit>
       <trans-unit id="68b40c9becba04bdb66c46bdf9d0298d" resname="sylius.checkout.finalize.order.no_taxes">
         <source>sylius.checkout.finalize.order.no_taxes</source>
-        <target>No taxes applied</target>
+        <target>没有税</target>
       </trans-unit>
       <trans-unit id="7f4c16849e705349a57c86aa31517549" resname="sylius.checkout.finalize.order.promotion_discount">
         <source>sylius.checkout.finalize.order.promotion_discount</source>
-        <target>Promotion discounts</target>
+        <target>优惠</target>
       </trans-unit>
       <trans-unit id="fb9dab175d90bb42a1e7947e92f5c72b" resname="sylius.checkout.finalize.order.promotion_total">
         <source>sylius.checkout.finalize.order.promotion_total</source>
-        <target>Promotion total</target>
+        <target>优惠总额</target>
       </trans-unit>
       <trans-unit id="1d18f34907cdc577e2fd27d32bac167e" resname="sylius.checkout.finalize.order.shipping_address">
         <source>sylius.checkout.finalize.order.shipping_address</source>
-        <target>Shipping address</target>
+        <target>邮寄地址</target>
       </trans-unit>
       <trans-unit id="59865a0e0d24abdc9a0b287714ab46ed" resname="sylius.checkout.finalize.order.shipping_charges">
         <source>sylius.checkout.finalize.order.shipping_charges</source>
-        <target>Shipping charges</target>
+        <target>邮寄费</target>
       </trans-unit>
       <trans-unit id="00b0f9cae0fb82929d1d04c09416bbe3" resname="sylius.checkout.finalize.order.shipping_total">
         <source>sylius.checkout.finalize.order.shipping_total</source>
-        <target>Shipping total</target>
+        <target>邮寄总额</target>
       </trans-unit>
       <trans-unit id="e3e9d9f2730feaacda1e5df8bd9fa4c3" resname="sylius.checkout.finalize.order.tax_total">
         <source>sylius.checkout.finalize.order.tax_total</source>
-        <target>Tax total</target>
+        <target>税</target>
       </trans-unit>
       <trans-unit id="6dbd3396d4382613c5602ab358731e88" resname="sylius.checkout.finalize.order.taxes">
         <source>sylius.checkout.finalize.order.taxes</source>
-        <target>Taxes</target>
+        <target>税</target>
       </trans-unit>
       <trans-unit id="38dd9e543a60fbc8a7a9cc9a277a6196" resname="sylius.checkout.finalize.order.total">
         <source>sylius.checkout.finalize.order.total</source>
-        <target>Total</target>
+        <target>总计</target>
       </trans-unit>
       <trans-unit id="d2aed44b2efb267622d68eab83151015" resname="sylius.checkout.finalize.order_item.quantity">
         <source>sylius.checkout.finalize.order_item.quantity</source>
-        <target>Qty</target>
+        <target>数量</target>
       </trans-unit>
       <trans-unit id="82803ea2c4eebca3fa1169513d66229f" resname="sylius.checkout.finalize.order_item.total">
         <source>sylius.checkout.finalize.order_item.total</source>
-        <target>Total</target>
+        <target>总计</target>
       </trans-unit>
       <trans-unit id="39a374f71a96a6db5b6976d231064cbb" resname="sylius.checkout.finalize.order_item.unit_price">
         <source>sylius.checkout.finalize.order_item.unit_price</source>
-        <target>Unit Price</target>
+        <target>单价</target>
       </trans-unit>
       <trans-unit id="b98df3212ce360206a95088abe3fe27f" resname="sylius.checkout.finalize.place_order">
         <source>sylius.checkout.finalize.place_order</source>
-        <target>Place order</target>
+        <target>提交订单</target>
       </trans-unit>
       <trans-unit id="f165afaa167c13b164df7a2d2319fc3f" resname="sylius.checkout.finalize.product.name">
         <source>sylius.checkout.finalize.product.name</source>
@@ -264,7 +264,7 @@
       </trans-unit>
       <trans-unit id="950464e3dc03957076025cf517b7f4eb" resname="sylius.checkout.security.login">
         <source>sylius.checkout.security.login</source>
-        <target>Login</target>
+        <target>登录</target>
       </trans-unit>
       <trans-unit id="d0ee3d1b1df9793c2be2434a4f47e620" resname="sylius.checkout.security.new_customer">
         <source>sylius.checkout.security.new_customer</source>
@@ -344,7 +344,7 @@
       </trans-unit>
       <trans-unit id="232a93e364de1804028b5659ea633126" resname="sylius.form.choose_file">
         <source>sylius.form.choose_file</source>
-        <target>Choose file</target>
+        <target>选择图片</target>
       </trans-unit>
       <trans-unit id="725075e6afc8a166392a2261d7880d37" resname="sylius.form.login.password">
         <source>sylius.form.login.password</source>
@@ -1392,43 +1392,43 @@
       </trans-unit>
       <trans-unit id="5e6583e9013f7b973968aec3daf61d82" resname="sylius.taxon.create">
         <source>sylius.taxon.create</source>
-        <target>Create taxon</target>
+        <target>添加分类</target>
       </trans-unit>
       <trans-unit id="cc020d7e0de1dd9433ee08b1cb8d3d53" resname="sylius.taxon.create_header">
         <source>sylius.taxon.create_header</source>
-        <target>New taxon</target>
+        <target>添加分类</target>
       </trans-unit>
       <trans-unit id="3ee8679af3b54e2f8ff944e015c786f7" resname="sylius.taxon.image">
         <source>sylius.taxon.image</source>
-        <target>Choose image</target>
+        <target>选择图片</target>
       </trans-unit>
       <trans-unit id="1dee435f9aaa23fd39f9330f513be3d7" resname="sylius.taxon.name">
         <source>sylius.taxon.name</source>
-        <target>Name</target>
+        <target>分类名称</target>
       </trans-unit>
       <trans-unit id="32458a71a0707d046acb0b8b70bbba0b" resname="sylius.taxon.no_image">
         <source>sylius.taxon.no_image</source>
-        <target>There are no image for this taxon</target>
+        <target>该分类没有图片</target>
       </trans-unit>
       <trans-unit id="14570359abb67f8a14e33b0a70df40cc" resname="sylius.taxon.no_results">
         <source>sylius.taxon.no_results</source>
-        <target>There are no taxons to display.</target>
+        <target>没有分类。</target>
       </trans-unit>
       <trans-unit id="be8f3526efb6d1b32012cfe9e2059ad3" resname="sylius.taxon.update_header">
         <source>sylius.taxon.update_header</source>
-        <target>Editing taxon</target>
+        <target>修改分类</target>
       </trans-unit>
       <trans-unit id="ead07b2e58d2c8dd005c8685ab63185c" resname="sylius.taxonomy.create">
         <source>sylius.taxonomy.create</source>
-        <target>Create taxonomy</target>
+        <target>添加</target>
       </trans-unit>
       <trans-unit id="2fad1b00002f6dff1b4252aafcb7c4b6" resname="sylius.taxonomy.create_header">
         <source>sylius.taxonomy.create_header</source>
-        <target>New taxonomy</target>
+        <target>添加分类</target>
       </trans-unit>
       <trans-unit id="0fd8b2b41644eae29694f1f8f2c2c40a" resname="sylius.taxonomy.image">
         <source>sylius.taxonomy.image</source>
-        <target>Choose image</target>
+        <target>添加图片</target>
       </trans-unit>
       <trans-unit id="73761ee776cbdc59fca8f5adab8483ac" resname="sylius.taxonomy.index_header">
         <source>sylius.taxonomy.index_header</source>
@@ -1436,7 +1436,7 @@
       </trans-unit>
       <trans-unit id="3994887e084b96e1e18a23c8e4cb1177" resname="sylius.taxonomy.name">
         <source>sylius.taxonomy.name</source>
-        <target>Name</target>
+        <target>分类名称</target>
       </trans-unit>
       <trans-unit id="053e2ad9e8340ee8b9e17baf0e55c90c" resname="sylius.taxonomy.no_image">
         <source>sylius.taxonomy.no_image</source>
@@ -1452,7 +1452,7 @@
       </trans-unit>
       <trans-unit id="eeed0e5babbe776a907ee0eeb64fe1bd" resname="sylius.taxonomy.update_header">
         <source>sylius.taxonomy.update_header</source>
-        <target>Editing taxonomy</target>
+        <target>修改分类</target>
       </trans-unit>
       <trans-unit id="e4b61ff5e1add3eef1f9a5433aab958e" resname="sylius.user.email">
         <source>sylius.user.email</source>
