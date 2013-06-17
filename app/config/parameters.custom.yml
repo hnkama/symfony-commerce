@@ -1,0 +1,3 @@
+parameters:
+    sylius.locale.fallback: en
+    twig.theme: jiwen
