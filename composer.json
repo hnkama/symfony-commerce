@@ -29,6 +29,7 @@
         "symfony/swiftmailer-bundle":           "2.2.*",
         "symfony/monolog-bundle":               "2.2.*",
         "sensio/distribution-bundle":           "2.2.*",
+		"sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "mathiasverraes/money":                 "dev-master@dev",
         "jms/translation-bundle":               "1.1.*",
@@ -82,7 +83,11 @@
         ]
     },
     "autoload": {
-        "psr-0": { "Sylius\\": "src/" }
+        "psr-0": {
+			"": "src/",
+			"Sylius\\": "src/",
+			"Jiwen\\": "src/"
+		}
     },
     "config": {
         "bin-dir": "bin"

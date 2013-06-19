@@ -4,11 +4,11 @@
     <body>
       <trans-unit id="cd1ac84fcaa92336771b2f537b546f7c" resname="sylius.backend.menu.main.assortment">
         <source>sylius.backend.menu.main.assortment</source>
-        <target>Assortment</target>
+        <target>产品管理</target>
       </trans-unit>
       <trans-unit id="a372a7d5b6e2991da23009440f5b1c98" resname="sylius.backend.menu.main.configuration">
         <source>sylius.backend.menu.main.configuration</source>
-        <target>Configuration</target>
+        <target>商城配置</target>
       </trans-unit>
       <trans-unit id="b3f20139c90a466753cd35511725f7a0" resname="sylius.backend.menu.main.countries">
         <source>sylius.backend.menu.main.countries</source>
@@ -16,15 +16,15 @@
       </trans-unit>
       <trans-unit id="bd5421cfee1b38c03bddcd2612e5eb65" resname="sylius.backend.menu.main.dashboard">
         <source>sylius.backend.menu.main.dashboard</source>
-        <target>Dashboard</target>
+        <target>控制台</target>
       </trans-unit>
       <trans-unit id="7fce7a16610025ea73e1d02af31fa576" resname="sylius.backend.menu.main.general_settings">
         <source>sylius.backend.menu.main.general_settings</source>
-        <target>General settings</target>
+        <target>常规设置</target>
       </trans-unit>
       <trans-unit id="2c21cdef4aa00a86044bf3ebf9709493" resname="sylius.backend.menu.main.homepage">
         <source>sylius.backend.menu.main.homepage</source>
-        <target>Your store</target>
+        <target>你的商城</target>
       </trans-unit>
       <trans-unit id="d38ec9ab0caf4fec0e9d90fadaddbdff" resname="sylius.backend.menu.main.new_order">
         <source>sylius.backend.menu.main.new_order</source>
@@ -108,7 +108,7 @@
       </trans-unit>
       <trans-unit id="b82bee2bddf68adf095856b85e41b6cb" resname="sylius.backend.menu.sidebar.assortment">
         <source>sylius.backend.menu.sidebar.assortment</source>
-        <target>Assortment</target>
+        <target>产品管理</target>
       </trans-unit>
       <trans-unit id="7486e100b253cf670a06bf260d24d6c3" resname="sylius.backend.menu.sidebar.configuration">
         <source>sylius.backend.menu.sidebar.configuration</source>

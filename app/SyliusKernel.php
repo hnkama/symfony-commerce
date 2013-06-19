@@ -47,6 +47,7 @@ class SyliusKernel extends Kernel
             new Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
             new Sylius\Bundle\TaxonomiesBundle\SyliusTaxonomiesBundle(),
             new Sylius\Bundle\FlowBundle\SyliusFlowBundle(),
+			new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
 
             // Core bundles.
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
@@ -69,6 +70,7 @@ class SyliusKernel extends Kernel
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Jiwen\BannerBundle\JiwenBannerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
