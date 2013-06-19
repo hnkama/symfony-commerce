@@ -69,9 +69,6 @@ class SyliusKernel extends Kernel
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
-			new Sonata\CacheBundle\SonataCacheBundle(),
-			new Sonata\BlockBundle\SonataBlockBundle(),
-			new Sonata\AdminBundle\SonataAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
