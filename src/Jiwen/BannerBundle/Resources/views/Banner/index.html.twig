@@ -1,0 +1,61 @@
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
+
+{% block content -%}
+<div class="page-header">
+    <h1>广告列表 <small>网站广告</small></h1>
+</div>
+<div class="well well-small">
+	<a href="{{ path('banner_new') }}" class="btn btn-primary">
+		<i class="icon-plus-sign"></i>
+		添加广告
+	</a>
+</div>
+
+<table class="records_list table table-bordered">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Link</th>
+			<th>Target</th>
+			<th>Description</th>
+			<th>Image</th>
+			<th>Width</th>
+			<th>Height</th>
+			<th>Type</th>
+			<th>Clicks</th>
+			<th>Starttime</th>
+			<th>Endtime</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('banner_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.link }}</td>
+                <td>{{ entity.target }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.image }}</td>
+                <td>{{ entity.width }}</td>
+                <td>{{ entity.height }}</td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.clicks }}</td>
+                <td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+					<ul>
+						<li>
+							<a href="{{ path('banner_show', { 'id': entity.id }) }}">show</a>
+						</li>
+						<li>
+							<a href="{{ path('banner_edit', { 'id': entity.id }) }}">edit</a>
+						</li>
+					</ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

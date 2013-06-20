@@ -10,6 +10,14 @@
         <source>sylius.backend.menu.main.configuration</source>
         <target>商城配置</target>
       </trans-unit>
+      <trans-unit id="a372a7d5b6ebanner" resname="sylius.backend.menu.main.banner">
+        <source>sylius.backend.menu.main.banner</source>
+        <target>广告管理</target>
+      </trans-unit>
+      <trans-unit id="a372a7d5b6ebannerlist" resname="sylius.backend.menu.main.banner_list">
+        <source>sylius.backend.menu.main.banner_list</source>
+        <target>广告列表</target>
+      </trans-unit>
       <trans-unit id="b3f20139c90a466753cd35511725f7a0" resname="sylius.backend.menu.main.countries">
         <source>sylius.backend.menu.main.countries</source>
         <target>Countries</target>
@@ -36,43 +44,43 @@
       </trans-unit>
       <trans-unit id="b36a72c48b853b6998f5a53c49b7e882" resname="sylius.backend.menu.main.options">
         <source>sylius.backend.menu.main.options</source>
-        <target>Manage product options</target>
+        <target>产品选项管理</target>
       </trans-unit>
       <trans-unit id="de3dfe470fe9b786ec37f80c586e16e8" resname="sylius.backend.menu.main.orders">
         <source>sylius.backend.menu.main.orders</source>
-        <target>Current orders</target>
+        <target>当前订单</target>
       </trans-unit>
       <trans-unit id="96fad72b5156d217d479762961dfab32" resname="sylius.backend.menu.main.payment_methods">
         <source>sylius.backend.menu.main.payment_methods</source>
-        <target>Payment methods</target>
+        <target>支付方式</target>
       </trans-unit>
       <trans-unit id="de24c4089204c074b2515399d87288bf" resname="sylius.backend.menu.main.payments">
         <source>sylius.backend.menu.main.payments</source>
-        <target>Payments</target>
+        <target>支付管理</target>
       </trans-unit>
       <trans-unit id="7e3ac23a2e8c487e9ae4f8e7072cd9ea" resname="sylius.backend.menu.main.products">
         <source>sylius.backend.menu.main.products</source>
-        <target>Products</target>
+        <target>产品管理</target>
       </trans-unit>
       <trans-unit id="8f3c8f3739c1ab5dc001f182a0df8ae9" resname="sylius.backend.menu.main.promotions">
         <source>sylius.backend.menu.main.promotions</source>
-        <target>Promotions</target>
+        <target>产品促销</target>
       </trans-unit>
       <trans-unit id="af5abeac40120831312e8e7bc8f9e687" resname="sylius.backend.menu.main.properties">
         <source>sylius.backend.menu.main.properties</source>
-        <target>Configure properties</target>
+        <target>产品属性配置</target>
       </trans-unit>
       <trans-unit id="2307241e37aed4594c5024bfdd6daf4f" resname="sylius.backend.menu.main.prototypes">
         <source>sylius.backend.menu.main.prototypes</source>
-        <target>Product prototypes</target>
+        <target>产品原型管理</target>
       </trans-unit>
       <trans-unit id="8519017294862107bc163e8f8230b22c" resname="sylius.backend.menu.main.sales">
         <source>sylius.backend.menu.main.sales</source>
-        <target>Orders</target>
+        <target>订单管理</target>
       </trans-unit>
       <trans-unit id="19ee56216b22fd756531e4543baa4af9" resname="sylius.backend.menu.main.shipments">
         <source>sylius.backend.menu.main.shipments</source>
-        <target>Shipments</target>
+        <target>邮寄管理</target>
       </trans-unit>
       <trans-unit id="67b31ee62274d0f6a2a2ad4c055d31de" resname="sylius.backend.menu.main.shipping_categories">
         <source>sylius.backend.menu.main.shipping_categories</source>
@@ -80,7 +88,7 @@
       </trans-unit>
       <trans-unit id="0db487586f98e52363e8e92234bea40c" resname="sylius.backend.menu.main.shipping_methods">
         <source>sylius.backend.menu.main.shipping_methods</source>
-        <target>Shipping methods</target>
+        <target>邮寄方式</target>
       </trans-unit>
       <trans-unit id="9bf052736a106fab9e1596ef29849e2a" resname="sylius.backend.menu.main.stockables">
         <source>sylius.backend.menu.main.stockables</source>
@@ -112,7 +120,7 @@
       </trans-unit>
       <trans-unit id="7486e100b253cf670a06bf260d24d6c3" resname="sylius.backend.menu.sidebar.configuration">
         <source>sylius.backend.menu.sidebar.configuration</source>
-        <target>Configuration</target>
+        <target>配置</target>
       </trans-unit>
       <trans-unit id="7ababb61b42033c8fd96a991a1e250c2" resname="sylius.backend.menu.sidebar.countries">
         <source>sylius.backend.menu.sidebar.countries</source>
@@ -120,27 +128,27 @@
       </trans-unit>
       <trans-unit id="cba72055a7fd943fa6c615612b7f895f" resname="sylius.backend.menu.sidebar.customer">
         <source>sylius.backend.menu.sidebar.customer</source>
-        <target>Customers</target>
+        <target>客户</target>
       </trans-unit>
       <trans-unit id="b7c9d66374f6f0aba78d570378706128" resname="sylius.backend.menu.sidebar.dashboard">
         <source>sylius.backend.menu.sidebar.dashboard</source>
-        <target>Dashboard</target>
+        <target>控制台</target>
       </trans-unit>
       <trans-unit id="6bb24a8da7d85682abf7e38a2a6d8093" resname="sylius.backend.menu.sidebar.general_settings">
         <source>sylius.backend.menu.sidebar.general_settings</source>
-        <target>General settings</target>
+        <target>常规设置</target>
       </trans-unit>
       <trans-unit id="d5ab9f2471615eb2a22c363e7aab01fc" resname="sylius.backend.menu.sidebar.homepage">
         <source>sylius.backend.menu.sidebar.homepage</source>
-        <target>Back to frontend</target>
+        <target>返回商城首页</target>
       </trans-unit>
       <trans-unit id="cc4cae0efe5b617a36e61f0c8f3c650e" resname="sylius.backend.menu.sidebar.new_order">
         <source>sylius.backend.menu.sidebar.new_order</source>
-        <target>Add new order</target>
+        <target>添加新的订单</target>
       </trans-unit>
       <trans-unit id="e926bf719883393cf94f09aeb2f742d9" resname="sylius.backend.menu.sidebar.new_promotion">
         <source>sylius.backend.menu.sidebar.new_promotion</source>
-        <target>Add new promotion</target>
+        <target>添加新的促销</target>
       </trans-unit>
       <trans-unit id="44d59833dd3689d7605ddc74731242c1" resname="sylius.backend.menu.sidebar.options">
         <source>sylius.backend.menu.sidebar.options</source>

@@ -1,7 +1,0 @@
-parameters:
-#    jiwen_banner.example.class: Jiwen\BannerBundle\Example
-
-services:
-#    jiwen_banner.example:
-#        class: %jiwen_banner.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

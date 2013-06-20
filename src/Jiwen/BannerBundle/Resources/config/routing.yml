@@ -1,4 +1,4 @@
-jiwen_backend_banner:
-    resource: @JiwenBannerBundle/Resources/config/routing/backend.yml
-    prefix: /administration/banner
+jiwen_banner_banner:
+    resource: "@JiwenBannerBundle/Resources/config/routing/banner.yml"
+    prefix:   /administration/banner
 

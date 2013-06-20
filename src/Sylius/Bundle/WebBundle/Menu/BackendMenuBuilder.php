@@ -50,6 +50,7 @@ class BackendMenuBuilder extends MenuBuilder
 
         $this->addAssortmentMenu($menu, $childOptions, 'main');
         $this->addSalesMenu($menu, $childOptions, 'main');
+        $this->addBannerMenu($menu, $childOptions, 'main');
         $this->addConfigurationMenu($menu, $childOptions, 'main');
 
         $menu->addChild('homepage', array(
@@ -257,5 +258,25 @@ class BackendMenuBuilder extends MenuBuilder
             'route' => 'sylius_backend_zone_index',
             'labelAttributes' => array('icon' => 'icon-globe'),
         ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.zones', $section)));
+    }
+
+    /**
+     * Add configuration menu.
+     *
+     * @param ItemInterface $menu
+     * @param array         $childOptions
+     */
+    protected function addBannerMenu(ItemInterface $menu, array $childOptions, $section)
+    {
+        $child = $menu
+            ->addChild('banner', $childOptions)
+            ->setLabel($this->translate(sprintf('sylius.backend.menu.%s.banner', $section)))
+        ;
+
+        $child->addChild('banner_index', array(
+            'route' => 'banner',
+            'labelAttributes' => array('icon' => 'icon-cog'),
+        ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.banner_list', $section)));
+
     }
 }
