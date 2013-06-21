@@ -11,9 +11,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="sylius_banner")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Banner
 {
+	private $temp;
+
     /**
      * @var integer
      *
@@ -405,6 +408,14 @@ class Banner
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
+        // check if we have an old image path
+        if (isset($this->path)) {
+            // store the old name to delete after the update
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
     }
 
     /**
@@ -417,28 +428,52 @@ class Banner
         return $this->file;
     }
 
+	/**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+	/**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
 	public function upload()
 	{
-		// the file property can be empty if the field is not required
 		if (null === $this->getFile()) {
-			return;
-		}
+            return;
+        }
 
-		// use the original file name here but you should
-		// sanitize it at least to avoid any security issues
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
 
-		// move takes the target directory and then the
-		// target filename to move to
-		$this->getFile()->move(
-			$this->getUploadRootDir(),
-			$this->getFile()->getClientOriginalName()
-		);
-
-		// set the path property to the filename where you've saved the file
-		$this->path = $this->getFile()->getClientOriginalName();
-
-		// clean up the file property as you won't need it anymore
-		$this->file = null;
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+        $this->file = null;
 	}
+
+	/**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
 
 }
