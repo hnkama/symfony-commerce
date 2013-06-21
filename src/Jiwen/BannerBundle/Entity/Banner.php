@@ -67,20 +67,6 @@ class Banner
     private $path;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="width", type="integer")
-     */
-    private $width;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="height", type="integer")
-     */
-    private $height;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
@@ -90,7 +76,7 @@ class Banner
     /**
      * @var integer
      *
-     * @ORM\Column(name="clicks", type="integer")
+     * @ORM\Column(name="clicks", type="integer", nullable=true)
      */
     private $clicks;
 
@@ -209,52 +195,6 @@ class Banner
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set width
-     *
-     * @param integer $width
-     * @return Banner
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    
-        return $this;
-    }
-
-    /**
-     * Get width
-     *
-     * @return integer 
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    /**
-     * Set height
-     *
-     * @param string $height
-     * @return Banner
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-    
-        return $this;
-    }
-
-    /**
-     * Get height
-     *
-     * @return string 
-     */
-    public function getHeight()
-    {
-        return $this->height;
     }
 
     /**

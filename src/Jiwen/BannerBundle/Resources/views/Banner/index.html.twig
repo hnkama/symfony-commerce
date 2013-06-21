@@ -20,13 +20,11 @@
 			<th>Target</th>
 			<th>Description</th>
 			<th>Path</th>
-			<th>Width</th>
-			<th>Height</th>
 			<th>Type</th>
 			<th>Clicks</th>
 			<th>Starttime</th>
 			<th>Endtime</th>
-			<th>Actions</th>
+			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,21 +36,17 @@
                 <td>{{ entity.target }}</td>
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.path }}</td>
-                <td>{{ entity.width }}</td>
-                <td>{{ entity.height }}</td>
                 <td>{{ entity.type }}</td>
                 <td>{{ entity.clicks }}</td>
                 <td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-					<ul>
-						<li>
-							<a href="{{ path('banner_show', { 'id': entity.id }) }}">show</a>
-						</li>
-						<li>
-							<a href="{{ path('banner_edit', { 'id': entity.id }) }}">edit</a>
-						</li>
-					</ul>
+					<div class="btn-group">
+							<a href="{{ path('banner_show', { 'id': entity.id }) }}" class="btn">
+								<i class="icon-eye-open"></i>
+								</a>
+							<a href="{{ path('banner_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i></a>
+					</div>
                 </td>
             </tr>
         {% endfor %}

@@ -16,8 +16,6 @@ class BannerType extends AbstractType
             ->add('target')
             ->add('description')
             ->add('file')
-            ->add('width')
-            ->add('height')
             ->add('type')
             ->add('clicks')
             ->add('startTime')
