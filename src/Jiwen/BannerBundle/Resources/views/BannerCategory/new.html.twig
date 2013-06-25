@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
 
-{% block body -%}
+{% block content -%}
     <h1>BannerCategory creation</h1>
 
     <form action="{{ path('bannercategory_create') }}" method="post" {{ form_enctype(form) }}>
