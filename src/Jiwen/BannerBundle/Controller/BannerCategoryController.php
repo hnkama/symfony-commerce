@@ -24,6 +24,10 @@ class BannerCategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('JiwenBannerBundle:BannerCategory')->findAll();
+		foreach($entities as $key => $row) {
+			$row->setTarget(BannerCategory::$targets[$row->getTarget()]);
+			$entities[$key] = $row;
+		}
 
         return $this->render('JiwenBannerBundle:BannerCategory:index.html.twig', array(
             'entities' => $entities,

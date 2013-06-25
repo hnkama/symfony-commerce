@@ -56,6 +56,8 @@ class BannerCategory
      */
     private $height;
 
+	public static $targets = array('_blank'=>'新标签',''=>'当前标签');
+
 
     /**
      * Get id

@@ -5,6 +5,7 @@ namespace Jiwen\BannerBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Jiwen\BannerBundle\Entity\BannerCategory;
 
 class BannerCategoryType extends AbstractType
 {
@@ -13,7 +14,9 @@ class BannerCategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('target')
+            ->add('target', 'choice', array(
+				'choices' => BannerCategory::$targets
+			))
             ->add('width')
             ->add('height')
         ;
