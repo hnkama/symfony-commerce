@@ -3,7 +3,7 @@
 {% block content -%}
     <h1>Banner</h1>
 
-    <table class="record_properties">
+    <table class="record_properties table table-bordered table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -18,20 +18,16 @@
                 <td>{{ entity.link }}</td>
             </tr>
             <tr>
-                <th>Target</th>
-                <td>{{ entity.target }}</td>
-            </tr>
-            <tr>
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ entity.path }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ entity.type }}</td>
+                <td>
+                    {% if entity.path is not null %}
+                        <img src="{{ asset('uploads/documents/' ~ entity.path ) }}" height="100" />
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Clicks</th>
@@ -51,19 +47,19 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('banner') }}">
-            Back to the list
+            返回列表
         </a>
     </li>
     <li>
-        <a href="{{ path('banner_edit', { 'id': entity.id }) }}">
-            Edit
+        <a class="btn btn-primary" href="{{ path('banner_edit', { 'id': entity.id }) }}">
+            编辑
         </a>
     </li>
     <li>
         <form action="{{ path('banner_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
-            <button type="submit">Delete</button>
+            <button type="submit" onclick="return confirm('确定要删除吗？')" class="btn btn-danger">删除</button>
         </form>
     </li>
 </ul>

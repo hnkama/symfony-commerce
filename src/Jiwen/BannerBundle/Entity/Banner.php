@@ -44,19 +44,18 @@ class Banner
 	 */
 	private $category;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\Taxon", inversedBy="banners")
+	 * @ORM\JoinColumn(name="taxon_id", referencedColumnName="id")
+	 */
+	private $taxon;
+
     /**
      * @var string
      *
      * @ORM\Column(name="link", type="string", length=255)
      */
     private $link;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="target", type="string", length=50)
-     */
-    private $target;
 
     /**
      * @var string
@@ -71,13 +70,6 @@ class Banner
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
-     */
-    private $type;
 
     /**
      * @var integer
@@ -158,29 +150,6 @@ class Banner
     }
 
     /**
-     * Set target
-     *
-     * @param string $target
-     * @return Banner
-     */
-    public function setTarget($target)
-    {
-        $this->target = $target;
-    
-        return $this;
-    }
-
-    /**
-     * Get target
-     *
-     * @return string 
-     */
-    public function getTarget()
-    {
-        return $this->target;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -201,29 +170,6 @@ class Banner
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     * @return Banner
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string 
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -405,7 +351,9 @@ class Banner
         // check if we have an old image
         if (isset($this->temp)) {
             // delete the old image
-            unlink($this->getUploadRootDir().'/'.$this->temp);
+            if(file_exists($this->getUploadRootDir().'/'.$this->temp)) {
+                unlink($this->getUploadRootDir().'/'.$this->temp);
+            }
             // clear the temp image path
             $this->temp = null;
         }
@@ -444,5 +392,28 @@ class Banner
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set taxon
+     *
+     * @param \Sylius\Bundle\CoreBundle\Entity\Taxon $taxon
+     * @return Banner
+     */
+    public function setTaxon(\Sylius\Bundle\CoreBundle\Entity\Taxon $taxon = null)
+    {
+        $this->taxon = $taxon;
+    
+        return $this;
+    }
+
+    /**
+     * Get taxon
+     *
+     * @return \Sylius\Bundle\CoreBundle\Entity\Taxon 
+     */
+    public function getTaxon()
+    {
+        return $this->taxon;
     }
 }

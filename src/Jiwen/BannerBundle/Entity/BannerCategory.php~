@@ -194,4 +194,42 @@ class BannerCategory
     {
         return $this->height;
     }
+
+    /**
+     * Add banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     * @return BannerCategory
+     */
+    public function addBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners[] = $banners;
+    
+        return $this;
+    }
+
+    /**
+     * Remove banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     */
+    public function removeBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners->removeElement($banners);
+    }
+
+    /**
+     * Get banners
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBanners()
+    {
+        return $this->banners;
+    }
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 }

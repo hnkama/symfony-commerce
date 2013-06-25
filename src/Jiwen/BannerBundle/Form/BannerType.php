@@ -12,11 +12,11 @@ class BannerType extends AbstractType
     {
         $builder
             ->add('name')
+			->add('category')
+			->add('taxon')
             ->add('link')
-            ->add('target')
             ->add('description')
             ->add('file')
-            ->add('type')
             ->add('clicks')
             ->add('startTime')
             ->add('endTime')

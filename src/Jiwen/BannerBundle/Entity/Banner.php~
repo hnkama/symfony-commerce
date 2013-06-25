@@ -44,6 +44,12 @@ class Banner
 	 */
 	private $category;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\Taxon", inversedBy="banners")
+	 * @ORM\JoinColumn(name="taxon_id", referencedColumnName="id")
+	 */
+	private $taxon;
+
     /**
      * @var string
      *
@@ -422,4 +428,27 @@ class Banner
         }
     }
 
+
+    /**
+     * Set category
+     *
+     * @param \Jiwen\BannerBundle\Entity\BannerCategory $category
+     * @return Banner
+     */
+    public function setCategory(\Jiwen\BannerBundle\Entity\BannerCategory $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Jiwen\BannerBundle\Entity\BannerCategory 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

@@ -153,16 +153,19 @@ class BannerController extends Controller
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('JiwenBannerBundle:Banner')->find($id);
+        $request = $this->get('request');
+        if ($request->getMethod() == 'DELETE') {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $entity = $em->getRepository('JiwenBannerBundle:Banner')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Banner entity.');
+                if (!$entity) {
+                    throw $this->createNotFoundException('Unable to find Banner entity.');
+                }
+
+                $em->remove($entity);
+                $em->flush();
             }
-
-            $em->remove($entity);
-            $em->flush();
         }
 
         return $this->redirect($this->generateUrl('banner'));
