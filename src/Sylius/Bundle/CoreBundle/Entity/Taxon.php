@@ -6,6 +6,7 @@ use Sylius\Bundle\CoreBundle\Model\ImageInterface;
 use Sylius\Bundle\TaxonomiesBundle\Entity\Taxon as BaseTaxon;
 use SplFileInfo;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Sylius core taxon entity.
@@ -29,6 +30,11 @@ class Taxon extends BaseTaxon implements ImageInterface
      */
     protected $createdAt;
 
+	/**
+	 * @array
+	 */
+	protected $banners;
+
     /**
      * @var \DateTime
      */
@@ -39,6 +45,7 @@ class Taxon extends BaseTaxon implements ImageInterface
         parent::__construct();
 
         $this->createdAt = new DateTime();
+		$this->banners = new ArrayCollection();
     }
 
     public function hasFile()
@@ -89,6 +96,40 @@ class Taxon extends BaseTaxon implements ImageInterface
     public function setUpdatedAt(DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+
+    /**
+     * Add banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     * @return Taxon
+     */
+    public function addBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners[] = $banners;
+    
+        return $this;
+    }
+
+    /**
+     * Remove banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     */
+    public function removeBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners->removeElement($banners);
+    }
+
+    /**
+     * Get banners
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBanners()
+    {
+        return $this->banners;
     }
 
 }

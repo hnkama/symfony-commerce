@@ -20,6 +20,8 @@
                 <cascade-all />
             </cascade>
         </one-to-many>
+        <one-to-many field="banners" target-entity="Jiwen\BannerBundle\Entity\Banner" mapped-by="taxon">
+        </one-to-many>
         <field name="path" nullable="true"/>
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
