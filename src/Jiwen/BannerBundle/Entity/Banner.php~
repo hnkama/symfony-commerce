@@ -3,15 +3,20 @@
 namespace Jiwen\BannerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Banner
  *
  * @ORM\Table(name="sylius_banner")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Banner
 {
+	private $temp;
+
     /**
      * @var integer
      *
@@ -21,12 +26,23 @@ class Banner
      */
     private $id;
 
+	/**
+	 * @Assert\File(maxSize="6000000")
+	 */
+	private $file;
+
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="BannerCategory", inversedBy="Banners")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+	 */
+	private $category;
 
     /**
      * @var string
@@ -52,23 +68,9 @@ class Banner
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255)
      */
-    private $image;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="width", type="integer")
-     */
-    private $width;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="height", type="integer")
-     */
-    private $height;
+    private $path;
 
     /**
      * @var string
@@ -80,7 +82,7 @@ class Banner
     /**
      * @var integer
      *
-     * @ORM\Column(name="clicks", type="integer")
+     * @ORM\Column(name="clicks", type="integer", nullable=true)
      */
     private $clicks;
 
@@ -199,52 +201,6 @@ class Banner
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set width
-     *
-     * @param integer $width
-     * @return Banner
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    
-        return $this;
-    }
-
-    /**
-     * Get width
-     *
-     * @return integer 
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    /**
-     * Set height
-     *
-     * @param string $height
-     * @return Banner
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-    
-        return $this;
-    }
-
-    /**
-     * Get height
-     *
-     * @return string 
-     */
-    public function getHeight()
-    {
-        return $this->height;
     }
 
     /**
@@ -389,4 +345,81 @@ class Banner
         // when displaying uploaded doc/image in the view.
         return 'uploads/documents';
     }
+
+	/**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (isset($this->path)) {
+            // store the old name to delete after the update
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+	/**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+	/**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+	public function upload()
+	{
+		if (null === $this->getFile()) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+        $this->file = null;
+	}
+
+	/**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
 }

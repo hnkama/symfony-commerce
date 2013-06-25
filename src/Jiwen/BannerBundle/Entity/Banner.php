@@ -38,6 +38,12 @@ class Banner
      */
     private $name;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="BannerCategory", inversedBy="Banners")
+	 * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+	 */
+	private $category;
+
     /**
      * @var string
      *
@@ -416,4 +422,27 @@ class Banner
         }
     }
 
+
+    /**
+     * Set category
+     *
+     * @param \Jiwen\BannerBundle\Entity\BannerCategory $category
+     * @return Banner
+     */
+    public function setCategory(\Jiwen\BannerBundle\Entity\BannerCategory $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Jiwen\BannerBundle\Entity\BannerCategory 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

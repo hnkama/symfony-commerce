@@ -3,6 +3,7 @@
 namespace Jiwen\BannerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * BannerCategory
@@ -27,6 +28,11 @@ class BannerCategory
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Banner", mappedBy="category")
+	 */
+	private $banners;
 
     /**
      * @var string
@@ -57,6 +63,11 @@ class BannerCategory
     private $height;
 
 	public static $targets = array('_blank'=>'新标签',''=>'当前标签');
+
+	public function __construct()
+	{
+		$this->banners = new ArrayCollection();
+	}
 
 
     /**
@@ -182,5 +193,38 @@ class BannerCategory
     public function getHeight()
     {
         return $this->height;
+    }
+
+    /**
+     * Add banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     * @return BannerCategory
+     */
+    public function addBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners[] = $banners;
+    
+        return $this;
+    }
+
+    /**
+     * Remove banners
+     *
+     * @param \Jiwen\BannerBundle\Entity\Banner $banners
+     */
+    public function removeBanner(\Jiwen\BannerBundle\Entity\Banner $banners)
+    {
+        $this->banners->removeElement($banners);
+    }
+
+    /**
+     * Get banners
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBanners()
+    {
+        return $this->banners;
     }
 }
