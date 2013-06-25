@@ -227,4 +227,9 @@ class BannerCategory
     {
         return $this->banners;
     }
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 }
