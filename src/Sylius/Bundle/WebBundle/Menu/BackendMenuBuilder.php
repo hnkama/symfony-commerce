@@ -277,6 +277,10 @@ class BackendMenuBuilder extends MenuBuilder
             'route' => 'banner',
             'labelAttributes' => array('icon' => 'icon-cog'),
         ))->setLabel($this->translate(sprintf('sylius.backend.menu.%s.banner_list', $section)));
+        $child->addChild('banner_category', array(
+            'route' => 'bannercategory',
+            'labelAttributes' => array('icon' => 'icon-cog'),
+        ))->setLabel('广告分类');
 
     }
 }

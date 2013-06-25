@@ -1,0 +1,30 @@
+bannercategory:
+    pattern:  /
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:index" }
+
+bannercategory_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:show" }
+
+bannercategory_new:
+    pattern:  /new
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:new" }
+
+bannercategory_create:
+    pattern:  /create
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:create" }
+    requirements: { _method: post }
+
+bannercategory_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:edit" }
+
+bannercategory_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:update" }
+    requirements: { _method: post|put }
+
+bannercategory_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JiwenBannerBundle:BannerCategory:delete" }
+    requirements: { _method: post|delete }

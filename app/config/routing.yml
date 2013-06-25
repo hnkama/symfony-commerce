@@ -2,6 +2,10 @@ jiwen_banner:
     resource: "@JiwenBannerBundle/Resources/config/routing.yml"
     prefix:   /
 
+JiwenBannerBundle_bannercategory:
+        resource: "@JiwenBannerBundle/Resources/config/routing/bannercategory.yml"
+        prefix:   /administration/bannercategory
+
 sylius_installer:
     resource: @SyliusInstallerBundle/Resources/config/routing.yml
 
