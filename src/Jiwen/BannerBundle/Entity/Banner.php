@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Banner
  *
  * @ORM\Table(name="sylius_banner")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Jiwen\BannerBundle\Entity\BannerRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Banner

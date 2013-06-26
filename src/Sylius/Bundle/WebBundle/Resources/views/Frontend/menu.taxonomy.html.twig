@@ -76,10 +76,8 @@
         		{% if block('list') %}
             	<div id="submenu-wrap">
                 	<div class="smw-contents">
-                    	<img src="/assets/images/submenu-img.jpg" border="0" usemap="#Map2" class="smw-img1" width="410" height="333" style="right:0; bottom:20px;">
-                        <map name="Map2" id="Map2">
-                          <area shape="rect" coords="57,18,397,319" href="#" alt="">
-                        </map>
+						{{ block('bannerElement') }}
+                    	
                         <div class="smw-text">
                             <h3>{{ block('linkElement') }}</h3>
         					{{ block('list') }}
@@ -92,6 +90,7 @@
 {% endblock %}
 
 {% block linkElement %}{% import _self as knp_menu %}<a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
+{% block bannerElement %}{% import _self as knp_menu %}{{ item.labelAttributes.banner | raw }}{% endblock %}
 
 {% block spanElement %}{% import _self as knp_menu %}<span{{ knp_menu.attributes(item.labelAttributes) }}>{{ block('label') }}</span>{% endblock %}
 

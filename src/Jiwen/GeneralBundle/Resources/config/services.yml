@@ -1,0 +1,7 @@
+parameters:
+#    jiwen_general.example.class: Jiwen\GeneralBundle\Example
+
+services:
+#    jiwen_general.example:
+#        class: %jiwen_general.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

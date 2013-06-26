@@ -71,6 +71,7 @@ class SyliusKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Jiwen\BannerBundle\JiwenBannerBundle(),
+            new Jiwen\GeneralBundle\JiwenGeneralBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -25,6 +25,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+use Jiwen\BannerBundle\Entity\Banner;
+use Jiwen\GeneralBundle\JiwenGeneralBundle;
+
 /**
  * Frontend menu builder.
  *
@@ -192,19 +195,23 @@ class FrontendMenuBuilder extends MenuBuilder
         return $menu->toArray();
     }
 
-    private function createTaxonomiesMenuNode(ItemInterface $menu, TaxonInterface $taxon)
+    private function createTaxonomiesMenuNode(ItemInterface $menu, TaxonInterface $taxon, $top = true)
     {
+        $em = JiwenGeneralBundle::getContainer()->get('doctrine')->getEntityManager('default');
         foreach ($taxon->getChildren() as $child) {
+			$banner = $em->getRepository('JiwenBannerBundle:Banner')->findOneMenuBanner($child);
             $childMenu = $menu->addChild($child->getName(), array(
                 'route'           => 'sylius_product_index_by_taxon',
                 'routeParameters' => array('permalink' => $child->getPermalink()),
-                'labelAttributes' => array('icon' => 'icon-angle-right')
+                'labelAttributes' => array('icon' => 'icon-angle-right',
+					'banner' => $banner,
+					),
             ));
             if ($child->getPath()) {
                 $childMenu->setLabelAttribute('data-image', $child->getPath());
             }
 
-            $this->createTaxonomiesMenuNode($childMenu, $child);
+            $this->createTaxonomiesMenuNode($childMenu, $child, false);
         }
     }
 
