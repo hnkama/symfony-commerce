@@ -48,12 +48,7 @@
     	<div class="t-ads-wrap">
         	<div class="t-ads-out">
                 <div class="t-ads-wrap-inner">
-                    {{ render(url('sylius_partial_product_latest', {'limit': 5, 'template': 'SyliusWebBundle:Frontend/Product:latestSidebar.html.twig'})) }}
-                    <a href="#" target="_blank"><img src="/assets/images/t-bn1.jpg" width="339" height="68"></a>
-                    <a href="#" target="_blank"><img src="/assets/images/t-bn2.jpg" width="339" height="68"></a>
-                    <a href="#" target="_blank"><img src="/assets/images/t-bn3.jpg" width="339" height="68"></a>
-                    <a href="#" target="_blank"><img src="/assets/images/t-bn2.jpg" width="339" height="68"></a>
-                    <a href="#" target="_blank"><img src="/assets/images/t-bn3.jpg" width="339" height="68"></a>
+				 {{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.top, 'limit': 6, 'template' : 'top.html'})) }}
                 </div>
             </div>
             <span class="ta-drug"></span>

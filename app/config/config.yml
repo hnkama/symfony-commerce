@@ -25,6 +25,11 @@ twig:
             - 'SyliusWebBundle::forms.html.twig'
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        banner:
+            category:
+                top: "%banner.top%"
+            path: "%banner.path%"
 
 assetic:
     debug:          %kernel.debug%

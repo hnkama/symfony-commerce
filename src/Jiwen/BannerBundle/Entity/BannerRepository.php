@@ -28,5 +28,22 @@ class BannerRepository extends EntityRepository
 		return $banner;
 	}
 
+    public function findTopBanner($category, $limit)
+    {
+		$qb = $this->createQueryBuilder('q');
+		$today = new \DateTime();
+		return $qb
+				->andWhere('q.category = :category')
+				->andWhere($qb->expr()->lte('q.startTime', ':now'))
+				->andWhere($qb->expr()->gte('q.endTime', ':now'))
+				->setMaxResults($limit)
+				->setParameter('category', $category)
+				->setParameter('now', $today->format('Y-m-d H:m:s'))
+				->orderBy('q.id', 'DESC')
+				->getQuery()
+				->getResult()
+				;
+    }
+
 }
 

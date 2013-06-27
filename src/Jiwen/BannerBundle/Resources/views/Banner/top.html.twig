@@ -1,0 +1,3 @@
+{% for row in entity %}
+<a href="{{ row.link }}" target="{{ category.target }}"><img src="{{ asset(banner.path ~ '/' ~ row.path) }}" width="{{ category.width }}" height="{{ category.height }}"></a>
+{% endfor %}

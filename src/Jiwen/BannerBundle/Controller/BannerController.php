@@ -3,6 +3,7 @@
 namespace Jiwen\BannerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Jiwen\BannerBundle\Entity\Banner;
@@ -144,6 +145,17 @@ class BannerController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+	public function renderBannerAction($category, $limit, $template)
+	{
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('JiwenBannerBundle:Banner')->findTopBanner($category, $limit);
+		$category = $em->getRepository('JiwenBannerBundle:BannerCategory')->find($category);
+        return $this->render('JiwenBannerBundle:Banner:'.$template.'.twig', array(
+            'entity'      => $entity,
+			'category' => $category,
+        ));
+	}
     /**
      * Deletes a Banner entity.
      *
