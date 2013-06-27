@@ -2,3 +2,13 @@ jiwen_banner_banner:
     resource: "@JiwenBannerBundle/Resources/config/routing/banner.yml"
     prefix:   /administration/banner
 
+jiwen_banner_top:
+    pattern: /banner_top
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            paginate: false
+            method: findLatest
+            arguments: [$limit]
+            template: $template
+

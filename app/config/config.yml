@@ -3,6 +3,7 @@ imports:
     - { resource: parameters.custom.yml }
     - { resource: security.yml }
     - { resource: sylius.yml }
+    - { resource: jiwen.yml }
 
 framework:
     translator:      { fallback: %sylius.locale.fallback% }
