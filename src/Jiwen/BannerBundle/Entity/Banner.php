@@ -377,9 +377,12 @@ class Banner
      * @param \Jiwen\BannerBundle\Entity\BannerCategory $category
      * @return Banner
      */
-    public function setCategory(\Jiwen\BannerBundle\Entity\BannerCategory $category = null)
+    public function setCategory( $category = null)
     {
-        $this->category = $category;
+		if( $category instanceof \Jiwen\BannerBundle\Entity\BannerCategory) {
+
+		}
+		$this->category = $category;
     
         return $this;
     }

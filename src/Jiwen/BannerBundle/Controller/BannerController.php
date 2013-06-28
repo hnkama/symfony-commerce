@@ -25,9 +25,8 @@ class BannerController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 		$repo = $em->getRepository('JiwenBannerBundle:Banner');
-		$entities = $repo->findAll();
 
-		$form = $this->get('form.factory')->create(new BannerFilterType());
+		$form = $this->get('form.factory')->create(new BannerFilterType($em));
 		if ($this->get('request')->query->has('jiwen_banner_filter')) {
             // bind values from the request
             $form->bindRequest($this->get('request'));
@@ -41,7 +40,9 @@ class BannerController extends Controller
 
             // now look at the DQL =)
 			$entities = $filterBuilder->getQuery()->getResult();
-        }
+        } else {
+			$entities = $repo->findAll();
+		}
 
         return $this->render('JiwenBannerBundle:Banner:index.html.twig', array(
             'entities' => $entities,

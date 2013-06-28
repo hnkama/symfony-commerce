@@ -11,52 +11,56 @@
 	</a>
 </div>
 <div class="row-fluid">
+	<div class="span10 row-fluid">
+		<table class="records_list table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Link</th>
+					<th>Description</th>
+					<th>Path</th>
+					<th>Clicks</th>
+					<th>Starttime</th>
+					<th>Endtime</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for entity in entities %}
+					<tr>
+						<td><a href="{{ path('banner_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+						<td>{{ entity.name }}</td>
+						<td>{{ entity.link }}</td>
+						<td>{{ entity.description }}</td>
+						<td>
+							{% if entity.path is not null %}
+								<img src="{{ asset('uploads/documents/' ~ entity.path ) }}" height="100" />
+							{% endif %}
+						</td>
+
+						<td>{{ entity.clicks }}</td>
+						<td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+						<td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+						<td>
+							<div class="btn-group">
+									<a href="{{ path('banner_show', { 'id': entity.id }) }}" class="btn">
+										<i class="icon-eye-open"></i>
+										</a>
+									<a href="{{ path('banner_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i></a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+	</div>
+	<div class="span2 row-fluid">
 		<form method="get" action="." class="form-inline well well-small">
 		{{ form_rest(form) }}
 		<button type="submit" class="btn btn-primary"><i class="icon-filter"></i> {{ 'sylius.filter'|trans }}</button>
+		<a class="btn btn-info" href="{{ path('banner') }}"></i> 重置</a>
 		</form>
+	</div>
 </div>
-
-<table class="records_list table table-bordered">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Link</th>
-			<th>Description</th>
-			<th>Path</th>
-			<th>Clicks</th>
-			<th>Starttime</th>
-			<th>Endtime</th>
-			<th>操作</th>
-		</tr>
-	</thead>
-	<tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('banner_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.link }}</td>
-                <td>{{ entity.description }}</td>
-                <td>
-                    {% if entity.path is not null %}
-                        <img src="{{ asset('uploads/documents/' ~ entity.path ) }}" height="100" />
-                    {% endif %}
-                </td>
-
-                <td>{{ entity.clicks }}</td>
-                <td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-					<div class="btn-group">
-							<a href="{{ path('banner_show', { 'id': entity.id }) }}" class="btn">
-								<i class="icon-eye-open"></i>
-								</a>
-							<a href="{{ path('banner_edit', { 'id': entity.id }) }}" class="btn btn-primary"><i class="icon-pencil"></i></a>
-					</div>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
     {% endblock %}
