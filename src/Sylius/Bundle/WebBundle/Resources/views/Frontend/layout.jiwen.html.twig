@@ -125,10 +125,7 @@
     </nav>
     <div id="banner-cycle">
     	<div class="bn-cycle-inner">
-    	<a href="#"><img src="/assets/images/bn1.jpg" width="1020" height="382" alt=""></a>
-        <a href="#"><img src="/assets/images/bn2.jpg" width="1020" height="382" alt=""></a>
-        <a href="#"><img src="/assets/images/bn3.jpg" width="1020" height="382" alt=""></a>
-        <a href="#"><img src="/assets/images/bn4.jpg" width="1020" height="382" alt=""></a>
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main, 'limit': 6, 'template' : 'top.html'})) }}
         </div>
         <span class="arrow-prev"></span>
         <span class="arrow-next"></span>

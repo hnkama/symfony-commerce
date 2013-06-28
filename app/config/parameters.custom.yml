@@ -2,4 +2,5 @@ parameters:
     sylius.locale.fallback: en
     twig.theme: jiwen
     banner.top: 1
+    banner.main: 3
     banner.path: uploads/documents
