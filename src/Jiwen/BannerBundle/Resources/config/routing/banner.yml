@@ -1,7 +1,6 @@
 banner:
     pattern:  /
     defaults: { _controller: "JiwenBannerBundle:Banner:index" }
-    requirements: { _method: get|post }
 
 banner_show:
     pattern:  /{id}/show
@@ -33,4 +32,4 @@ banner_delete:
 banner_filter:
     pattern:  /banner-filter
     defaults: { _controller: "JiwenBannerBundle:Banner:filter" }
-    requirements: { _method: get|post }
+    requirements: { _method: get }
