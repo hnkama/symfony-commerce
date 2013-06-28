@@ -20,8 +20,9 @@ class BannerFilterType extends AbstractType
     {
         $builder
             ->add('category')
-            ->add('startTime')
-            ->add('endTime')
+            ->add('name', 'filter_text')
+            ->add('startTime', 'filter_datetime')
+            ->add('endTime', 'filter_datetime')
         ;
     }
 
@@ -32,7 +33,9 @@ class BannerFilterType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-            	'data_class' => 'Jiwen\BannerBundle\Entity\Banner'
+            	'data_class' => 'Jiwen\BannerBundle\Entity\Banner',
+				'csrf_protection'   => false,
+            	'validation_groups' => array('filtering') // avoid NotBlank() constraint-related message
             ))
         ;
     }

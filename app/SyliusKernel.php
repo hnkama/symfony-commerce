@@ -72,6 +72,7 @@ class SyliusKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Jiwen\BannerBundle\JiwenBannerBundle(),
             new Jiwen\GeneralBundle\JiwenGeneralBundle(),
+			new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

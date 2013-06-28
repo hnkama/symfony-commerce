@@ -24,11 +24,28 @@ class BannerController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+		$repo = $em->getRepository('JiwenBannerBundle:Banner');
+		$entities = $repo->findAll();
 
-        $entities = $em->getRepository('JiwenBannerBundle:Banner')->findAll();
+		$form = $this->get('form.factory')->create(new BannerFilterType());
+		if ($this->get('request')->query->has('jiwen_banner_filter')) {
+            // bind values from the request
+            $form->bindRequest($this->get('request'));
+
+            // initliaze a query builder
+            $filterBuilder = $repo
+					->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+            // now look at the DQL =)
+			$entities = $filterBuilder->getQuery()->getResult();
+        }
 
         return $this->render('JiwenBannerBundle:Banner:index.html.twig', array(
             'entities' => $entities,
+			'form' => $form->createView(),
         ));
     }
     /**
