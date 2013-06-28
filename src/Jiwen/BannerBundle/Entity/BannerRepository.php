@@ -14,6 +14,12 @@ use Jiwen\GeneralBundle\JiwenGeneralBundle;
 class BannerRepository extends EntityRepository
 {
 
+	/**
+	 * The taxonomy menu image banner
+	 * 
+	 * @param \Sylius\Bundle\TaxonomiesBundle\Model\Taxon $taxon
+	 * @return string
+	 */
 	public function findOneMenuBanner(\Sylius\Bundle\TaxonomiesBundle\Model\Taxon $taxon)
 	{
 		$banner = '';
