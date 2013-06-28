@@ -28,3 +28,8 @@ banner_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "JiwenBannerBundle:Banner:delete" }
     requirements: { _method: post|delete }
+
+banner_filter:
+    pattern:  /banner-filter
+    defaults: { _controller: "JiwenBannerBundle:Banner:filter" }
+    requirements: { _method: get }

@@ -244,23 +244,23 @@
       </trans-unit>
       <trans-unit id="f165afaa167c13b164df7a2d2319fc3f" resname="sylius.checkout.finalize.product.name">
         <source>sylius.checkout.finalize.product.name</source>
-        <target>Name</target>
+        <target>姓名</target>
       </trans-unit>
       <trans-unit id="2cf7082051f131d18f9ae375380cb728" resname="sylius.checkout.forward">
         <source>sylius.checkout.forward</source>
-        <target>Continue</target>
+        <target>继续购物</target>
       </trans-unit>
       <trans-unit id="18aa839c066295739e7bcaef58319840" resname="sylius.checkout.payment.header">
         <source>sylius.checkout.payment.header</source>
-        <target>Payment method</target>
+        <target>付款方式</target>
       </trans-unit>
       <trans-unit id="ee199c2708bcf82cccaa928a35b55f57" resname="sylius.checkout.security.existing_customer">
         <source>sylius.checkout.security.existing_customer</source>
-        <target>Existing Customer</target>
+        <target>已有登录帐号</target>
       </trans-unit>
       <trans-unit id="0789da7ddf260f52f05a74da16a29ca6" resname="sylius.checkout.security.header">
         <source>sylius.checkout.security.header</source>
-        <target>Sign in to the store &lt;small&gt;or create new account&lt;/small&gt;</target>
+        <target>登录商城&lt;small&gt;或者创建帐号&lt;/small&gt;</target>
       </trans-unit>
       <trans-unit id="950464e3dc03957076025cf517b7f4eb" resname="sylius.checkout.security.login">
         <source>sylius.checkout.security.login</source>
@@ -268,27 +268,27 @@
       </trans-unit>
       <trans-unit id="d0ee3d1b1df9793c2be2434a4f47e620" resname="sylius.checkout.security.new_customer">
         <source>sylius.checkout.security.new_customer</source>
-        <target>New Customer</target>
+        <target>新用户</target>
       </trans-unit>
       <trans-unit id="77fe7fc01a04f0c452e6d3bc271ddc7f" resname="sylius.checkout.security.register">
         <source>sylius.checkout.security.register</source>
-        <target>Register</target>
+        <target>注册</target>
       </trans-unit>
       <trans-unit id="e95d4cf3899940e82046cb12a231019d" resname="sylius.checkout.shipping.header">
         <source>sylius.checkout.shipping.header</source>
-        <target>Shipping method</target>
+        <target>邮寄方式</target>
       </trans-unit>
       <trans-unit id="c4070ca193a5880d8e3185af5e2133ee" resname="sylius.country.add_province">
         <source>sylius.country.add_province</source>
-        <target>Add province</target>
+        <target>添加省</target>
       </trans-unit>
       <trans-unit id="fd7b189dd8e6444011a3a9a01928452a" resname="sylius.country.create">
         <source>sylius.country.create</source>
-        <target>Create country</target>
+        <target>创建省</target>
       </trans-unit>
       <trans-unit id="4523f1e75a0117f4b5bd5964005d204d" resname="sylius.country.create_header">
         <source>sylius.country.create_header</source>
-        <target>New country</target>
+        <target>添加国家</target>
       </trans-unit>
       <trans-unit id="065e077c26105cef2eb20f602d7bc0be" resname="sylius.country.id">
         <source>sylius.country.id</source>
@@ -296,7 +296,7 @@
       </trans-unit>
       <trans-unit id="646685fe52ae5e2097f33e3dd045297d" resname="sylius.country.index_header">
         <source>sylius.country.index_header</source>
-        <target>Countries</target>
+        <target>国家</target>
       </trans-unit>
       <trans-unit id="33e877111fafb69275ca6088a784e847" resname="sylius.country.iso_name">
         <source>sylius.country.iso_name</source>
@@ -324,15 +324,15 @@
       </trans-unit>
       <trans-unit id="42f9ef9fd2580b44f38dbbaee57f763c" resname="sylius.create">
         <source>sylius.create</source>
-        <target>Create</target>
+        <target>创建</target>
       </trans-unit>
       <trans-unit id="6a5224b93e0ac331cd56065d1a30ac01" resname="sylius.delete">
         <source>sylius.delete</source>
-        <target>delete</target>
+        <target>删除</target>
       </trans-unit>
       <trans-unit id="f55c72369ccc38deb172ad6643392f5d" resname="sylius.edit">
         <source>sylius.edit</source>
-        <target>edit</target>
+        <target>编辑</target>
       </trans-unit>
       <trans-unit id="b90816fa17a609f4ddf5f89e1f59519f" resname="sylius.email">
         <source>sylius.email</source>
@@ -340,7 +340,7 @@
       </trans-unit>
       <trans-unit id="44f0ed7c15d1974ff291171b96912899" resname="sylius.filter">
         <source>sylius.filter</source>
-        <target>Filter</target>
+        <target>筛选</target>
       </trans-unit>
       <trans-unit id="232a93e364de1804028b5659ea633126" resname="sylius.form.choose_file">
         <source>sylius.form.choose_file</source>
@@ -348,23 +348,23 @@
       </trans-unit>
       <trans-unit id="725075e6afc8a166392a2261d7880d37" resname="sylius.form.login.password">
         <source>sylius.form.login.password</source>
-        <target>Password</target>
+        <target>密码</target>
       </trans-unit>
       <trans-unit id="ff22d36333dd2c7f46f18088cd81f596" resname="sylius.form.login.username">
         <source>sylius.form.login.username</source>
-        <target>Username</target>
+        <target>用户名</target>
       </trans-unit>
       <trans-unit id="25b6370883ff5b94aef1ceb697b6d3f6" resname="sylius.gallery.next">
         <source>sylius.gallery.next</source>
-        <target>Next</target>
+        <target>下一个</target>
       </trans-unit>
       <trans-unit id="75d6011c663a842a97d05f51ff9b4b3d" resname="sylius.gallery.previous">
         <source>sylius.gallery.previous</source>
-        <target>Previous</target>
+        <target>上一个</target>
       </trans-unit>
       <trans-unit id="9dd0e5f47c51e35f031387e4f5207167" resname="sylius.gallery.slideshow">
         <source>sylius.gallery.slideshow</source>
-        <target>Slideshow</target>
+        <target>相册</target>
       </trans-unit>
       <trans-unit id="cb95f07038b3cb0098bccf9ab2a5de8b" resname="sylius.generate">
         <source>sylius.generate</source>
@@ -376,7 +376,7 @@
       </trans-unit>
       <trans-unit id="7dc36308d46da1a1c2e960086c211e74" resname="sylius.homepage.splash.subheadline">
         <source>sylius.homepage.splash.subheadline</source>
-        <target>Modern ecommerce for Symfony2</target>
+        <target>基文商城 . 爱生活 . 爱耶稣</target>
       </trans-unit>
       <trans-unit id="8de175cf2475c0970e1c6a43c68d90e9" resname="sylius.inventory_unit.created_at">
         <source>sylius.inventory_unit.created_at</source>

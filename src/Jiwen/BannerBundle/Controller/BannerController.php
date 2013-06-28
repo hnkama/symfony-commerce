@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Jiwen\BannerBundle\Entity\Banner;
 use Jiwen\BannerBundle\Form\BannerType;
+use Jiwen\BannerBundle\Form\Filter\BannerFilterType;
 
 /**
  * Banner controller.
@@ -53,6 +54,17 @@ class BannerController extends Controller
             'form'   => $form->createView(),
         ));
     }
+
+	public function filterAction()
+	{
+		$entity = new Banner();
+        $form   = $this->createForm(new BannerFilterType(), $entity);
+
+		return $this->render('JiwenBannerBundle:Banner:filter.html.twig', array(
+			'entity' => $entity,
+			'form' => $form->createView(),
+		));
+	}
 
     /**
      * Displays a form to create a new Banner entity.
