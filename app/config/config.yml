@@ -31,6 +31,7 @@ twig:
             category:
                 top: "%banner.top%"
                 main: "%banner.main%"
+                main_s: "%banner.main_s%"
             path: "%banner.path%"
 
 assetic:

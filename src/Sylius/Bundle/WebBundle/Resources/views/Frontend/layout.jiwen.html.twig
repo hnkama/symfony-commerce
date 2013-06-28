@@ -131,12 +131,7 @@
         <span class="arrow-next"></span>
     </div>
     <div class="banner-line clearfix">
-    	<a href="#"><img src="/assets/images/sbn1.jpg" width="155" height="181"></a>
-        <a href="#"><img src="/assets/images/sbn2.jpg" width="155" height="181"></a>
-        <a href="#"><img src="/assets/images/sbn3.jpg" width="155" height="181"></a>
-        <a href="#"><img src="/assets/images/sbn4.jpg" width="155" height="181"></a>
-        <a href="#"><img src="/assets/images/sbn5.jpg" width="155" height="181"></a>
-        <a href="#"><img src="/assets/images/sbn6.jpg" width="155" height="181"></a>
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main_s, 'limit': 6, 'template' : 'top.html'})) }}
     </div>
     <div class="sec-space clearfix">
     	<div class="hs-title tab-switcher">
