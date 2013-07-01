@@ -43,6 +43,7 @@
         {% endblock %}
     </head>
     <body>
+        {% block header %}
 <header>
 	<div class="top-ads">
     	<div class="t-ads-wrap">
@@ -58,7 +59,7 @@
     </div>
     <div class="header-mid clearfix">
     	<div class="header-m-wrap">
-                <h1 class="logo"><a href="#"><img src="/assets/images/logo.jpg" width="155" height="52" alt="基文商城"></a></h1>
+                <h1 class="logo"><a href="{{ path('sylius_homepage') }}"><img src="/assets/images/logo.jpg" width="155" height="52" alt="基文商城"></a></h1>
                 <ul class="nav-top">
                     <li><b></b><a href="#">今日团购</a></li>
                     <li><b></b><a href="#">最新到货</a></li>
@@ -95,6 +96,7 @@
         </div>
     </div>
 </header>
+        {% endblock %}
 <div id="wrap" class="clearfix">
 	<div class="sidebar-r flue">
     	<div class="side-inner">
@@ -133,281 +135,7 @@
     <div class="banner-line clearfix">
 		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main_s, 'limit': 6, 'template' : 'top.html'})) }}
     </div>
-    <div class="sec-space clearfix">
-    	<div class="hs-title tab-switcher">
-        	<ul>
-        		<li><a href="#" title="" class="tabactive">今日推荐</a></li>
-                <li><a href="#" title="">人气热卖</a></li>
-                <li><a href="#" title="">猜你喜欢</a></li>
-            </ul>    
-        </div>
-        <div class="tab_content">
-            <div class="clear">
-                <ul class="list-index">
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index.jpg" width="125" height="125" alt=""></a><span class="icon-sale png"></span></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star1"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star2"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star3"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner last-nob">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star4"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="hide clear">
-                <ul class="list-index">
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index.jpg" width="125" height="125" alt=""></a><span class="icon-sale"></span></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star1"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star2"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star3"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner last-nob">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star4"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="hide clear">
-                <ul class="list-index">
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index.jpg" width="125" height="125" alt=""></a><span class="icon-sale"></span></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star1"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star2"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index2.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star3"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="inner last-nob">
-                            <p class="list-img"><a href="#"><img src="/assets/images/img-index3.jpg" width="125" height="125" alt=""></a></p>
-                            <p class="name"><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></p>
-                            <p><span class="price">￥111</span><span>售量: 2541</span></p>
-                            <div class="inlist-view clearfix">
-                                <div class="star"><span class="level star4"></span><a href="#">12587人评价</a></div>
-                                <div class="clear">
-                                <input type="button" class="cart-index">
-                                <input type="button" class="like-index">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:recommend')) }}
     <!--book&cd start-->
     <div class="sec-space clearfix">
     	<div class="sec-title">

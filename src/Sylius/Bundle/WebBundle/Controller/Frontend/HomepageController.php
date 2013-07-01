@@ -32,4 +32,17 @@ class HomepageController extends Controller
         return $this->render('SyliusWebBundle:Frontend/' . $theme . '/Homepage:main.html.twig');
     }
 
+    public function recommendAction()
+    {
+		$propertyRepository = $this->container->get('sylius.repository.property');
+		$productPropertyRepository = $this->container->get('sylius.repository.product_property');
+
+		$property = $propertyRepository->findOneBy(array('name' => '今日推荐'));
+
+		$productsTodayRecommend = $productPropertyRepository->findBy(array('property' => $property->getId(), 'value' => '是'));
+        return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
+        'todayRecommend' => $productsTodayRecommend,
+        ));
+    }
+
 }
