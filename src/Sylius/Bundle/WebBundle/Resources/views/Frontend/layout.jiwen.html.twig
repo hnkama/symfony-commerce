@@ -16,6 +16,8 @@
         {# stylesheets... #}
         {% block stylesheets %}
         {% stylesheets output='assets/compiled/frontend.css' filter='cssrewrite'
+            '@SyliusWebBundle/Resources/assets/jiwen/css/bootstrap.css'
+            '//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css'
             '@SyliusWebBundle/Resources/assets/jiwen/css/base.css'
             '@SyliusWebBundle/Resources/assets/jiwen/css/common.css'
             '@SyliusWebBundle/Resources/assets/jiwen/css/index-css.css'
@@ -97,6 +99,15 @@
     </div>
 </header>
         {% endblock %}
+        {% for name, flashes in app.session.flashbag.all if name in ['success', 'error', 'fos_user_success'] %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ name == 'fos_user_success' ? 'success' : name }}">
+                    <a class="close" data-dismiss="alert" href="#">×</a>
+                    {{ flash|trans }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
 <div id="wrap" class="clearfix">
 	<div class="sidebar-r flue">
     	<div class="side-inner">
@@ -2252,11 +2263,13 @@
         {% block javascripts %}
         {% javascripts output='/assets/compiled/frontend.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/jquery-1.8.1.min.js'
+            'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/jquery-effects.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/jquery.cycle.all.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/PIE.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/plugins.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/custom.js'
+
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

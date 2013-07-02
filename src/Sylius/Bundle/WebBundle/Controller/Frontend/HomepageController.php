@@ -39,7 +39,11 @@ class HomepageController extends Controller
 
 		$property = $propertyRepository->findOneBy(array('name' => '今日推荐'));
 
-		$productsTodayRecommend = $productPropertyRepository->findBy(array('property' => $property->getId(), 'value' => '是'));
+        $productsTodayRecommend = $productPropertyRepository->findBy(
+            array('property' => $property->getId(), 'value' => '是'),
+            array('id' => 'DESC'),
+            6
+        );
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
         'todayRecommend' => $productsTodayRecommend,
         ));

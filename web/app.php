@@ -25,7 +25,7 @@ $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/SyliusKernel.php';
 //require_once __DIR__.'/../app/SyliusCache.php';
 
-$kernel = new SyliusKernel('prod', false);
+$kernel = new SyliusKernel('prod', true);
 //$kernel = new SyliusCache($kernel);
 
 $request = Request::createFromGlobals();
