@@ -1118,6 +1118,10 @@
         <source>sylius.remember_me</source>
         <target>Remember me?</target>
       </trans-unit>
+	  <trans-unit id="sylius.order.orderStatusList">
+            <source>sylius.order.orderStatusList</source>
+            <target>{0} 取消|{1} 确认|{2} 取消 |{3} 无效 |{4} 退货</target>
+       </trans-unit>
       <trans-unit id="f24e233a88755afd2f3e02bc65d81732" resname="sylius.save_changes">
         <source>sylius.save_changes</source>
         <target>保存修改</target>
