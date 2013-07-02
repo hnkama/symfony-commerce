@@ -1120,7 +1120,7 @@
       </trans-unit>
       <trans-unit id="f24e233a88755afd2f3e02bc65d81732" resname="sylius.save_changes">
         <source>sylius.save_changes</source>
-        <target>保修修改</target>
+        <target>保存修改</target>
       </trans-unit>
       <trans-unit id="10fa10c1f6224e5247cd40d74fedb994" resname="sylius.settings.general_header">
         <source>sylius.settings.general_header</source>
