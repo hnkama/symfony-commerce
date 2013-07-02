@@ -13,6 +13,7 @@ namespace Sylius\Bundle\CoreBundle\Form\Type;
 
 use Sylius\Bundle\SalesBundle\Form\Type\OrderType as BaseOrderType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Sylius\Bundle\CoreBundle\Entity\Order;
 
 /**
  * Order form type.
@@ -27,11 +28,15 @@ class OrderType extends BaseOrderType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+//        parent::buildForm($builder, $options);
 
         $builder
-            ->add('shippingAddress', 'sylius_address')
-            ->add('billingAddress', 'sylius_address')
+//            ->add('shippingAddress', 'sylius_address')
+//            ->add('billingAddress', 'sylius_address')
+            ->add('orderStatus', 'choice', array(
+				'choices' => Order::$orderStatuses,
+                'label'        => 'sylius.order.orderStatus'
+			))
         ;
     }
 }

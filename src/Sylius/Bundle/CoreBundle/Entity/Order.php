@@ -63,6 +63,18 @@ class Order extends BaseOrder implements OrderInterface
      */
     protected $inventoryUnits;
 
+	protected $orderStatus;
+	protected $paymentStatus;
+	protected $shippingStatus;
+
+	public static $orderStatuses = array(
+		0 => 'sylius.order.status.unconfirmed',
+		1 => 'sylius.order.status.confirmed',
+		2 => 'sylius.order.status.ceased',
+		3 => 'sylius.order.status.useless',
+		4 => 'sylius.order.status.return',
+	);
+
     /**
      * Constructor.
      */
@@ -332,4 +344,37 @@ class Order extends BaseOrder implements OrderInterface
     {
         $this->createdAt = $createdAt;
     }
+
+	public function getOrderStatus()
+	{
+		return $this->orderStatus;
+	}
+
+
+	public function setOrderStatus($orderStatus)
+	{
+		$this->orderStatus = $orderStatus;
+	}
+
+	public function getPaymentStatus()
+	{
+		return $this->paymentStatus;
+	}
+
+
+	public function setPaymentStatus($paymentStatus)
+	{
+		$this->paymentStatus = $paymentStatus;
+	}
+
+	public function getShippingStatus()
+	{
+		return $this->shippingStatus;
+	}
+
+
+	public function setShippingStatus($shippingStatus)
+	{
+		$this->shippingStatus = $shippingStatus;
+	}
 }

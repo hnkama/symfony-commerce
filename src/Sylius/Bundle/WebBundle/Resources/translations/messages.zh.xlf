@@ -174,6 +174,30 @@
         <source>sylius.checkout.finalize.order.billing_address</source>
         <target>账单地址</target>
       </trans-unit>
+      <trans-unit id="19de196fb704ba61b647orderstatus" resname="sylius.order.orderStatus">
+        <source>Order Status</source>
+        <target>订单状态</target>
+      </trans-unit>
+      <trans-unit id="19de196fb704ba61b647orderunconfirmed" resname="sylius.order.status.unconfirmed">
+        <source>Unconfirmed</source>
+        <target>未确认</target>
+      </trans-unit>
+      <trans-unit id="19de196fb704ba61b647orderconfirmed" resname="sylius.order.status.confirmed">
+        <source>Confirmed</source>
+        <target>已确认</target>
+      </trans-unit>
+      <trans-unit id="19de196fb704ba61b647orderceased" resname="sylius.order.status.ceased">
+        <source>Ceased</source>
+        <target>取消</target>
+      </trans-unit>
+      <trans-unit id="19de196fb704ba61b647useless" resname="sylius.order.status.useless">
+        <source>Useless</source>
+        <target>无效</target>
+      </trans-unit>
+      <trans-unit id="19de196fb704ba61b647return" resname="sylius.order.status.return">
+        <source>Return</source>
+        <target>退货</target>
+      </trans-unit>
       <trans-unit id="0d1429fdb2aa785a6ff600e5114f84b2" resname="sylius.checkout.finalize.order.items_total">
         <source>sylius.checkout.finalize.order.items_total</source>
         <target>商品总数</target>
@@ -1096,7 +1120,7 @@
       </trans-unit>
       <trans-unit id="f24e233a88755afd2f3e02bc65d81732" resname="sylius.save_changes">
         <source>sylius.save_changes</source>
-        <target>Save changes</target>
+        <target>保修修改</target>
       </trans-unit>
       <trans-unit id="10fa10c1f6224e5247cd40d74fedb994" resname="sylius.settings.general_header">
         <source>sylius.settings.general_header</source>
