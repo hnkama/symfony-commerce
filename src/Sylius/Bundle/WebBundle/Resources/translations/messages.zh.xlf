@@ -564,35 +564,35 @@
       </trans-unit>
       <trans-unit id="ad33ff0a67da097c8349dd4ae48abba0" resname="sylius.order.recent_header">
         <source>sylius.order.recent_header</source>
-        <target>Recent orders</target>
+        <target>最新订单</target>
       </trans-unit>
       <trans-unit id="a5a21eefe7b7d0a07d2b5dd5cc034a39" resname="sylius.order.shipment_state">
         <source>sylius.order.shipment_state</source>
-        <target>Shipment state</target>
+        <target>邮寄状态</target>
       </trans-unit>
       <trans-unit id="31d76442bf902e7994c7a746551d082f" resname="sylius.order.shipment_states.pending">
         <source>sylius.order.shipment_states.pending</source>
-        <target>Pending</target>
+        <target>审核</target>
       </trans-unit>
       <trans-unit id="bd1abb2f477836c03a17eb0398e509ec" resname="sylius.order.shipments">
         <source>sylius.order.shipments</source>
-        <target>Shipments</target>
+        <target>邮寄</target>
       </trans-unit>
       <trans-unit id="87e600739dd24c17844e39b4e26c7568" resname="sylius.order.shipping_address">
         <source>sylius.order.shipping_address</source>
-        <target>Shipping address</target>
+        <target>邮寄地址</target>
       </trans-unit>
       <trans-unit id="bd4879dbfbd9a20d4573c5faa6573dc0" resname="sylius.order.shipping_charges">
         <source>sylius.order.shipping_charges</source>
-        <target>Shipping charges</target>
+        <target>邮费</target>
       </trans-unit>
       <trans-unit id="8862577f9f46accdd5b5136dad4a92ef" resname="sylius.order.shipping_total">
         <source>sylius.order.shipping_total</source>
-        <target>Shipping total</target>
+        <target>邮费</target>
       </trans-unit>
       <trans-unit id="0cd9ee7a56fb7b1e6f0e5e8711861558" resname="sylius.order.show_header">
         <source>sylius.order.show_header</source>
-        <target>Order details</target>
+        <target>订单信息</target>
       </trans-unit>
       <trans-unit id="ce513cdfe77e17927dc61fa5dba2fefd" resname="sylius.order.tax_total">
         <source>sylius.order.tax_total</source>
@@ -604,55 +604,59 @@
       </trans-unit>
       <trans-unit id="34e78ae1c837d737f5996bbbf0056d96" resname="sylius.order.total">
         <source>sylius.order.total</source>
-        <target>Total</target>
+        <target>总计</target>
       </trans-unit>
       <trans-unit id="4c72a5f475a62837920d00675993b9aa" resname="sylius.order.update_header">
         <source>sylius.order.update_header</source>
-        <target>Editing order</target>
+        <target>修改订单</target>
       </trans-unit>
       <trans-unit id="1d28ea6e51a93aef13cecac5b8b1b5bb" resname="sylius.order.user">
         <source>sylius.order.user</source>
-        <target>User</target>
+        <target>用户</target>
       </trans-unit>
       <trans-unit id="54eea7b324e0132cc7ab5a4b8f080b7a" resname="sylius.order_item.quantity">
         <source>sylius.order_item.quantity</source>
-        <target>Qty</target>
+        <target>数量</target>
       </trans-unit>
       <trans-unit id="f3694bc60b3d9e1755ef03beef6891cc" resname="sylius.order_item.sellable">
         <source>sylius.order_item.sellable</source>
-        <target>Product</target>
+        <target>产品</target>
       </trans-unit>
       <trans-unit id="e1061776d05c7beaa3bba2d440f8f263" resname="sylius.order_item.total">
         <source>sylius.order_item.total</source>
-        <target>Total</target>
+        <target>总计</target>
       </trans-unit>
       <trans-unit id="5f4f9ced5ed5292e8739c124f09c39ee" resname="sylius.order_item.unit_price">
         <source>sylius.order_item.unit_price</source>
-        <target>Unit price</target>
+        <target>单价</target>
+      </trans-unit>
+      <trans-unit id="78ab1a69db10f0ba02af568ae1f42321operation" resname="sylius.order.operation">
+        <source>Order Operation</source>
+        <target>订单操作</target>
       </trans-unit>
       <trans-unit id="ac59b73112d9a5386d5daf47d2c2f253" resname="sylius.out_of_stock">
         <source>sylius.out_of_stock</source>
-        <target>Out of stock</target>
+        <target>无货</target>
       </trans-unit>
       <trans-unit id="f9161f3c61d2afa403508ddb2a35462f" resname="sylius.password">
         <source>sylius.password</source>
-        <target>Password</target>
+        <target>密码</target>
       </trans-unit>
       <trans-unit id="42d3850eb5f89efd4f1c2eccf90c999f" resname="sylius.payment.amount">
         <source>sylius.payment.amount</source>
-        <target>Amount</target>
+        <target>总额</target>
       </trans-unit>
       <trans-unit id="7ce14abc81950cace032fcd9134a59b9" resname="sylius.payment.create">
         <source>sylius.payment.create</source>
-        <target>Create payment</target>
+        <target>添加支付</target>
       </trans-unit>
       <trans-unit id="21a51a3f11c085542aebb7525d2b8805" resname="sylius.payment.create_header">
         <source>sylius.payment.create_header</source>
-        <target>New payment</target>
+        <target>新的支付方式</target>
       </trans-unit>
       <trans-unit id="b7c96f1a5e15668865398441cee2641e" resname="sylius.payment.created_at">
         <source>sylius.payment.created_at</source>
-        <target>Created at</target>
+        <target>下单时间</target>
       </trans-unit>
       <trans-unit id="0da6d642a1919baf1ab674aa7819053e" resname="sylius.payment.id">
         <source>sylius.payment.id</source>
@@ -660,15 +664,15 @@
       </trans-unit>
       <trans-unit id="9be1fa97a7b416e250ef73d71567cc32" resname="sylius.payment.index_header">
         <source>sylius.payment.index_header</source>
-        <target>Payments</target>
+        <target>支付</target>
       </trans-unit>
       <trans-unit id="a13d05a1fee66fa07ef5060e1204fada" resname="sylius.payment.method">
         <source>sylius.payment.method</source>
-        <target>Method</target>
+        <target>方式</target>
       </trans-unit>
       <trans-unit id="da32a026e536942563583413a59f2a0e" resname="sylius.payment.no_results">
         <source>sylius.payment.no_results</source>
-        <target>There are no payments configured.</target>
+        <target>没有配置支付方式.</target>
       </trans-unit>
       <trans-unit id="78ab1a69db10f0ba02af568ae1f42321" resname="sylius.payment.update_header">
         <source>sylius.payment.update_header</source>

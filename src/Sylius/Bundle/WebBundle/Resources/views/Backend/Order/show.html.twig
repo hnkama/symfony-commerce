@@ -270,23 +270,6 @@
         </tr>
         <tr>
             <td colspan="4">
-            <p><strong>{{ 'sylius.order.taxes'|trans }}</strong></p>
-            <ul>
-            {% for taxAdjustment in order.taxAdjustments %}
-                <li>{{ taxAdjustment.description }} {{ taxAdjustment.amount|sylius_money }} </li>
-            {% else %}
-                <li><span class="label label-info">{{ 'sylius.order.no_taxes'|trans }}</span></li>
-            {% endfor %}
-            </ul>
-            </td>
-            <td colspan="2">
-                <span class="pull-right">
-                <strong>{{ 'sylius.order.tax_total'|trans }}</strong>: {{ order.taxTotal|sylius_money }}
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4">
             <p><strong>{{ 'sylius.order.shipping_charges'|trans }}</strong></p>
             <ul>
             {% for adjustment in order.shippingAdjustments %}
@@ -328,6 +311,29 @@
         </tr>
     </tfoot>
 </table>
+
+<hr />
+<div class="well">
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th colspan="2">{{ 'sylius.order.operation'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><strong>{{ 'sylius.address.firstname'|trans }}</strong></td>
+				<td>{{ order.billingAddress.firstname }}</td>
+			</tr>
+			<tr>
+				<td><strong>{{ 'sylius.address.lastname'|trans }}</strong></td>
+				<td>{{ order.billingAddress.lastname }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<hr />
 
 <table class="table table-striped table-bordered">
     <thead>
