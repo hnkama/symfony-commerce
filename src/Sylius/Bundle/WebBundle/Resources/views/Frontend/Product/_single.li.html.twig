@@ -5,10 +5,10 @@
             <img src="{{ product.image.path|default('http://placehold.it/125')|imagine_filter('sylius_125x125') }}" alt="" />
         </a>
 			<span class="icon-sale png"></span></p>
-		<p class="name"><a href="#">{{ product.name }}</a></p>
+		<p class="name"><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
 		<p><span class="price">{{ product.price|sylius_money }}</span><span>售量: 2541</span></p>
 		<div class="inlist-view clearfix">
-			<div class="star"><span class="level star5"></span><a href="#">12587人评价</a></div>
+			<div class="star"><span class="level star5"></span><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">12587人评价</a></div>
 			<div class="clear">
 				<input type="button" class="cart-index">
 				<input type="button" class="like-index">
