@@ -110,6 +110,16 @@ class FinalizeStep extends CheckoutStep
         $manager->persist($order);
         $manager->flush($order);
 
+		// Update the product sales quantity
+        $manager_product = $this->get('sylius.manager.product');
+        $cart = $this->getCurrentCart();
+        foreach ($cart->getItems() as $item) {
+			$product = $item->getVariant()->getProduct();
+			$product->setSaleQuantity($item->getQuantity()+$product->getSaleQuantity());
+			$manager_product->persist($product);
+        	$manager_product->flush($product);
+        }
+
         $this->get('event_dispatcher')->dispatch('sylius.order.post_create', new GenericEvent($order));
     }
 
