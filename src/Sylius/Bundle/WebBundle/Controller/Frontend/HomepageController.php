@@ -36,6 +36,7 @@ class HomepageController extends Controller
     {
 		$propertyRepository = $this->container->get('sylius.repository.property');
 		$productPropertyRepository = $this->container->get('sylius.repository.product_property');
+		$orderItemRepository = $this->container->get('sylius.repository.order_item');
 
 		$property = $propertyRepository->findOneBy(array('name' => '今日推荐'));
 
@@ -44,6 +45,9 @@ class HomepageController extends Controller
             array('id' => 'DESC'),
             6
         );
+		foreach($productsTodayRecommend as $product) {
+			echo $product->getProduct()->getName();
+		}
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
         'todayRecommend' => $productsTodayRecommend,
         ));

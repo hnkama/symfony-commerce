@@ -70,9 +70,8 @@ class Order extends BaseOrder implements OrderInterface
 	public static $orderStatuses = array(
 		0 => 'sylius.order.status.unconfirmed',
 		1 => 'sylius.order.status.confirmed',
-		2 => 'sylius.order.status.ceased',
-		3 => 'sylius.order.status.useless',
-		4 => 'sylius.order.status.return',
+		2 => 'sylius.order.status.shipping',
+		3 => 'sylius.order.status.return',
 	);
 
     /**
