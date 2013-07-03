@@ -1,0 +1,5 @@
+{% extends 'SyliusWebBundle:Frontend/Account:layout.html.twig' %}
+
+{% block content %}
+{% render(url('sylius_account_order_by_user', app.request.query.all|merge({id: app.user.id}) )) %}
+{% endblock %}

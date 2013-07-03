@@ -60,6 +60,42 @@ class OrderController extends ResourceController
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function accountIndexByUserAction(Request $request, $id)
+    {
+        $config = $this->getConfiguration();
+        $sorting = $config->getSorting();
+
+        $user = $this->get('sylius.repository.user')
+            ->findOneById($id);
+
+        if (!isset($user)) {
+            throw new NotFoundHttpException('Requested user does not exist');
+        }
+
+        $paginator = $this
+            ->getRepository()
+            ->createByUserPaginator($user, $sorting);
+
+        $paginator->setCurrentPage($request->get('page', 1), true, true);
+        $paginator->setMaxPerPage($config->getPaginationMaxPerPage());
+
+        return $this->renderResponse('Frontend/Account:accountIndexByUser.html', array(
+            'user' => $user,
+            'orders' => $paginator
+        ));
+    }
+
+	public function orderHistoryAction()
+	{
+        return $this->renderResponse('SyliusWebBundle:Frontend/Account:indexByUser.html');
+	}
+
     private function getFormFactory()
     {
         return $this->get('form.factory');
