@@ -6,7 +6,7 @@
         </a>
 			<span class="icon-sale png"></span></p>
 		<p class="name"><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
-		<p><span class="price">{{ product.price|sylius_money }}</span><span>售量: 2541</span></p>
+		<p><span class="price">{{ product.price|sylius_money }}</span><span>{% if product.saleQuantity %}售量: {{ product.saleQuantity }}</span>{% endif %}</p>
 		<div class="inlist-view clearfix">
 			<div class="star"><span class="level star5"></span><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">12587人评价</a></div>
 			<div class="clear">

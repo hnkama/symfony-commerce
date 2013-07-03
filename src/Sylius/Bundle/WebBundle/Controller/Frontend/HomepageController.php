@@ -45,9 +45,6 @@ class HomepageController extends Controller
             array('id' => 'DESC'),
             6
         );
-		foreach($productsTodayRecommend as $product) {
-			echo $product->getProduct()->getName();
-		}
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
         'todayRecommend' => $productsTodayRecommend,
         ));
