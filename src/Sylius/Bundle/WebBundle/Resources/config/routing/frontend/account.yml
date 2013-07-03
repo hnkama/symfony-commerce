@@ -4,3 +4,19 @@
 sylius_account_homepage:
     pattern: /
     defaults: { _controller: FOSUserBundle:Profile:show }
+
+sylius_account_order:
+    pattern: /order-history
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.order:orderHistoryAction
+        _sylius:
+            template: SyliusWebBundle:Frontend/Account:indexByUser.html.twig
+
+sylius_account_order_show:
+    pattern: /order/{id}
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.order:showAction
+        _sylius:
+            template: SyliusWebBundle:Frontend/Account/Order:show.html.twig

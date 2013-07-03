@@ -1672,7 +1672,7 @@
       </trans-unit>
       <trans-unit id="a2fc8502b1fa534d9c312e5f3a6ffea4d12658d5" resname="sylius.account.title">
         <source>sylius.account.title</source>
-        <target state="new">My account</target>
+        <target state="new">用户中心</target>
       </trans-unit>
       <trans-unit id="94916ad253d5fe678af936bfcc3ade235be465bf" resname="sylius.form.frontend.password.title">
         <source>sylius.form.frontend.password.title</source>

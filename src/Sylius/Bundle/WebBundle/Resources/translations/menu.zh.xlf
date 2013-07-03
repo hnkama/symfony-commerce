@@ -236,19 +236,19 @@
       </trans-unit>
       <trans-unit id="f3c562d05786e3056e97da27f1fac4d3" resname="sylius.frontend.menu.main.cart">
         <source>sylius.frontend.menu.main.cart</source>
-        <target>View cart (%items%) %total%</target>
+        <target>查看购物车 (%items%) %total%</target>
       </trans-unit>
       <trans-unit id="d986cbf1ecce26c5ce35acede3faf0f2" resname="sylius.frontend.menu.main.login">
         <source>sylius.frontend.menu.main.login</source>
-        <target>Login</target>
+        <target>登录</target>
       </trans-unit>
       <trans-unit id="043a49bad7a1e1b30c98aa2b88717b4b" resname="sylius.frontend.menu.main.logout">
         <source>sylius.frontend.menu.main.logout</source>
-        <target>Logout</target>
+        <target>退出</target>
       </trans-unit>
       <trans-unit id="73de6870e2dc5351a69681b64424f691" resname="sylius.frontend.menu.main.register">
         <source>sylius.frontend.menu.main.register</source>
-        <target>Register</target>
+        <target>注册</target>
       </trans-unit>
       <trans-unit id="00a3fe9755bd94bf11297984489adf9b" resname="sylius.frontend.menu.social.facebook">
         <source>sylius.frontend.menu.social.facebook</source>
@@ -272,23 +272,27 @@
       </trans-unit>
       <trans-unit id="9144c05a098a6fee4f74327a3b145ff8" resname="sylius.frontend.menu.account.homepage">
         <source>sylius.frontend.menu.account.homepage</source>
-        <target>Home</target>
+        <target>个人主页</target>
       </trans-unit>
       <trans-unit id="7882c9d8888743e5bb14845684f7c23d" resname="sylius.frontend.menu.account.password">
         <source>sylius.frontend.menu.account.password</source>
-        <target>My password</target>
+        <target>个人密码</target>
       </trans-unit>
       <trans-unit id="51b90fc4b603c8f0058f87af6f11427f" resname="sylius.frontend.menu.account.profile">
         <source>sylius.frontend.menu.account.profile</source>
-        <target>My personal information</target>
+        <target>个人资料</target>
       </trans-unit>
       <trans-unit id="724277edf830f9205a49e4a6e6926c15" resname="sylius.frontend.menu.account.shop">
         <source>sylius.frontend.menu.account.shop</source>
-        <target>Back to the shop</target>
+        <target>返回基文商城</target>
+      </trans-unit>
+      <trans-unit id="f10a8702eb7ef4f1f5b107c7941eorderhistory" resname="sylius.frontend.menu.account.order_history">
+        <source>sylius.frontend.menu.account.order_history</source>
+        <target>我的订单历史</target>
       </trans-unit>
       <trans-unit id="f10a8702eb7ef4f1f5b107c7941efc74" resname="sylius.frontend.menu.main.account">
         <source>sylius.frontend.menu.main.account</source>
-        <target>My account</target>
+        <target>个人中心</target>
       </trans-unit>
     </body>
   </file>
