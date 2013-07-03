@@ -72,6 +72,8 @@ class Product extends BaseProduct implements TaxableInterface
      */
     protected $shippingCategory;
 
+	protected $saleQuantity;
+
     /**
      * Constructor.
      */
@@ -279,4 +281,14 @@ class Product extends BaseProduct implements TaxableInterface
             self::VARIANT_SELECTION_MATCH  => 'Options matching',
         );
     }
+
+	public function setSaleQuantity($saleQuantity)
+	{
+		$this->saleQuantity = $saleQuantity;
+	}
+
+	public function getSaleQuantity()
+	{
+		return $this->saleQuantity;
+	}
 }
