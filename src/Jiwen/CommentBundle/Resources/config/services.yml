@@ -1,0 +1,7 @@
+parameters:
+#    jiwen_comment.example.class: Jiwen\CommentBundle\Example
+
+services:
+#    jiwen_comment.example:
+#        class: %jiwen_comment.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
