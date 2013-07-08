@@ -35,6 +35,11 @@
             </join-table>
         </many-to-many>
         <field name="saleQuantity" column="sale_quantity" type="integer" nullable="true" />
+        <one-to-many field="comments" target-entity="Jiwen\CommentBundle\Entity\Comment" mapped-by="product">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

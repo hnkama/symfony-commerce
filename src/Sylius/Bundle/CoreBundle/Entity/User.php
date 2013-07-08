@@ -34,11 +34,15 @@ class User extends BaseUser implements TimestampableInterface
     protected $shippingAddress;
     protected $addresses;
 
+	protected $comments;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
         $this->orders    = new ArrayCollection();
         $this->addresses = new ArrayCollection();
+
+		$this->comments = new ArrayCollection();
 
         parent::__construct();
     }
@@ -191,5 +195,26 @@ class User extends BaseUser implements TimestampableInterface
     public function setUpdatedAt(DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+    }
+
+
+    /**
+     * Get comments.
+     *
+     * @return Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set categorization comments.
+     *
+     * @param Collection $comments
+     */
+    public function setComments(Collection $comments)
+    {
+        $this->comments = $comments;
     }
 }

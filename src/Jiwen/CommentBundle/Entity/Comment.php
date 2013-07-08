@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comment
  *
- * @ORM\Table(sylius_comment)
+ * @ORM\Table(name="sylius_comment")
  * @ORM\Entity(repositoryClass="Jiwen\CommentBundle\Entity\CommentRepository")
  */
 class Comment
@@ -22,17 +22,15 @@ class Comment
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="product", type="integer")
-     */
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\Product", inversedBy="Comments")
+	 * @ORM\JoinColumn(name="product", referencedColumnName="id")
+	 */
     private $product;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user", type="integer")
-     */
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\User", inversedBy="Comments")
+	 * @ORM\JoinColumn(name="user", referencedColumnName="id")
+	 */
     private $user;
 
     /**
