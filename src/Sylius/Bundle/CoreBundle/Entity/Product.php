@@ -74,6 +74,8 @@ class Product extends BaseProduct implements TaxableInterface
 
 	protected $saleQuantity;
 
+	protected $comments;
+
     /**
      * Constructor.
      */
@@ -83,6 +85,8 @@ class Product extends BaseProduct implements TaxableInterface
 
         $this->setMasterVariant(new Variant());
         $this->taxons = new ArrayCollection();
+
+		$this->comments = new ArrayCollection();
 
         $this->variantSelectionMethod = self::VARIANT_SELECTION_CHOICE;
     }
@@ -291,4 +295,24 @@ class Product extends BaseProduct implements TaxableInterface
 	{
 		return $this->saleQuantity;
 	}
+
+    /**
+     * Get comments.
+     *
+     * @return Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set categorization comments.
+     *
+     * @param Collection $comments
+     */
+    public function setComments(Collection $comments)
+    {
+        $this->comments = $comments;
+    }
 }
