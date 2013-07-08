@@ -80,15 +80,25 @@
                             <li><a href="#">投诉建议</a></li>
                         </ul>
                     </li>
-                    <li class="sn-login"><a href="#">登录</a> | <a href="#">注册</a></li>
-                    <li class="sn-login sn-drop"><a href="#">我的基文</a><b></b>
+					{% if is_granted('ROLE_USER') %} 
+                    <li class="sn-login">
+						{{ app.user.username }}  <a href="{{ path('fos_user_security_logout') }}">退出</a>
+					</li>
+                    <li class="sn-login sn-drop"><a href="{{ path('sylius_account_homepage') }}">我的基文</a><b></b>
                     	<ul class="subnav-drop">
                         	<li class="pointer"></li>
-                        	<li><a href="#">我的订单</a></li>
+                        	<li><a href="{{ path('sylius_account_order') }}">我的订单</a></li>
                             <li><a href="#">我的积分</a></li>
                             <li><a href="#">我的收藏夹</a></li>
                         </ul>
                     </li>
+					{% else %}
+                    <li class="sn-login">
+						<a href="{{ path('fos_user_security_login') }}">登录</a> | <a href="{{ path('fos_user_registration_register') }}">注册</a>
+					</li>
+					{% endif %}
+
+
                 </ul>
                 <form class="search clearfix">
                 	<input type="submit" id="search-bt">
