@@ -154,6 +154,7 @@
             <th>#</th>
             <th>{{ 'sylius.product.sku'|trans }}</th>
             <th>{{ 'sylius.order_item.sellable'|trans }}</th>
+            <th>{{ 'sylius.order_item.comment'|trans }}</th>
             <th>{{ 'sylius.order_item.quantity'|trans }}</th>
             <th><span class="pull-right">{{ 'sylius.order_item.unit_price'|trans }}</span></th>
             <th><span class="pull-right">{{ 'sylius.order_item.total'|trans }}</span></th>
@@ -166,13 +167,13 @@
         <tr>
             <td>{{ loop.index }}</td>
             <td>
-                <a href="{{ path('sylius_backend_product_show', {'id': product.id}) }}" class="btn btn-info">
+                <a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="btn btn-info">
                 <i class="icon-info-sign"></i> {{ variant.sku|default('SKU') }}
                 </a>
             </td>
             <td>
                 <p>
-                    <a href="{{ path('sylius_backend_product_show', {'id': product.id}) }}">{{ product.name }}</a>
+                    <a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a>
                 </p>
                 {% if product.hasOptions %}
                 <ul class="unstyled">
@@ -181,6 +182,9 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{{ path('sylius_account_product_comment', {'slug': product.slug}) }}" >评论内容</a>
             </td>
             <td>{{ item.quantity }}</td>
             <td>
@@ -205,7 +209,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="6">
+            <td colspan="7">
                 <span class="pull-right">
                 <strong>{{ 'sylius.order.items_total'|trans }}</strong>: {{ order.itemsTotal|sylius_money }}
                 </span>
@@ -222,7 +226,7 @@
             {% endfor %}
             </ul>
             </td>
-            <td colspan="2">
+            <td colspan="3">
                 <span class="pull-right">
                 <strong>{{ 'sylius.order.shipping_total'|trans }}</strong>: {{ order.shippingTotal|sylius_money }}
                 </span>
@@ -239,14 +243,14 @@
             {% endfor %}
             </ul>
             </td>
-            <td colspan="2">
+            <td colspan="3">
                 <span class="pull-right">
                 <strong>{{ 'sylius.checkout.finalize.order.promotion_total'|trans }}</strong>: {{ order.promotionTotal|sylius_money }}
                 </span>
             </td>
         </tr>
         <tr style="background-color: #f1f1f1;">
-            <td colspan="6">
+            <td colspan="7">
                 <span class="pull-right">
                 <strong>{{ 'sylius.order.total'|trans }}</strong>: {{ order.total|sylius_money }}
                 </span>
