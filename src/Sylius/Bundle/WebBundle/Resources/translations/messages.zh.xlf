@@ -642,6 +642,10 @@
         <source>sylius.order.user</source>
         <target>用户</target>
       </trans-unit>
+      <trans-unit id="39a374f71a96a6db5b6976dcomment" resname="sylius.order_item.comment">
+        <source>sylius.order_item.comment</source>
+        <target>评论</target>
+      </trans-unit>
       <trans-unit id="54eea7b324e0132cc7ab5a4b8f080b7a" resname="sylius.order_item.quantity">
         <source>sylius.order_item.quantity</source>
         <target>数量</target>

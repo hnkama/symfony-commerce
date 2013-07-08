@@ -20,3 +20,11 @@ sylius_account_order_show:
         _controller: sylius.controller.order:showAction
         _sylius:
             template: SyliusWebBundle:Frontend/Account/Order:show.html.twig
+
+sylius_account_product_comment:
+    pattern: /comment/{slug}
+    defaults:
+        _controller: sylius.controller.product:showAction
+        _sylius:
+            template: SyliusWebBundle:Frontend/Product:show.html.twig
+            criteria: {slug: $slug}
