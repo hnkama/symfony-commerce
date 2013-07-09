@@ -42,6 +42,7 @@
 .star .star3{ background-position:-24px -1024px;}
 .star .star2{ background-position:-36px -1024px;}
 .star .star1{ background-position:-48px -1024px;}
+.star .star0{ background-position:-60px -1024px;}
 .star a{ color:#39cde7;}
 .cart-index{ width:36px; height:36px; float:left; background-position:-123px -249px; border:none;}
 .cart-index:hover{ background-position:-164px -249px;}
