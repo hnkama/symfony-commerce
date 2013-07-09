@@ -11,7 +11,7 @@
         {{ form_widget(edit_form.score) }}
 		<br/>
         {% if edit_form.vars.value.path is not null %}
-            <img src="{{ asset('uploads/comments/' ~ edit_form.vars.value.path) }}" />
+            <img src="{{  edit_form.vars.value.path|imagine_filter('sylius_125x125') }}" />
         {% endif %}
         {{ form_widget(edit_form) }}
         <p>
