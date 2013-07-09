@@ -248,7 +248,7 @@ class Comment
      */
     public function getPath()
     {
-        return $this->path;
+        return 'comments/'.$this->path;
     }
 
 
@@ -277,7 +277,7 @@ class Comment
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/'.$this->uploadDir;
+        return 'media/image/'.$this->uploadDir;
     }
 
 	/**
