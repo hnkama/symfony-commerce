@@ -189,12 +189,17 @@
 					{% for comment in product.comments %}
 					{% if app.user.id == comment.user.id %}
 						{{ comment.comment }}
-						{% set has_comments = 1 %}
+					<form onsubmit="return confirm('确定要删除吗？');" action="{{ path('account_comment_delete', {id: comment.id}) }}" method="post">
+						<a href="{{ path('account_comment_edit', {id: comment.id}) }}" class="btn btn-small">修改</a>
+						 {{ form_row (form._token) }}
+						<input type="submit" class="btn btn-small btn-warning" value="删除" />
+					</form>
+					{% set has_comments = 1 %}
 					{% endif %}
 					{% endfor %}
 				{% endif %}
 				{% if has_comments == 0 %}
-                <a class="btn btn-primary" href="{{ path('account_comment_new', {'product': product.id}) }}" >评论内容</a>
+                <a class="btn btn-primary" href="{{ path('account_comment_new', {'product': product.id}) }}" >添加评论</a>
 				{% endif %}
             </td>
             <td>{{ item.quantity }}</td>
