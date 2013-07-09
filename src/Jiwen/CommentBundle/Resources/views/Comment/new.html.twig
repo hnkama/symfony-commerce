@@ -1,20 +1,15 @@
 {% extends 'SyliusWebBundle:Frontend/Account:layout.html.twig' %}
 
 {% block content -%}
-    <h1>Comment creation</h1>
+    <h1>添加评论</h1>
 
     <form action="{{ path('account_comment_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
-            <button type="submit">Create</button>
+            <button type="submit">保存评论</button>
         </p>
     </form>
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('account_comment') }}">
-            Back to the list
-        </a>
-    </li>
 </ul>
 {% endblock %}
