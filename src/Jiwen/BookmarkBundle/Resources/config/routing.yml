@@ -1,0 +1,3 @@
+jiwen_bookmark_homepage:
+    pattern:  /
+    defaults: { _controller: JiwenBookmarkBundle:Bookmark:index }
