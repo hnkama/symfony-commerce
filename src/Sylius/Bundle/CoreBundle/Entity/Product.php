@@ -315,4 +315,9 @@ class Product extends BaseProduct implements TaxableInterface
     {
         $this->comments = $comments;
     }
+
+	public function __toString()
+	{
+		return $this->getName();
+	}
 }

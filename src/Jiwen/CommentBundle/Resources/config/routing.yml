@@ -1,3 +1,30 @@
-jiwen_comment_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: JiwenCommentBundle:Default:index }
+account_comment:
+    pattern:  /
+    defaults: { _controller: "JiwenCommentBundle:Comment:index" }
+
+account_comment_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "JiwenCommentBundle:Comment:show" }
+
+account_comment_new:
+    pattern:  /new
+    defaults: { _controller: "JiwenCommentBundle:Comment:new" }
+
+account_comment_create:
+    pattern:  /create
+    defaults: { _controller: "JiwenCommentBundle:Comment:create" }
+    requirements: { _method: post }
+
+account_comment_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JiwenCommentBundle:Comment:edit" }
+
+account_comment_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JiwenCommentBundle:Comment:update" }
+    requirements: { _method: post|put }
+
+account_comment_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JiwenCommentBundle:Comment:delete" }
+    requirements: { _method: post|delete }
