@@ -7,7 +7,7 @@ account_comment_show:
     defaults: { _controller: "JiwenCommentBundle:Comment:show" }
 
 account_comment_new:
-    pattern:  /new
+    pattern:  /new/{product}
     defaults: { _controller: "JiwenCommentBundle:Comment:new" }
 
 account_comment_create:

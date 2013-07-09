@@ -8,15 +8,28 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CommentType extends AbstractType
 {
+	protected $product;
+	protected $user;
+	public function __construct($product = null, $user = null)
+	{
+		$this->product = $product;
+		$this->user = $user;
+	}
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('comment')
             ->add('score')
-            ->add('created')
+            ->add('created', null, array(
+				'data' => new \DateTime(),
+			))
             ->add('path')
-            ->add('product')
-            ->add('user')
+            ->add('product', null, array(
+				'data' => $this->product,
+			))
+            ->add('user', null, array(
+				'data' => $this->user,
+			))
         ;
     }
 
