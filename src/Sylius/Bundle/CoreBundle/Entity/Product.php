@@ -319,9 +319,11 @@ class Product extends BaseProduct implements TaxableInterface
 	public function getCommentsAverageScore()
 	{
 		$total = 0;
-		foreach($this->comments as $comment) {
-			$total += $comments->getScore();
+		foreach($this->getComments() as $comment) {
+			$total += $comment->getScore();
 		}
+		if($this->getCommentsCount())
+			return floor($total/$this->getCommentsCount ());
 		return 0;
 	}
 
