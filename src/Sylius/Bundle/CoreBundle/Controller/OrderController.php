@@ -100,4 +100,43 @@ class OrderController extends ResourceController
     {
         return $this->get('form.factory');
     }
+
+    /**
+     * Get single resource by its identifier.
+     */
+    public function showAction()
+    {
+        $config = $this->getConfiguration();
+		$intentions = 'unknown';  
+ 		$csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken($intentions);
+        $form = $this->createDeleteForm();
+
+
+        $view =  $this
+            ->view()
+            ->setTemplate($config->getTemplate('show.html'))
+            ->setTemplateVar($config->getResourceName())
+            ->setData(array(
+				'order' => $this->findOr404(),
+				'csrfToken' => $csrfToken,
+				'form' => $form,
+			))
+        ;
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * Creates a form to delete a Comment entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm()
+    {
+        return $this->createFormBuilder()
+            ->getForm()
+        ;
+    }
 }
