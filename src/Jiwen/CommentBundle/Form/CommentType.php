@@ -26,7 +26,7 @@ class CommentType extends AbstractType
             ->add('created', null, array(
 				'data' => new \DateTime(),
 			))
-            ->add('path')
+            ->add('file')
 			->add('myorder', null, array(
 				'data' => $this->myorder,
 			))
