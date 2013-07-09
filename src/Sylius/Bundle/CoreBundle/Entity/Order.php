@@ -67,6 +67,8 @@ class Order extends BaseOrder implements OrderInterface
 	protected $paymentStatus;
 	protected $shippingStatus;
 
+	protected $comments;
+
 	public static $orderStatuses = array(
 		0 => 'sylius.order.status.unconfirmed',
 		1 => 'sylius.order.status.confirmed',
@@ -83,6 +85,7 @@ class Order extends BaseOrder implements OrderInterface
 
         $this->inventoryUnits = new ArrayCollection();
         $this->shipments = new ArrayCollection();
+		$this->comments = new ArrayCollection();
     }
 
     /**
@@ -375,5 +378,30 @@ class Order extends BaseOrder implements OrderInterface
 	public function setShippingStatus($shippingStatus)
 	{
 		$this->shippingStatus = $shippingStatus;
+	}
+
+    /**
+     * Get comments.
+     *
+     * @return Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set categorization comments.
+     *
+     * @param Collection $comments
+     */
+    public function setComments(Collection $comments)
+    {
+        $this->comments = $comments;
+    }
+
+	public function __toString()
+	{
+		return $this->id . ' - ' . $this->number;
 	}
 }

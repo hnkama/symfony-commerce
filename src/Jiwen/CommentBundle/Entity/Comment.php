@@ -34,6 +34,12 @@ class Comment
     private $user;
 
     /**
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\Order", inversedBy="Comments")
+	 * @ORM\JoinColumn(name="myorder", referencedColumnName="id")
+	 */
+	private $myorder;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="comment", type="text")
@@ -116,6 +122,29 @@ class Comment
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set myorder
+     *
+     * @param integer $myorder
+     * @return Comment
+     */
+    public function setMyorder($myorder)
+    {
+        $this->myorder = $myorder;
+    
+        return $this;
+    }
+
+    /**
+     * Get myorder
+     *
+     * @return integer 
+     */
+    public function getMyorder()
+    {
+        return $this->myorder;
     }
 
     /**

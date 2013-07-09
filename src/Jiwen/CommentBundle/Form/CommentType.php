@@ -10,10 +10,13 @@ class CommentType extends AbstractType
 {
 	protected $product;
 	protected $user;
-	public function __construct($product = null, $user = null)
+	protected $myorder;
+
+	public function __construct($product = null, $user = null, $myorder = null)
 	{
 		$this->product = $product;
 		$this->user = $user;
+		$this->myorder = $myorder;
 	}
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -24,6 +27,9 @@ class CommentType extends AbstractType
 				'data' => new \DateTime(),
 			))
             ->add('path')
+			->add('myorder', null, array(
+				'data' => $this->myorder,
+			))
             ->add('product', null, array(
 				'data' => $this->product,
 			))

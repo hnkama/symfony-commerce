@@ -74,13 +74,14 @@ class CommentController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction($product)
+    public function newAction($product, $order)
     {
         $entity = new Comment();
 		$entity->setProduct($product);
 		$user = $this->get('security.context')->getToken()->getUser();
 		$product = $this->getDoctrine()->getEntityManager()->getRepository('SyliusCoreBundle:Product')->findOneById($product);
-        $form   = $this->createForm(new CommentType($product, $user), $entity);
+		$order = $this->getDoctrine()->getEntityManager()->getRepository('SyliusCoreBundle:Order')->findOneById($order);
+        $form   = $this->createForm(new CommentType($product, $user, $order), $entity);
 
         return
 		$this->render('JiwenCommentBundle:Comment:new.html.twig', 
