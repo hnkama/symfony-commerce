@@ -21,20 +21,34 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment')
-            ->add('score')
+            ->add('comment', null, array(
+				'label' => '评论内容'
+			))
+            ->add('score', null, array(
+				'label' => '评论分数'
+			))
             ->add('created', null, array(
 				'data' => new \DateTime(),
+				'attr'=> array('style'=>'display:none;'),
+				'label'=> ' ',
 			))
-            ->add('file')
+            ->add('file', null, array(
+				'label' => '晒单图片'
+			))
 			->add('myorder', null, array(
 				'data' => $this->myorder,
+				'attr'=> array('style'=>'display:none;'),
+				'label'=> ' ',
 			))
             ->add('product', null, array(
 				'data' => $this->product,
+				'attr'=> array('style'=>'display:none;'),
+				'label'=> ' ',
 			))
             ->add('user', null, array(
 				'data' => $this->user,
+				'attr'=> array('style'=>'display:none;'),
+				'label'=> ' ',
 			))
         ;
     }
