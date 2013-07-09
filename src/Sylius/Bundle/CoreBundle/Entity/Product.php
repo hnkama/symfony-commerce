@@ -306,6 +306,26 @@ class Product extends BaseProduct implements TaxableInterface
         return $this->comments;
     }
 
+	/**
+	 * get total comments number for the product
+	 * 
+	 * @return integer
+	 */
+	public function getCommentsCount()
+	{
+		return count($this->comments);
+	}
+
+	public function getCommentsAverageScore()
+	{
+		$total = 0;
+		foreach($this->comments as $comment) {
+			$total += $comments->getScore();
+		}
+		return 0;
+	}
+
+
     /**
      * Set categorization comments.
      *
