@@ -323,7 +323,7 @@ class Product extends BaseProduct implements TaxableInterface
 			$total += $comment->getScore();
 		}
 		if($this->getCommentsCount())
-			return floor($total/$this->getCommentsCount ());
+			return round($total/$this->getCommentsCount ());
 		return 0;
 	}
 
