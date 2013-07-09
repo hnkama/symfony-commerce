@@ -4,6 +4,10 @@
     <h1>添加评论</h1>
 
     <form action="{{ path('account_comment_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_row(form.comment) }}
+        {{ form_label(form.score) }}
+		<div id="star" data-score=""></div>
+        {{ form_widget(form.score) }}
         {{ form_widget(form) }}
         <p>
             <button type="submit">保存评论</button>
