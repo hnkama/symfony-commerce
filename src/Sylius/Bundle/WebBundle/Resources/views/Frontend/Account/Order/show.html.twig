@@ -194,7 +194,7 @@
 					{% endfor %}
 				{% endif %}
 				{% if has_comments == 0 %}
-                <a class="btn btn-primary" href="{{ path('sylius_account_product_comment', {'slug': product.slug}) }}" >评论内容</a>
+                <a class="btn btn-primary" href="{{ path('account_comment_new', {'product': product.id}) }}" >评论内容</a>
 				{% endif %}
             </td>
             <td>{{ item.quantity }}</td>
