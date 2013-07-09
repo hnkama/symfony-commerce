@@ -1,6 +1,6 @@
 jiwen_comment:
     resource: "@JiwenCommentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /account/comment
 
 jiwen_general:
     resource: "@JiwenGeneralBundle/Resources/config/routing.yml"
