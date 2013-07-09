@@ -56,11 +56,11 @@ class CommentController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('account_comment_show', array('id' => $entity->getId())));
+        	return $this->redirect($this->generateUrl('sylius_account_order_show', array('id' => $entity->getMyorder()->getId())));
         }
 
         return
-		$this->render('JiwenCommentBundle:Comment:index.html.twig', 
+		$this->render('JiwenCommentBundle:Comment:new.html.twig', 
 			array(
 				'entity' => $entity,
 				'form'   => $form->createView(),
@@ -206,7 +206,7 @@ class CommentController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('account_comment'));
+        return $this->redirect($this->generateUrl('sylius_account_order_show', array('id' => $entity->getMyorder()->getId())));
     }
 
     /**
