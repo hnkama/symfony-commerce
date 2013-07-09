@@ -199,7 +199,7 @@
 					{% endfor %}
 				{% endif %}
 				{% if has_comments == 0 %}
-                <a class="btn btn-primary" href="{{ path('account_comment_new', {'product': product.id}) }}" >添加评论</a>
+                <a class="btn btn-primary" href="{{ path('account_comment_new', {'product': product.id, 'order': order.id}) }}" >添加评论</a>
 				{% endif %}
             </td>
             <td>{{ item.quantity }}</td>
