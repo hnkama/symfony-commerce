@@ -25,6 +25,7 @@ class CommentType extends AbstractType
 				'label' => '评论内容'
 			))
             ->add('score', null, array(
+				'attr'=> array('style'=>'display:none;'),
 				'label' => '评论分数'
 			))
             ->add('created', null, array(

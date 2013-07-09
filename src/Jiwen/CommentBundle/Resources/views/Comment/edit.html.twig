@@ -6,7 +6,10 @@
     <form action="{{ path('account_comment_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_row(edit_form.comment) }}
-        {{ form_row(edit_form.score) }}
+        {{ form_label(edit_form.score) }}
+		<div id="star" data-score="{{ entity.score }}"></div>
+        {{ form_widget(edit_form.score) }}
+		<br/>
         {% if edit_form.vars.value.path is not null %}
             <img src="{{ asset('uploads/comments/' ~ edit_form.vars.value.path) }}" />
         {% endif %}
