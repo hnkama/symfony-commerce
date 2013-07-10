@@ -11,7 +11,7 @@
             <div class="clear">
                 <ul class="list-index">
 					{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list %}
-					{{ list(todayRecommend) }}
+					{{ list(todayRecommend, blank_form) }}
                 </ul>
             </div>
             <div class="hide clear">
