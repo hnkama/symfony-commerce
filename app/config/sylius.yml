@@ -105,3 +105,8 @@ sylius_resource:
             driver: doctrine/orm
             classes:
                 model: Sylius\Bundle\CoreBundle\Entity\User
+        jiwen.bookmark:
+            driver: doctrine/orm
+            templates: JiwenBookmarkBundle:Bookmark
+            classes:
+                model: Jiwen\BookmarkBundle\Entity\Bookmark
