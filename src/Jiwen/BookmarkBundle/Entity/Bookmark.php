@@ -22,17 +22,15 @@ class Bookmark
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user", type="integer")
-     */
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\User", inversedBy="bookmarks")
+	 * @ORM\JoinColumn(name="user", referencedColumnName="id")
+	 */
     private $user;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="product", type="integer")
-     */
+	 * @ORM\ManyToOne(targetEntity="Sylius\Bundle\CoreBundle\Entity\Product", inversedBy="Bookmarks")
+	 * @ORM\JoinColumn(name="product", referencedColumnName="id")
+	 */
     private $product;
 
     /**
