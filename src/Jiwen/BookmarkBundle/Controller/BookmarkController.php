@@ -58,10 +58,11 @@ class BookmarkController extends Controller
             return $this->redirect($this->generateUrl('bookmark_show', array('id' => $entity->getId())));
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+        return $this->render('JiwenBookmarkBundle:Bookmark:new.html.twig', 
+			array(
+				'entity' => $entity,
+				'form'   => $form->createView(),
+        ));
     }
 
     /**
@@ -76,10 +77,11 @@ class BookmarkController extends Controller
         $entity = new Bookmark();
         $form   = $this->createForm(new BookmarkType(), $entity);
 
-        return array(
+        return $this->render('JiwenBookmarkBundle:Bookmark:new.html.twig', 
+				array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -101,10 +103,11 @@ class BookmarkController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('JiwenBookmarkBundle:Bookmark:show.html.twig', 
+				array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**
@@ -127,11 +130,12 @@ class BookmarkController extends Controller
         $editForm = $this->createForm(new BookmarkType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+        return $this->render('JiwenBookmarkBundle:Bookmark:edit.html.twig', 
+			array(
+				'entity'      => $entity,
+				'edit_form'   => $editForm->createView(),
+				'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**
@@ -162,11 +166,12 @@ class BookmarkController extends Controller
             return $this->redirect($this->generateUrl('bookmark_edit', array('id' => $id)));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
+        return $this->render('JiwenBookmarkBundle:Bookmark:edit.html.twig', 
+			array(
+				'entity'      => $entity,
+				'edit_form'   => $editForm->createView(),
+				'delete_form' => $deleteForm->createView(),
+        ));
     }
     /**
      * Deletes a Bookmark entity.
