@@ -202,5 +202,12 @@ $(document).ready(function(){
 		}, 1000);
 	});
 	
+	// 添加到收藏夹
+	function addToBookmark($product) {
+	}
+
+	$('.addToBookmark').click(function(e) {
+		addToBookmark($(this).attr('data'))
+	});
 })
 

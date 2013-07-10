@@ -45,8 +45,15 @@ class HomepageController extends Controller
             array('id' => 'DESC'),
             6
         );
+
+		// create the blank form
+		$blank_form = $this->createFormBuilder()
+            ->getForm()
+        ;
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
-        'todayRecommend' => $productsTodayRecommend,
+        	'todayRecommend' => $productsTodayRecommend,
+			'blank_form' => $blank_form->createView(),
+
         ));
     }
 
