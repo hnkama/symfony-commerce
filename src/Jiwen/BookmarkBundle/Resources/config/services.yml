@@ -2,6 +2,10 @@ parameters:
 #    jiwen_bookmark.example.class: Jiwen\BookmarkBundle\Example
 
 services:
+    jiwen_bookmark:
+        class: Jiwen\BookmarkBundle\Form\BookmarkType
+        tags:
+           - { name: form.type }
 #    jiwen_bookmark.example:
 #        class: %jiwen_bookmark.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
