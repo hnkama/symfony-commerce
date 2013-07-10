@@ -36,6 +36,7 @@ class User extends BaseUser implements TimestampableInterface
     protected $addresses;
 
 	protected $comments;
+	protected $bookmarks;
 
     public function __construct()
     {
@@ -44,6 +45,7 @@ class User extends BaseUser implements TimestampableInterface
         $this->addresses = new ArrayCollection();
 
 		$this->comments = new ArrayCollection();
+		$this->bookmarks = new ArrayCollection();
 
         parent::__construct();
     }
@@ -217,5 +219,25 @@ class User extends BaseUser implements TimestampableInterface
     public function setComments(Collection $comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * Get bookmarks.
+     *
+     * @return Collection
+     */
+    public function getBookmarks()
+    {
+        return $this->bookmarks;
+    }
+
+    /**
+     * Set categorization bookmarks.
+     *
+     * @param Collection $bookmarks
+     */
+    public function setBookmarks(Collection $bookmarks)
+    {
+        $this->bookmarks = $bookmarks;
     }
 }

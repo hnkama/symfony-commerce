@@ -75,6 +75,7 @@ class Product extends BaseProduct implements TaxableInterface
 	protected $saleQuantity;
 
 	protected $comments;
+	protected $bookmarks;
 
     /**
      * Constructor.
@@ -336,6 +337,26 @@ class Product extends BaseProduct implements TaxableInterface
     public function setComments(Collection $comments)
     {
         $this->comments = $comments;
+    }
+
+    /**
+     * Get bookmarks.
+     *
+     * @return Collection
+     */
+    public function getBookmarks()
+    {
+        return $this->bookmarks;
+    }
+
+    /**
+     * Set categorization bookmarks.
+     *
+     * @param Collection $bookmarks
+     */
+    public function setBookmarks(Collection $bookmarks)
+    {
+        $this->bookmarks = $bookmarks;
     }
 
 	public function __toString()
