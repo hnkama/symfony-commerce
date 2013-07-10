@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'SyliusWebBundle:Frontend/Account:layout.html.twig' %}
 
-{% block body -%}
+{% block content -%}
     <h1>Bookmark edit</h1>
 
     <form action="{{ path('bookmark_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
