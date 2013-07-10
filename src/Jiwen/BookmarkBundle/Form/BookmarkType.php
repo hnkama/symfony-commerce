@@ -26,6 +26,6 @@ class BookmarkType extends AbstractType
 
     public function getName()
     {
-        return 'jiwen_bookmarkbundle_bookmarktype';
+        return 'jiwen_bookmark';
     }
 }

@@ -3,3 +3,11 @@ jiwen_bookmark_homepage:
     methods: [GET]
     defaults:
         _controller: jiwen.controller.bookmark:indexAction
+
+jiwen_bookmark_create:
+    pattern: /new
+    methods: [GET, POST]
+    defaults:
+        _controller: jiwen.controller.bookmark:createAction
+        _sylius:
+            form: jiwen_bookmark
