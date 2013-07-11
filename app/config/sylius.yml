@@ -110,3 +110,4 @@ sylius_resource:
             templates: JiwenBookmarkBundle:Bookmark
             classes:
                 model: Jiwen\BookmarkBundle\Entity\Bookmark
+                controller: Jiwen\BookmarkBundle\Controller\BookmarkController

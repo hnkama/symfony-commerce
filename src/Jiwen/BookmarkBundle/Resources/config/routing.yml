@@ -6,7 +6,7 @@ jiwen_bookmark_homepage:
 
 jiwen_bookmark_create:
     pattern: /new
-    methods: [GET, POST]
+    methods: [GET, PUT, POST]
     defaults:
         _controller: jiwen.controller.bookmark:createAction
         _sylius:

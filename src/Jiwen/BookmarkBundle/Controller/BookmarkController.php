@@ -18,5 +18,31 @@ use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
  */
 class BookmarkController extends ResourceController
 {
+    /**
+     * Create new resource or just display the form.
+     */
+    public function createAction(Request $request)
+    {
+
+        $resource = $this->createNew();
+		$postData = $request->request->get('jiwen_bookmark');
+		$product_id = $postData['product'];
+
+        if ($request->isMethod('POST')) {
+			$user = $this->get('security.context')->getToken()->getUser();
+
+			$repository = $this->container->get('sylius.repository.product');
+    		$product = $repository->find($product_id); 
+
+			$resource->setUser($user);
+			$resource->setProduct($product);
+			$resource->setCreated(new \DateTime);
+
+            $this->create($resource);
+            $this->setFlash('success', 'create');
+
+        }
+
+    }
 
 }
