@@ -24,6 +24,7 @@
 .nav-top a:hover{ color:#70f3eb; text-decoration:none;}
 .header-m-r{ float:right; width:385px;}
 .subnav-top{ height:45px; overflow:visible; float:right;}
+form.search {clear:both;}
 .subnav-top > li{ float:left; padding:0 0px 0 15px; line-height:36px; position:relative; z-index:20;}
 .subnav-top .more-space{ padding:0 13px 0 20px;}
 .subnav-top > li a, .subnav-drop li a, .sn-login .subnav-drop li a{ color:#666;}
