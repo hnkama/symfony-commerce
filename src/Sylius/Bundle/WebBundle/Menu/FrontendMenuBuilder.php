@@ -290,6 +290,12 @@ class FrontendMenuBuilder extends MenuBuilder
             'labelAttributes' => array('icon' => 'icon-list', 'iconOnly' => false)
         ))->setLabel($this->translate('sylius.frontend.menu.account.order_history'));
 
+        $child->addChild('bookmark', array(
+            'route' => 'jiwen_bookmark_homepage',
+            'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.account.bookmark')),
+            'labelAttributes' => array('icon' => 'icon-list', 'iconOnly' => false)
+        ))->setLabel($this->translate('sylius.frontend.menu.account.bookmark'));
+
         $child->addChild('profile', array(
             'route' => 'fos_user_profile_edit',
             'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.account.profile')),

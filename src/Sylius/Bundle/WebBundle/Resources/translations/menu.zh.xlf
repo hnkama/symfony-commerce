@@ -288,7 +288,11 @@
       </trans-unit>
       <trans-unit id="f10a8702eb7ef4f1f5b107c7941eorderhistory" resname="sylius.frontend.menu.account.order_history">
         <source>sylius.frontend.menu.account.order_history</source>
-        <target>我的订单历史</target>
+        <target>订单历史</target>
+      </trans-unit>
+      <trans-unit id="f10a8702eb7ef4f1f5b107c7941eorderhistory" resname="sylius.frontend.menu.account.bookmark">
+        <source>sylius.frontend.menu.account.bookmark</source>
+        <target>收藏夹</target>
       </trans-unit>
       <trans-unit id="f10a8702eb7ef4f1f5b107c7941efc74" resname="sylius.frontend.menu.main.account">
         <source>sylius.frontend.menu.main.account</source>
