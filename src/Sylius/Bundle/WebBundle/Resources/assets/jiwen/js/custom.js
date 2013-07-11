@@ -222,7 +222,7 @@ $(document).ready(function() {
 					'jiwen_bookmark[product]': $(this).attr('data')
 				},
 				function(data) {
-					console.log(data);
+					alert(data);
 				}
 		);
 	});
