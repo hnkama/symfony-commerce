@@ -31,7 +31,7 @@ class Taxon extends BaseTaxon implements ImageInterface
     protected $createdAt;
 
 	/**
-	 * @array
+	 * @var array
 	 */
 	protected $banners;
 
