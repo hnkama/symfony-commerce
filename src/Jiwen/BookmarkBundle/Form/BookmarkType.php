@@ -8,24 +8,37 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BookmarkType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('user')
-            ->add('product')
-            ->add('created')
-        ;
-    }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'Jiwen\BookmarkBundle\Entity\Bookmark'
-        ));
-    }
+	protected $user;
 
-    public function getName()
-    {
-        return 'jiwen_bookmark';
-    }
+	public function __construct()
+	{
+	}
+
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+				->add('user', 'hidden', array(
+					'data' => $this->user
+				))
+				->add('product','text')
+				->add('created', null, array(
+					'data' => new \DateTime(),
+					'attr' => array('style' => 'display:none;')
+				))
+		;
+	}
+
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+	{
+		$resolver->setDefaults(array(
+			'data_class' => 'Jiwen\BookmarkBundle\Entity\Bookmark'
+		));
+	}
+
+	public function getName()
+	{
+		return 'jiwen_bookmark';
+	}
+
 }
