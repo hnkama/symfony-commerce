@@ -3,6 +3,11 @@ jiwen_bookmark_homepage:
     methods: [GET]
     defaults:
         _controller: jiwen.controller.bookmark:indexAction
+jiwen_bookmark_index:
+    pattern: /
+    methods: [GET]
+    defaults:
+        _controller: jiwen.controller.bookmark:indexAction
 
 jiwen_bookmark_create:
     pattern: /new
@@ -11,3 +16,9 @@ jiwen_bookmark_create:
         _controller: jiwen.controller.bookmark:createAction
         _sylius:
             form: jiwen_bookmark
+
+jiwen_bookmark_delete:
+    pattern: /delete
+    methods: [DELETE]
+    defaults:
+        _controller: jiwen.controller.bookmark:deleteAction

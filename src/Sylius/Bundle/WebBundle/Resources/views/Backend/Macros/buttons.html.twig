@@ -20,7 +20,7 @@
 {% endmacro %}
 
 {% macro delete(url, message) %}
-<form action="{{ url }}" method="post" style="display: inline;">
+<form action="{{ url }}" method="post" style="display: inline;" onsubmit="return confirm('确定要删除吗？');">
     <input type="hidden" name="_method" value="DELETE">
     <button class="btn btn-danger">
         <i class="icon-trash"></i>

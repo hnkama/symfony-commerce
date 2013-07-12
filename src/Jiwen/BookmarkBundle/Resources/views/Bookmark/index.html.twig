@@ -1,4 +1,5 @@
 {% extends 'SyliusWebBundle:Frontend/Account:layout.html.twig' %}
+{% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
 
 {% block content -%}
     <h1>我的收藏夹</h1>
@@ -24,6 +25,7 @@
 					</td>
                 <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
+                {{ buttons.delete(path('jiwen_bookmark_delete', { 'id': entity.id })) }}
                 </td>
             </tr>
         {% endfor %}
