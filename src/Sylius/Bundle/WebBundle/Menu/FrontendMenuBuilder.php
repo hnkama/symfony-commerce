@@ -291,7 +291,7 @@ class FrontendMenuBuilder extends MenuBuilder
         ))->setLabel($this->translate('sylius.frontend.menu.account.order_history'));
 
         $child->addChild('bookmark', array(
-            'route' => 'jiwen_bookmark_homepage',
+            'route' => 'jiwen_bookmark_index',
             'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.account.bookmark')),
             'labelAttributes' => array('icon' => 'icon-list', 'iconOnly' => false)
         ))->setLabel($this->translate('sylius.frontend.menu.account.bookmark'));

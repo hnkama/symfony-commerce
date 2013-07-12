@@ -1,5 +1,6 @@
 {% extends 'SyliusWebBundle:Frontend/Account:layout.html.twig' %}
 {% import 'SyliusWebBundle:Backend/Macros:buttons.html.twig' as buttons %}
+{% from 'SyliusWebBundle:Backend/Macros:misc.html.twig' import pagination %}
 
 {% block content -%}
     <h1>我的收藏夹</h1>
@@ -31,5 +32,6 @@
         {% endfor %}
         </tbody>
     </table>
+{{ pagination(bookmarks) }}
 
     {% endblock %}
