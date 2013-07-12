@@ -1,13 +1,12 @@
-jiwen_bookmark_homepage:
-    pattern: /
-    methods: [GET]
-    defaults:
-        _controller: jiwen.controller.bookmark:indexAction
 jiwen_bookmark_index:
     pattern: /
     methods: [GET]
     defaults:
         _controller: jiwen.controller.bookmark:indexAction
+        _sylius:
+            paginate: 7
+            sorting:
+                created: desc
 
 jiwen_bookmark_create:
     pattern: /new
