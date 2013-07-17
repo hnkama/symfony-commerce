@@ -37,50 +37,28 @@
         <div class="book-rank right">
         	<div class="br-list tab-switcher right">
             	<ul>
-                    <li><a href="#" title="" class="tabactive"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt="" align="left"><p>教牧书籍快乐是本</p></a></li>
-                    <li><a href="#" title=""><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt="" align="left"><p>教牧书籍快乐是本</p></a></li>
-                    <li><a href="#" title=""><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt="" align="left"><p>教牧书籍快乐是本</p></a></li>
-                    <li><a href="#" title=""><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt="" align="left"><p>教牧书籍快乐是本</p></a></li>
-                    <li><a href="#" title=""><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt="" align="left"><p>教牧书籍快乐是本</p></a></li>
+					{% for product in hotSale %}
+                    <li>
+						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" title="{{ product.name }}" class="{% if loop.first %}tabactive{% endif %}">
+            <img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="{{ product.name }}"  align="left"/>
+							<p>{{ product.name }}</p></a>
+					</li>
+					{% endfor %}
                 </ul> 
             </div>
             <div class="tab_content">
             	<h3>新书飙升榜</h3>
-                <div>
+				{% for product in hotSale %}
+                <div class="{% if not loop.first %}hide{% endif %}">
                 	<ul class="bookrank-text">
-                        <li class="list-img"><a href="#" class="pic"><img src="/assets/images/img-index-bookrank.jpg" width="125" height="125" alt=""></a><span class="icon-no1"></span></li>
-                        <li><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></li>
-                        <li><span class="price">￥3571</span>售量: 2541</li>
+                        <li class="list-img">
+							<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="pic">
+								<img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_125x125') }}" alt="{{ product.name }}"></a><span class="icon-no2"></span></li>
+                        <li><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></li>
+                        <li><span class="price">{{ product.price|sylius_money }}</span>{% if product.saleQuantity %}售量: {{ product.saleQuantity }}{% endif %}</li>
                     </ul>
                 </div>
-                <div class="hide">
-                	<ul class="bookrank-text">
-                        <li class="list-img"><a href="#" class="pic"><img src="/assets/images/img-index-bookrank.jpg" width="125" height="125" alt=""></a><span class="icon-no2"></span></li>
-                        <li><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></li>
-                        <li><span class="price">￥3571</span>售量: 2541</li>
-                    </ul>
-                </div>
-                <div class="hide">
-                	<ul class="bookrank-text">
-                        <li class="list-img"><a href="#" class="pic"><img src="/assets/images/img-index-bookrank.jpg" width="125" height="125" alt=""></a><span class="icon-no3"></span></li>
-                        <li><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></li>
-                        <li><span class="price">￥3571</span>售量: 2541</li>
-                    </ul>
-                </div>
-                <div class="hide">
-                	<ul class="bookrank-text">
-                        <li class="list-img"><a href="#" class="pic"><img src="/assets/images/img-index-bookrank.jpg" width="125" height="125" alt=""></a><span class="icon-no4"></span></li>
-                        <li><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></li>
-                        <li><span class="price">￥3571</span>售量: 2541</li>
-                    </ul>
-                </div>
-                <div class="hide">
-                	<ul class="bookrank-text">
-                        <li class="list-img"><a href="#" class="pic"><img src="/assets/images/img-index-bookrank.jpg" width="125" height="125" alt=""></a><span class="icon-no5"></span></li>
-                        <li><a href="#">华硕R400(新i5 高速硬盘 2G独显)粉好看</a></li>
-                        <li><span class="price">￥3571</span>售量: 2541</li>
-                    </ul>
-                </div>
+				{% endfor %}
             </div>
         </div>
     </div>

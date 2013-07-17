@@ -46,6 +46,43 @@ class ProductRepository extends CustomizableProductRepository
     }
 
     /**
+     * Create paginator for products categorized
+     * under given taxon.
+     *
+     * @param TaxonInterface
+     *
+     * @return PagerfantaInterface
+     */
+    public function createInTaxonPaginator(TaxonInterface $taxon, $maxResults = null)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+
+        $queryBuilder
+            ->innerJoin('product.taxons', 'taxon')
+            ->orWhere('taxon = :taxon')
+            ->setParameter('taxon', $taxon)
+        ;
+		foreach($taxon->getChildren() as $key => $taxon) {
+			$queryBuilder
+				->orWhere('taxon = :taxon'.$key)
+				->setParameter('taxon'.$key, $taxon)
+			;
+			foreach($taxon->getChildren() as $key2 => $staxon) {
+				$queryBuilder
+					->orWhere('taxon = :taxon'.$key2)
+					->setParameter('taxon'.$key2, $staxon)
+				;
+			}
+		}
+		if(null !== $maxResults) {
+			$queryBuilder->setMaxResults($maxResults);
+		}
+        $this->applySorting($queryBuilder, array('createdAt'=>'DESC', 'saleQuantity'=>'DESC'));
+
+        return $this->getPaginator($queryBuilder);
+    }
+
+    /**
      * Create filter paginator.
      *
      * @param array $criteria
