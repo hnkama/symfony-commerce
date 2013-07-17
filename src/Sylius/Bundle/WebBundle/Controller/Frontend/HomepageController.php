@@ -12,6 +12,7 @@
 namespace Sylius\Bundle\WebBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use \Doctrine\Common\Collections\Criteria;
 
 /**
  * Frontend homepage controller.
@@ -81,12 +82,16 @@ class HomepageController extends Controller
 			}
 		}
 
+		// 新书飙升榜
+        $productsHotSale = $productRepository->createInTaxonPaginator($taxonomy, 5);
+
 
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:booksVideos.html.twig', array(
 			'taxonomy' => $taxonomy,
 			'taxonomy_products' => $keys,
 			'blank_form' => $this->createFormBuilder()
             ->getForm()->createView(),
+			'hotSale' => $productsHotSale,
         ));
 
 	}
