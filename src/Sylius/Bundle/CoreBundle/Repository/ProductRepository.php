@@ -29,7 +29,7 @@ class ProductRepository extends CustomizableProductRepository
      *
      * @return PagerfantaInterface
      */
-    public function createByTaxonPaginator(TaxonInterface $taxon)
+    public function createByTaxonPaginator(TaxonInterface $taxon, $maxResults = null)
     {
         $queryBuilder = $this->getCollectionQueryBuilder();
 
@@ -38,6 +38,9 @@ class ProductRepository extends CustomizableProductRepository
             ->andWhere('taxon = :taxon')
             ->setParameter('taxon', $taxon)
         ;
+		if(null !== $maxResults) {
+			$queryBuilder->setMaxResults($maxResults);
+		}
 
         return $this->getPaginator($queryBuilder);
     }

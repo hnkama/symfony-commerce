@@ -66,12 +66,27 @@ class HomepageController extends Controller
 
 	public function booksVideosAction()
 	{
+		$productRepository = $this->container->get('sylius.repository.product');
 		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
 		$taxonomy = $taxonomyRepository->findOneByName('图书音像');
+		$keys = array();
+		$start = 0;
+		foreach($taxonomy->getChildren() as  $node) {
+			foreach($node->getChildren() as $key => $child) {
+				if($key < 5) {
+					$keys[$start]['node'] = $child;
+					$keys[$start]['products'] = $productRepository->createByTaxonPaginator($child, 4);
+					$start++;
+				}
+			}
+		}
 
 
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:booksVideos.html.twig', array(
 			'taxonomy' => $taxonomy,
+			'taxonomy_products' => $keys,
+			'blank_form' => $this->createFormBuilder()
+            ->getForm()->createView(),
         ));
 
 	}
