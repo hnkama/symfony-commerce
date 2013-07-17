@@ -35,6 +35,7 @@ class HomepageController extends Controller
     public function recommendAction()
     {
 		$propertyRepository = $this->container->get('sylius.repository.property');
+		$productRepository = $this->container->get('sylius.repository.product');
 		$productPropertyRepository = $this->container->get('sylius.repository.product_property');
 		$orderItemRepository = $this->container->get('sylius.repository.order_item');
 
@@ -45,6 +46,11 @@ class HomepageController extends Controller
             array('id' => 'DESC'),
             6
         );
+        $productsHotSale = $productRepository->findBy(
+            array(),
+            array('saleQuantity' => 'DESC'),
+            6
+        );
 
 		// create the blank form
 		$blank_form = $this->createFormBuilder()
@@ -52,6 +58,7 @@ class HomepageController extends Controller
         ;
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:recommend.html.twig', array(
         	'todayRecommend' => $productsTodayRecommend,
+        	'hotSale' => $productsHotSale,
 			'blank_form' => $blank_form->createView(),
 
         ));
