@@ -52,6 +52,9 @@ class LoadPropertiesData extends DataFixture
         $property = $this->createProperty('Book pages', 'Number of pages');
         $manager->persist($property);
 
+        $property = $this->createProperty('今日推荐', '今日推荐', 'choice', array('是', '否'));
+        $manager->persist($property);
+
         $manager->flush();
     }
 
@@ -69,12 +72,19 @@ class LoadPropertiesData extends DataFixture
      * @param string $name
      * @param string $presentation
      */
-    private function createProperty($name, $presentation)
+    private function createProperty($name, $presentation, $type = null, $option = null)
     {
         $repository = $this->getPropertyRepository();
 
         $property = $repository->createNew();
         $property->setName($name);
+        $property->setPresentation($presentation);
+		if($type) {
+			$property->setType($type);
+		}
+		if($option) {
+			$property->setOptions($option);
+		}
         $property->setPresentation($presentation);
 
         $this->setReference('Sylius.Property.'.$name, $property);

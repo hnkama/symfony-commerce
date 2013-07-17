@@ -64,4 +64,21 @@ class HomepageController extends Controller
         ));
     }
 
+	public function booksVideosAction()
+	{
+		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
+		$taxonomy = $taxonomyRepository->findOneByName('图书音像');
+		foreach($taxonomy->getChildren() as $node) {
+			echo $node->getName()."<br/>";
+			foreach($node->getChildren() as $sub_node) {
+				echo $sub_node->getName()."<br/>";
+			}
+		}
+
+
+        return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:booksVideos.html.twig', array(
+        ));
+
+	}
+
 }
