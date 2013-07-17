@@ -68,15 +68,10 @@ class HomepageController extends Controller
 	{
 		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
 		$taxonomy = $taxonomyRepository->findOneByName('图书音像');
-		$taxonomy_data = array();
-		foreach($taxonomy->getChildren() as $key => $node) {
-			$taxonomy_data[$key]['node'] = $node;
-			$taxonomy_data[$key]['children'] = $node->getChildren();
-		}
 
 
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:booksVideos.html.twig', array(
-			'taxonomy' => $taxonomy_data,
+			'taxonomy' => $taxonomy,
         ));
 
 	}

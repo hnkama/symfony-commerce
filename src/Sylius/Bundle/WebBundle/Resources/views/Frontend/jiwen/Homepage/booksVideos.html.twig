@@ -3,9 +3,9 @@
     	<div class="sec-title">
         	<h3 class="book-cd"><span>图书音像</span><b class="png"></b>
             	<div class="st-drop std-bkcd">
-					{% for taxo in taxonomy %}
+					{% for taxo in taxonomy.children %}
                     <ul class="{% if loop.first %}left{% else %}right{% endif %}">
-                        <li class="std-title">{{ taxo.node }}：</li>
+                        <li class="std-title">{{ taxo }}：</li>
 						{% for row in taxo.children %}
                         <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.permalink}) }}">{{ row }}</a></li>
 						{% endfor %}
