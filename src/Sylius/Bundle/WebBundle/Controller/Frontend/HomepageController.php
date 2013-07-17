@@ -71,9 +71,7 @@ class HomepageController extends Controller
 		$taxonomy_data = array();
 		foreach($taxonomy->getChildren() as $key => $node) {
 			$taxonomy_data[$key]['node'] = $node;
-//			foreach($node->getChildren() as $sub_key => $sub_node) {
-				$taxonomy_data[$key]['children'] = $node->getChildren();
-//			}
+			$taxonomy_data[$key]['children'] = $node->getChildren();
 		}
 
 
