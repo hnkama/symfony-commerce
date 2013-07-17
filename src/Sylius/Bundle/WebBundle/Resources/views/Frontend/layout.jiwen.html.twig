@@ -135,7 +135,9 @@
             <div class="cart-side">
             	<p>购物车</p>
                 <p class="cs-mount">(5)</p>
-                <input type="button" class="bt-cart-side" value="去结算">
+				<form action="{{ path('sylius_cart_summary') }}">
+                <input type="submit" class="bt-cart-side" value="去结算">
+				</form>
             </div>
             <div class="service-side"><a href="#">售前服务</a></div>
             <div class="service-side"><a href="#">售后服务</a></div>
