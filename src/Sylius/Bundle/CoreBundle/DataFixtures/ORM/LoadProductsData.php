@@ -119,6 +119,8 @@ class LoadProductsData extends DataFixture
         // T-Shirt collection.
         $randomCollection = sprintf('Symfony2 %s %s', $this->faker->randomElement(array('Summer', 'Winter', 'Spring', 'Autumn')), rand(1995, 2012));
         $this->addProperty($product, 'T-Shirt collection', $randomCollection);
+		$reco = array(0 => '是', 1 => '否');
+        $this->addProperty($product, '今日推荐', $reco[mt_rand(0, 1)]);
 
         // T-Shirt material.
         $randomMaterial = $this->faker->randomElement(array('Polyester', 'Wool', 'Polyester 10% / Wool 90%', 'Potato 100%'));
