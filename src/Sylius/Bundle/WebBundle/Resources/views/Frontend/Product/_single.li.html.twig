@@ -10,8 +10,17 @@
 		<div class="inlist-view clearfix">
 			<div class="star"><span class="level star{{ product.commentsAverageScore }}"></span><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.commentsCount }}人评价</a></div>
 			<div class="clear">
-				<input type="button" class="cart-index">
-				<form action="{{ path('jiwen_bookmark_create') }}" method="post">
+				{% if not sylius_inventory_is_available(product.masterVariant) %}
+					<span class="label label-important">{{ 'sylius.out_of_stock'|trans }}</span>
+				{% else %}
+					<form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="left">
+						{% set form = sylius_cart_form({'product': product}) %}
+						{{ form_widget(form.quantity, {'attr': {'class': 'center-text hide'}, 'empty_value': '1'}) }}
+						{{ form_widget(form._token) }}
+					<input type="submit" class="cart-index" value="">
+					</form>
+				{% endif %}
+				<form action="{{ path('jiwen_bookmark_create') }}" method="post" class="left">
 					<input type="button" class="like-index addToBookmark" data="{{ product.id }}">
 				</form>
 			</div>
