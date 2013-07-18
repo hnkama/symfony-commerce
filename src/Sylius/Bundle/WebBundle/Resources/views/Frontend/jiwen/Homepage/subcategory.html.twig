@@ -1,0 +1,30 @@
+    <div class="sec-space clearfix">
+    	<div class="sec-title">
+        	<h3 class="{{ class }}"><span>{{ taxonomy }}</span><b class="png"></b>
+            	<div class="st-drop std-jewelry one-li">
+                    <ul class="">
+                    	{% for taxo in taxonomy.children %}
+                        <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: taxo.permalink}) }}">{{ taxo }}</a></li>
+						{% endfor %}
+                    </ul>
+                </div>
+            </h3>
+        </div>
+        <div class="list-subtitle tab-switcher">
+            <ul>
+				{% for taxo in taxonomy.children %}
+				<li><a class="{% if loop.first %}tabactive{% endif %}" href="{{ path('sylius_product_index_by_taxon', {permalink: taxo.permalink}) }}">{{ taxo }}</a></li>
+				{% endfor %}
+            </ul>    
+       </div>
+       <div class="tab_content">
+		{% for row in taxonomy_products %}
+			<div class="clear {% if not loop.first %}hide{% endif %}">
+				<ul class="list-index">
+			{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_with_banner %}
+			{{ list_with_banner(row.products, blank_form, row.banner) }}
+					</ul>
+				</div>
+		{% endfor %}
+       </div>
+    </div>
