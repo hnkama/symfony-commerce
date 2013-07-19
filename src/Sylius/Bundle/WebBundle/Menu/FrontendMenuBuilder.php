@@ -164,12 +164,43 @@ class FrontendMenuBuilder extends MenuBuilder
 
         $menu->setCurrent($request->getRequestUri());
 
-        $taxonomy = $this->taxonomyRepository->findOneByName('Category');
+        $taxonomyCategory = $this->taxonomyRepository->findOneByName('Category')->getRoot();
 
-        $this->createTaxonomiesMenuNode($menu, $taxonomy->getRoot());
+		//将三级分类合并之后变为二级分类
+		foreach($taxonomyCategory->getChildren() as $key => $child) { // 一级分类 教会用品，图书音像等
+			foreach($child->getChildren() as $skey => $schild) // schild为二级分类,图书，音像
+			{
+				if($schild->getChildren()->isEmpty() == false) {// 如果是有三级分类，需要把所有的三级分类合并为二级分类
+					// 例如，当前一级分类为图书音像，$key为2，
+					// 需要遍历该一级分类下的二级分类下的三级分类，将三级分类合并之后
+					// 替代二级分类
+					
+					$this->updateTaxon($taxonomyCategory, $key);
+					break;
+				}
+			}
+		}
+        $this->createTaxonomiesMenuNode($menu, $taxonomyCategory);
 
         return $menu;
     }
+
+	/**
+	 * 合并三级分类到二级分类
+	 * @param type $taxonomyCategory 一级分类
+	 * @param type $key 需要合并的一级分类的key
+	 */
+	public function updateTaxon($taxonomyCategory, $key)
+	{
+		$children = $taxonomyCategory->getChildren();
+		foreach($children[$key]->getChildren() as $child) {// child下面的分类需要合并为一个分类
+			$subchild = $child->getChildren();
+			foreach($subchild as $sub_key => $sub_child) {
+				$children[$key]->addChild($sub_child);
+			}
+			$children[$key]->removeChild($child);
+		}
+	}
 
     /**
      * Builds frontend taxonomies menu.
