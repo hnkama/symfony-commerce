@@ -12,7 +12,7 @@
 namespace Sylius\Bundle\WebBundle\Controller\Frontend;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use \Doctrine\Common\Collections\Criteria;
+use Jiwen\GeneralBundle\JiwenGeneralBundle;
 
 /**
  * Frontend homepage controller.
@@ -69,30 +69,74 @@ class HomepageController extends Controller
 	{
 		$productRepository = $this->container->get('sylius.repository.product');
 		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
-		$taxonomy = $taxonomyRepository->findOneByName('图书音像');
-		$keys = array();
+		$taxonomyBooks = $taxonomyRepository->findOneByName('图书');
+		$keysProducts = array();
 		$start = 0;
-		foreach($taxonomy->getChildren() as  $node) {
-			foreach($node->getChildren() as $key => $child) {
-				if($key < 5) {
-					$keys[$start]['node'] = $child;
-					$keys[$start]['products'] = $productRepository->createByTaxonPaginator($child, 4);
-					$start++;
-				}
+		foreach($taxonomyBooks->getChildren() as $key => $child) {
+			if($key < 5) {
+				$keysProducts[$start]['node'] = $child;
+				$keysProducts[$start]['products'] = $productRepository->createByTaxonPaginator($child, 4);
+				$start++;
+			}
+		}
+
+		$taxonomyVideos = $taxonomyRepository->findOneByName('音像');
+		foreach($taxonomyVideos->getChildren() as  $key => $child) {
+			if($key < 5) {
+				$keysProducts[$start]['node'] = $child;
+				$keysProducts[$start]['products'] = $productRepository->createByTaxonPaginator($child, 4);
+				$start++;
 			}
 		}
 
 		// 新书飙升榜
+		$taxonomy = $taxonomyRepository->findOneByName('图书音像');
         $productsHotSale = $productRepository->createInTaxonPaginator($taxonomy, 5);
 
 
         return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:booksVideos.html.twig', array(
-			'taxonomy' => $taxonomy,
-			'taxonomy_products' => $keys,
+			'taxonomyBooks' => $taxonomyBooks,
+			'taxonomyVideos' => $taxonomyVideos,
+			'productsAll' => $keysProducts,
 			'blank_form' => $this->createFormBuilder()
             ->getForm()->createView(),
 			'hotSale' => $productsHotSale,
         ));
+
+	}
+
+	/**
+	 * 
+	 * @param string $category 产品分类的名称
+	 * @param string $class div的class
+	 * @return type
+	 */
+	public function subcategoryAction($category, $class)
+	{
+        $em = JiwenGeneralBundle::getContainer()->get('doctrine')->getEntityManager('default');
+		$productRepository = $this->container->get('sylius.repository.product');
+		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
+		$taxonomy = $taxonomyRepository->findOneByName($category);
+		$keys = array();
+		$start = 0;
+		foreach($taxonomy->getChildren() as $key => $node) {
+			if($key < 5) {
+				$keys[$start]['node'] = $node;
+				$keys[$start]['products'] = $productRepository->createByTaxonPaginator($node, 4);
+				$keys[$start]['banner'] = $em->getRepository('JiwenBannerBundle:Banner')->findBanner($node);
+				$start++;
+			}
+		}
+
+
+        return $this->render('SyliusWebBundle:Frontend/' . $this->container->getParameter('twig.theme', 'default') . '/Homepage:subcategory.html.twig', array(
+			'taxonomy' => $taxonomy,
+			'taxonomy_products' => $keys,
+			'blank_form' => $this->createFormBuilder()
+            ->getForm()->createView(),
+			'class' => $class,
+        ));
+
 
 	}
 

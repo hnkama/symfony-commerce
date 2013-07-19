@@ -33,12 +33,28 @@ class BannerRepository extends EntityRepository
 		}
 		return $banner;
 	}
+	
+	public function findBanner(\Sylius\Bundle\TaxonomiesBundle\Model\Taxon $taxon)
+	{
+		$banner = '';
+		$entity = $this->findOneByTaxon($taxon->getId());
+		if ($entity) {
+			$base_path = JiwenGeneralBundle::getContainer()->get('request')->getBasePath();
+			$banner = '
+<a href="'.$entity->getLink().'"><img src="'.$base_path.'/uploads/documents/'.$entity->getPath().'"></a>				
+                        ';
+		}
+		return $banner;
+	}
 
     public function findTopBanner($category, $limit)
     {
+		if(is_object($category)) {
+			$category = $category->getId();
+		}
 		$qb = $this->createQueryBuilder('q');
 		$today = new \DateTime();
-		return $qb
+		$qb
 				->andWhere('q.category = :category')
 				->andWhere($qb->expr()->lte('q.startTime', ':now'))
 				->andWhere($qb->expr()->gte('q.endTime', ':now'))
@@ -47,8 +63,33 @@ class BannerRepository extends EntityRepository
 				->setParameter('now', $today->format('Y-m-d H:m:s'))
 				->orderBy('q.id', 'DESC')
 				->getQuery()
-				->getResult()
 				;
+		if($limit == 1) {
+			return 
+		$qb
+				->andWhere('q.category = :category')
+				->andWhere($qb->expr()->lte('q.startTime', ':now'))
+				->andWhere($qb->expr()->gte('q.endTime', ':now'))
+				->setMaxResults($limit)
+				->setParameter('category', $category)
+				->setParameter('now', $today->format('Y-m-d H:m:s'))
+				->orderBy('q.id', 'DESC')
+				->getQuery()
+				->getOneOrNullResult()
+				;
+		} else {
+			return 
+		$qb
+				->andWhere('q.category = :category')
+				->andWhere($qb->expr()->lte('q.startTime', ':now'))
+				->andWhere($qb->expr()->gte('q.endTime', ':now'))
+				->setMaxResults($limit)
+				->setParameter('category', $category)
+				->setParameter('now', $today->format('Y-m-d H:m:s'))
+				->orderBy('q.id', 'DESC')
+				->getQuery()
+				->getResult();
+		}
     }
 
 }

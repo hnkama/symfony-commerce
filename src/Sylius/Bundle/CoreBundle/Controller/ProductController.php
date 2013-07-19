@@ -40,20 +40,41 @@ class ProductController extends ResourceController
         if (!isset($taxon)) {
             throw new NotFoundHttpException('Requested taxon does not exist');
         }
-
         $paginator = $this
             ->getRepository()
-            ->createByTaxonPaginator($taxon)
+            ->createInTaxonPaginator($taxon)
         ;
 
         $paginator->setCurrentPage($request->query->get('page', 1));
         $paginator->setMaxPerPage($config->getPaginationMaxPerPage());
+
+		// 如果是一级分类列表，则进行单独处理
+		if($taxon->getLevel() == 1) {
+			$this->subIndex($request, $taxon, $paginator);
+		}
+
 
         return $this->renderResponse('indexByTaxon.html', array(
             'taxon'    => $taxon,
             'products' => $paginator,
         ));
     }
+
+	/**
+	 * 各个板块的首页，图书页面的首页，生活家居的首页等等
+	 * @param Request $request
+	 * @param Object $taxon
+	 * @return type
+	 */
+	public function subIndex($request, $taxon, $paginator)
+	{
+        $config = $this->getConfiguration();
+
+        return $this->renderResponse('indexByTaxon.html', array(
+            'taxon'    => $taxon,
+            'products' => $paginator,
+        ));
+	}
 
     /**
      * Render product filter form.

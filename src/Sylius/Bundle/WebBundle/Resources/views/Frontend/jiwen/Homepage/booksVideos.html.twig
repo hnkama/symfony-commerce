@@ -3,14 +3,18 @@
     	<div class="sec-title">
         	<h3 class="book-cd"><span>图书音像</span><b class="png"></b>
             	<div class="st-drop std-bkcd">
-					{% for taxo in taxonomy.children %}
-                    <ul class="{% if loop.first %}left{% else %}right{% endif %}">
-                        <li class="std-title">{{ taxo }}：</li>
-						{% for row in taxo.children %}
+                    <ul class="left">
+                        <li class="std-title">{{ taxonomyBooks }}：</li>
+						{% for row in taxonomyBooks.children %}
                         <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.permalink}) }}">{{ row }}</a></li>
 						{% endfor %}
                     </ul>
-					{% endfor %}
+                    <ul class="right">
+                        <li class="std-title">{{ taxonomyVideos }}：</li>
+						{% for row in taxonomyVideos.children %}
+                        <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.permalink}) }}">{{ row }}</a></li>
+						{% endfor %}
+                    </ul>
                     <div style="clear:both;"></div>
                 </div>
             </h3>
@@ -18,13 +22,13 @@
         <div class="bcd-list left">
         	<div class="list-subtitle tab-switcher">
                 <ul>
-					{% for row in taxonomy_products %}
+					{% for row in productsAll %}
                     <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.node.permalink}) }}" title="" class="{% if loop.first %}tabactive{% endif %}">{{ row.node }}</a></li>
 					{% endfor %}
                 </ul>    
        	   </div>
            <div class="tab_content">
-				{% for row in taxonomy_products %}
+				{% for row in productsAll %}
                <div class="clear {% if not loop.first %}hide{% endif %}">
                     <ul class="list-index">
 					{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
@@ -38,11 +42,13 @@
         	<div class="br-list tab-switcher right">
             	<ul>
 					{% for product in hotSale %}
+					{% if loop.index < 6 %}
                     <li>
 						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" title="{{ product.name }}" class="{% if loop.first %}tabactive{% endif %}">
             <img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="{{ product.name }}"  align="left"/>
 							<p>{{ product.name }}</p></a>
 					</li>
+					{% endif %}
 					{% endfor %}
                 </ul> 
             </div>
