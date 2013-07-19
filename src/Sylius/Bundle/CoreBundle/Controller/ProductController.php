@@ -40,6 +40,12 @@ class ProductController extends ResourceController
         if (!isset($taxon)) {
             throw new NotFoundHttpException('Requested taxon does not exist');
         }
+
+		// 如果是一级分类列表，则进行单独处理
+		if($taxon->getLevel() == 1) {
+			return $this->subIndex($taxon);
+		}
+
         $paginator = $this
             ->getRepository()
             ->createInTaxonPaginator($taxon)
@@ -48,13 +54,8 @@ class ProductController extends ResourceController
         $paginator->setCurrentPage($request->query->get('page', 1));
         $paginator->setMaxPerPage($config->getPaginationMaxPerPage());
 
-		// 如果是一级分类列表，则进行单独处理
-		if($taxon->getLevel() == 1) {
-			$this->subIndex($request, $taxon, $paginator);
-		}
 
-
-        return $this->renderResponse('indexByTaxon.html', array(
+        return $this->renderResponse('Frontend/Product:indexByTaxon.html', array(
             'taxon'    => $taxon,
             'products' => $paginator,
         ));
@@ -66,13 +67,21 @@ class ProductController extends ResourceController
 	 * @param Object $taxon
 	 * @return type
 	 */
-	public function subIndex($request, $taxon, $paginator)
+	public function subIndex($taxon)
 	{
-        $config = $this->getConfiguration();
+		if($taxon->getName() == '图书音像') {
+			return $this->renderBooksVideosIndex($taxon);
+		}
 
-        return $this->renderResponse('indexByTaxon.html', array(
+        return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
-            'products' => $paginator,
+        ));
+	}
+
+	public function renderBooksVideosIndex($taxon)
+	{
+        return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
+            'taxon'    => $taxon,
         ));
 	}
 
