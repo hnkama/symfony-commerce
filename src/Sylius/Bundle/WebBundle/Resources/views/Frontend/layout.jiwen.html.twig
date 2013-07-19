@@ -20,10 +20,10 @@
             '//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css'
             '@SyliusWebBundle/Resources/assets/jiwen/css/base.css'
             '@SyliusWebBundle/Resources/assets/jiwen/css/common.css'
-            '@SyliusWebBundle/Resources/assets/jiwen/css/index-css.css'
         %}
             <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         {% endstylesheets %}
+        {% endblock %}
 <!--[if lt IE 9]>
         {% javascripts output='assets/compiled/IE9.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/IE9.js'
@@ -42,75 +42,74 @@
 		PNG.fix('.png');
 	</script>
 <![endif]-->
-        {% endblock %}
     </head>
     <body>
         {% block header %}
-<header>
-	<div class="top-ads">
-    	<div class="t-ads-wrap">
-        	<div class="t-ads-out">
-                <div class="t-ads-wrap-inner">
-				 {{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.top, 'limit': 6, 'template' : 'top.html'})) }}
-                </div>
-            </div>
-            <span class="ta-drug"></span>
-            <span class="ta-pre"></span>
-            <span class="ta-next"></span>
-        </div>
-    </div>
-    <div class="header-mid clearfix">
-    	<div class="header-m-wrap">
-                <h1 class="logo"><a href="{{ path('sylius_homepage') }}"><img src="/assets/images/logo.jpg" width="155" height="52" alt="基文商城"></a></h1>
-                <ul class="nav-top">
-                    <li><b></b><a href="#">今日团购</a></li>
-                    <li><b></b><a href="#">最新到货</a></li>
-                    <li><b></b><a href="#">积分换礼</a></li>
-                    <li><b></b><a href="#">公益慈善</a></li>
-                </ul>
-            <div class="header-m-r">
-            	<ul class="subnav-top">
-                	<li><a href="#">收藏基文商城</a></li>
-                    <li><a href="#">手机版</a></li>
-                    <li class="more-space sn-drop"><span></span><a href="#">帮助中心</a><b></b><span style="left:auto; right:-5px;"></span>
-                    	<ul class="subnav-drop">
-                        	<li class="pointer"></li>
-                        	<li><a href="#">购物流程</a></li>
-                            <li><a href="#">退换货流程</a></li>
-                            <li><a href="#">投诉建议</a></li>
-                        </ul>
-                    </li>
-					{% if is_granted('ROLE_USER') %} 
-                    <li class="sn-login">
-						{{ app.user.username }}  <a href="{{ path('fos_user_security_logout') }}">退出</a>
-					</li>
-                    <li class="sn-login sn-drop"><a href="{{ path('sylius_account_homepage') }}">我的基文</a><b></b>
-                    	<ul class="subnav-drop">
-                        	<li class="pointer"></li>
-                        	<li><a href="{{ path('sylius_account_order') }}">我的订单</a></li>
-                            <li><a href="#">我的积分</a></li>
-                            <li><a href="{{ path('jiwen_bookmark_index') }}">我的收藏夹</a></li>
-							{% if is_granted('ROLE_SYLIUS_ADMIN') %} 
-                            <li><a href="{{ path('sylius_backend_dashboard') }}">管理中心</a></li>
+		<header>
+			<div class="top-ads">
+				<div class="t-ads-wrap">
+					<div class="t-ads-out">
+						<div class="t-ads-wrap-inner">
+						 {{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.top, 'limit': 6, 'template' : 'top.html'})) }}
+						</div>
+					</div>
+					<span class="ta-drug"></span>
+					<span class="ta-pre"></span>
+					<span class="ta-next"></span>
+				</div>
+			</div>
+			<div class="header-mid clearfix">
+				<div class="header-m-wrap">
+						<h1 class="logo"><a href="{{ path('sylius_homepage') }}"><img src="/assets/images/logo.jpg" width="155" height="52" alt="基文商城"></a></h1>
+						<ul class="nav-top">
+							<li><b></b><a href="#">今日团购</a></li>
+							<li><b></b><a href="#">最新到货</a></li>
+							<li><b></b><a href="#">积分换礼</a></li>
+							<li><b></b><a href="#">公益慈善</a></li>
+						</ul>
+					<div class="header-m-r">
+						<ul class="subnav-top">
+							<li><a href="#">收藏基文商城</a></li>
+							<li><a href="#">手机版</a></li>
+							<li class="more-space sn-drop"><span></span><a href="#">帮助中心</a><b></b><span style="left:auto; right:-5px;"></span>
+								<ul class="subnav-drop">
+									<li class="pointer"></li>
+									<li><a href="#">购物流程</a></li>
+									<li><a href="#">退换货流程</a></li>
+									<li><a href="#">投诉建议</a></li>
+								</ul>
+							</li>
+							{% if is_granted('ROLE_USER') %} 
+							<li class="sn-login">
+								{{ app.user.username }}  <a href="{{ path('fos_user_security_logout') }}">退出</a>
+							</li>
+							<li class="sn-login sn-drop"><a href="{{ path('sylius_account_homepage') }}">我的基文</a><b></b>
+								<ul class="subnav-drop">
+									<li class="pointer"></li>
+									<li><a href="{{ path('sylius_account_order') }}">我的订单</a></li>
+									<li><a href="#">我的积分</a></li>
+									<li><a href="{{ path('jiwen_bookmark_index') }}">我的收藏夹</a></li>
+									{% if is_granted('ROLE_SYLIUS_ADMIN') %} 
+									<li><a href="{{ path('sylius_backend_dashboard') }}">管理中心</a></li>
+									{% endif %}
+								</ul>
+							</li>
+							{% else %}
+							<li class="sn-login">
+								<a href="{{ path('fos_user_security_login') }}">登录</a> | <a href="{{ path('fos_user_registration_register') }}">注册</a>
+							</li>
 							{% endif %}
-                        </ul>
-                    </li>
-					{% else %}
-                    <li class="sn-login">
-						<a href="{{ path('fos_user_security_login') }}">登录</a> | <a href="{{ path('fos_user_registration_register') }}">注册</a>
-					</li>
-					{% endif %}
 
 
-                </ul>
-                <form class="search clearfix">
-                	<input type="submit" id="search-bt">
-                    <input type="text" name="search" id="search-form" >
-                </form>
-             </div>
-        </div>
-    </div>
-</header>
+						</ul>
+						<form class="search clearfix">
+							<input type="submit" id="search-bt">
+							<input type="text" name="search" id="search-form" >
+						</form>
+					 </div>
+				</div>
+			</div>
+		</header>
         {% endblock %}
         {% for name, flashes in app.session.flashbag.all if name in ['success', 'error', 'fos_user_success'] %}
             {% for flash in flashes %}
@@ -121,223 +120,82 @@
             {% endfor %}
         {% endfor %}
 
-<div id="wrap" class="clearfix">
-	<div class="sidebar-r flue">
-    	<div class="side-inner">
-        	<p class="tilte-sr"></p>
-            <div class="si-rotete-out">
-                <ul class="si-rotete">
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                </ul>
-            </div>
-            <span class="prev left"></span>
-            <span class="next right"></span>
-            <div class="cart-side">
-            	<p>购物车</p>
-                <p class="cs-mount">(5)</p>
-				<form action="{{ path('sylius_cart_summary') }}">
-                <input type="submit" class="bt-cart-side" value="去结算">
-				</form>
-            </div>
-            <div class="service-side"><a href="#">售前服务</a></div>
-            <div class="service-side"><a href="#">售后服务</a></div>
-        </div>
-        <div class="to-top">TOP</div>
-    </div>
-	<nav id="nav-index">
-    	<h2 class="png nav-hole">全部商品分类</h2>
- 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
-    </nav>
-    <div id="banner-cycle">
-    	<div class="bn-cycle-inner">
-		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main, 'limit': 6, 'template' : 'top.html'})) }}
-        </div>
-        <span class="arrow-prev"></span>
-        <span class="arrow-next"></span>
-    </div>
-    <div class="banner-line clearfix">
-		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main_s, 'limit': 6, 'template' : 'top.html'})) }}
-    </div>
-	{{ render(controller('SyliusWebBundle:Frontend/Homepage:recommend')) }}
-    <!--book&cd start-->
-	{{ render(controller('SyliusWebBundle:Frontend/Homepage:booksVideos')) }}
-    <!--jewelry start-->
-	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '珠宝手表', 'class': 'jewelry'})) }}
-    <!--life start-->
-	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '家居生活', 'class': 'life'})) }}
-    <!--digit start-->
-	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '手机数码', 'class': 'digit'})) }}
-    <!--showpic start-->
-    <div class="showpic left">
-    	<div class="shai-title tab-switcher">
-        	<div class="icon-rotate">
-                <ul>
-                    <li><a href="#" class="tabactive" title="">1</a></li>
-                    <li><a href="#" title="">2</a></li>
-                    <li><a href="#" title="">3</a></li>
-                    <li><a href="#" title="">4</a></li>
-                    <li><a href="#" title="">5</a></li>
-                </ul>    
-            </div>
-        	<h3><a href="#">晒单区：</a><span>分享生活 让阳光普照心灵！</span></h3>
-        </div>
-        <div class="tab_content">
-            <div>
-                <ul class="shai-list">
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                </ul>
-            </div>
-            <div class="hide">
-                <ul class="shai-list">
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                </ul>
-            </div>
-            <div class="hide">
-                <ul class="shai-list">
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                </ul>
-            </div>
-            <div class="hide">
-                <ul class="shai-list">
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                </ul>
-            </div>
-            <div class="hide">
-                <ul class="shai-list">
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
-                </ul>
-            </div>
-        </div>
-        
-        
-    </div>
-    <!--qa start-->
-    <div class="qa left">
-    	<div class="qa-title clearfix">
-        	<div class="more right"><a href="#">更多</a></div>
-            <h3><a href="#">常见问题</a></h3>
-        </div>
-        <ul>
-        	<li class="png"><a href="#">怎么在网上确认收货？</a></li>
-            <li><a href="#">为什么没有签收而订单中显示已签收的状态？</a></li>
-            <li><a href="#">如何查找我所在地区有现货的商品？</a></li>
-            <li><a href="#">为何有时在收到商品时未同时收到发票？</a></li>
-            <li><a href="#">为什么我选择库存本地有货，但却从其他地方发货？</a></li>
-        </ul>
-        <ul>
-        	<li><a href="#">怎么在网上确认收货？</a></li>
-            <li><a href="#">为什么没有签收而订单中显示已签收的状态？</a></li>
-            <li><a href="#">如何查找我所在地区有现货的商品？</a></li>
-            <li><a href="#">为何有时在收到商品时未同时收到发票？</a></li>
-            <li><a href="#">为什么我选择库存本地有货，但却从其他地方发货？</a></li>
-        </ul>
-    </div>
-    <!--weibo start-->
-    <div class="weibo right">
-    	<img src="/assets/images/weibo.jpg" width="155" height="305">
-    </div>
-</div>
-<div class="bottom-ads">
-	<div class="bta-wrap">
-    	<div class="bta-inner">
-            <a href="#"><img src="/assets/images/bn-bottom1.jpg" width="339" height="125" alt=""></a>
-            <a href="#"><img src="/assets/images/bn-bottom2.jpg" width="339" height="125" alt=""></a>
-            <a href="#"><img src="/assets/images/bn-bottom3.jpg" width="339" height="125" alt=""></a>
-        </div>
-    </div>
-</div>
-<div id="bottom-list" class="clearfix">
-	<ul>
-    	<li>
-        	<h4><a href="#">购物指南</a></h4>
-            <ul class="btl-inner">
-            	<li><a href="#">购物流程</a></li>
-                <li><a href="#">会员介绍</a></li>
-                <li><a href="#">常见问题</a></li>
-                <li><a href="#">联系客服</a></li>
-            </ul>
-        </li>
-        <li>
-        	<h4 class="blh-bg2"><a href="#">配送服务</a></h4>
-            <ul class="btl-inner">
-            	<li><a href="#">上门自提</a></li>
-                <li><a href="#">快递运输</a></li>
-                <li><a href="#">如何送礼</a></li>
-                <li><a href="#">Oversea shopping</a></li>
-            </ul>
-        </li>
-        <li>
-        	<h4 class="blh-bg3"><a href="#">支付方式</a></h4>
-            <ul class="btl-inner">
-            	<li><a href="#">货到付款</a></li>
-                <li><a href="#">在线服务</a></li>
-                <li><a href="#">分期付款</a></li>
-                <li><a href="#">邮局汇款</a></li>
-                <li><a href="#">公司转账</a></li>
-            </ul>
-        </li>
-        <li>
-        	<h4 class="blh-bg4"><a href="#">售后服务</a></h4>
-            <ul class="btl-inner">
-            	<li><a href="#">售后服务政策</a></li>
-                <li><a href="#">售后服务流程</a></li>
-                <li><a href="#">价格保护</a></li>
-                <li><a href="#">退款说明</a></li>
-                <li><a href="#">退换货</a></li>
-                <li><a href="#">取消订单</a></li>
-            </ul>
-        </li>
-        <li>
-        	<h4 class="blh-bg5"><a href="#">了解基路</a></h4>
-            <ul class="btl-inner">
-            	<li><a href="#">关于我们</a></li>
-                <li><a href="#">联系我们</a></li>
-                <li><a href="#">广告服务</a></li>
-            </ul>
-        </li>
-        <li>
-        	<h4 class="blh-bg6"><a href="#">客服中心</a></h4>
-            <ul class="btl-inner">
-            	<li class="bt-phone">32458888</li>
-                <li class="bt-time">上班时间<br>上午9点 - 下午6点</li>
-                <li class="icon-service1"></li>
-                <li class="icon-service2"></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-<div id="bottom-line">
-	<a href="#" class="left"><img src="/assets/images/logo-bottom.jpg" width="196" height="21" alt="基文商城，爱耶稣爱生活"></a>
-    <p class="right">京ICP备07014451号-1 京公网安备110102003886-4号 © 基文商城报版权所有</p>
-</div>
+		{% block content %}
+		{% endblock %}
+
+		<div class="bottom-ads">
+			<div class="bta-wrap">
+				<div class="bta-inner">
+					<a href="#"><img src="/assets/images/bn-bottom1.jpg" width="339" height="125" alt=""></a>
+					<a href="#"><img src="/assets/images/bn-bottom2.jpg" width="339" height="125" alt=""></a>
+					<a href="#"><img src="/assets/images/bn-bottom3.jpg" width="339" height="125" alt=""></a>
+				</div>
+			</div>
+		</div>
+		<div id="bottom-list" class="clearfix">
+			<ul>
+				<li>
+					<h4><a href="#">购物指南</a></h4>
+					<ul class="btl-inner">
+						<li><a href="#">购物流程</a></li>
+						<li><a href="#">会员介绍</a></li>
+						<li><a href="#">常见问题</a></li>
+						<li><a href="#">联系客服</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="blh-bg2"><a href="#">配送服务</a></h4>
+					<ul class="btl-inner">
+						<li><a href="#">上门自提</a></li>
+						<li><a href="#">快递运输</a></li>
+						<li><a href="#">如何送礼</a></li>
+						<li><a href="#">Oversea shopping</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="blh-bg3"><a href="#">支付方式</a></h4>
+					<ul class="btl-inner">
+						<li><a href="#">货到付款</a></li>
+						<li><a href="#">在线服务</a></li>
+						<li><a href="#">分期付款</a></li>
+						<li><a href="#">邮局汇款</a></li>
+						<li><a href="#">公司转账</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="blh-bg4"><a href="#">售后服务</a></h4>
+					<ul class="btl-inner">
+						<li><a href="#">售后服务政策</a></li>
+						<li><a href="#">售后服务流程</a></li>
+						<li><a href="#">价格保护</a></li>
+						<li><a href="#">退款说明</a></li>
+						<li><a href="#">退换货</a></li>
+						<li><a href="#">取消订单</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="blh-bg5"><a href="#">了解基路</a></h4>
+					<ul class="btl-inner">
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">联系我们</a></li>
+						<li><a href="#">广告服务</a></li>
+					</ul>
+				</li>
+				<li>
+					<h4 class="blh-bg6"><a href="#">客服中心</a></h4>
+					<ul class="btl-inner">
+						<li class="bt-phone">32458888</li>
+						<li class="bt-time">上班时间<br>上午9点 - 下午6点</li>
+						<li class="icon-service1"></li>
+						<li class="icon-service2"></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="bottom-line">
+			<a href="#" class="left"><img src="/assets/images/logo-bottom.jpg" width="196" height="21" alt="基文商城，爱耶稣爱生活"></a>
+			<p class="right">京ICP备07014451号-1 京公网安备110102003886-4号 © 基文商城报版权所有</p>
+		</div>
         {% block javascripts %}
         {% javascripts output='/assets/compiled/frontend.js'
             '@SyliusWebBundle/Resources/assets/jiwen/js/lib/jquery-1.8.1.min.js'

@@ -1,11 +1,157 @@
 {% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets output='assets/compiled/frontend-sub.css' filter='cssrewrite'
+		'@SyliusWebBundle/Resources/assets/jiwen/css/index-css.css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
+{% endblock %}
 
 {% block content %}
-<div class="jumbotron">
-    <h1>{{ 'sylius.homepage.splash.headline'|trans }}</h1>
-    <p class="lead">{{ 'sylius.homepage.splash.subheadline'|trans }}</p>
+<div id="wrap" class="clearfix">
+	<div class="sidebar-r flue">
+    	<div class="side-inner">
+        	<p class="tilte-sr"></p>
+            <div class="si-rotete-out">
+                <ul class="si-rotete">
+                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
+                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
+                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
+                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
+                </ul>
+            </div>
+            <span class="prev left"></span>
+            <span class="next right"></span>
+            <div class="cart-side">
+            	<p>购物车</p>
+                <p class="cs-mount">(5)</p>
+				<form action="{{ path('sylius_cart_summary') }}">
+                <input type="submit" class="bt-cart-side" value="去结算">
+				</form>
+            </div>
+            <div class="service-side"><a href="#">售前服务</a></div>
+            <div class="service-side"><a href="#">售后服务</a></div>
+        </div>
+        <div class="to-top">TOP</div>
+    </div>
+	<nav id="nav-index">
+    	<h2 class="png nav-hole">全部商品分类</h2>
+ 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
+    </nav>
+    <div id="banner-cycle">
+    	<div class="bn-cycle-inner">
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main, 'limit': 6, 'template' : 'top.html'})) }}
+        </div>
+        <span class="arrow-prev"></span>
+        <span class="arrow-next"></span>
+    </div>
+    <div class="banner-line clearfix">
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.main_s, 'limit': 6, 'template' : 'top.html'})) }}
+    </div>
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:recommend')) }}
+    <!--book&cd start-->
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:booksVideos')) }}
+    <!--jewelry start-->
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '珠宝手表', 'class': 'jewelry'})) }}
+    <!--life start-->
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '家居生活', 'class': 'life'})) }}
+    <!--digit start-->
+	{{ render(controller('SyliusWebBundle:Frontend/Homepage:subcategory' , {'category': '手机数码', 'class': 'digit'})) }}
+    <!--showpic start-->
+    <div class="showpic left">
+    	<div class="shai-title tab-switcher">
+        	<div class="icon-rotate">
+                <ul>
+                    <li><a href="#" class="tabactive" title="">1</a></li>
+                    <li><a href="#" title="">2</a></li>
+                    <li><a href="#" title="">3</a></li>
+                    <li><a href="#" title="">4</a></li>
+                    <li><a href="#" title="">5</a></li>
+                </ul>    
+            </div>
+        	<h3><a href="#">晒单区：</a><span>分享生活 让阳光普照心灵！</span></h3>
+        </div>
+        <div class="tab_content">
+            <div>
+                <ul class="shai-list">
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                </ul>
+            </div>
+            <div class="hide">
+                <ul class="shai-list">
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                </ul>
+            </div>
+            <div class="hide">
+                <ul class="shai-list">
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                </ul>
+            </div>
+            <div class="hide">
+                <ul class="shai-list">
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                </ul>
+            </div>
+            <div class="hide">
+                <ul class="shai-list">
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">还不错，价格又便宜</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai2.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                    <li><a href="#"><img src="/assets/images/img-shai.jpg" width="155" height="99" alt=""></a><p><a href="#">京东第二届洗衣机节强势出击！</a></p></li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </div>
+    <!--qa start-->
+    <div class="qa left">
+    	<div class="qa-title clearfix">
+        	<div class="more right"><a href="#">更多</a></div>
+            <h3><a href="#">常见问题</a></h3>
+        </div>
+        <ul>
+        	<li class="png"><a href="#">怎么在网上确认收货？</a></li>
+            <li><a href="#">为什么没有签收而订单中显示已签收的状态？</a></li>
+            <li><a href="#">如何查找我所在地区有现货的商品？</a></li>
+            <li><a href="#">为何有时在收到商品时未同时收到发票？</a></li>
+            <li><a href="#">为什么我选择库存本地有货，但却从其他地方发货？</a></li>
+        </ul>
+        <ul>
+        	<li><a href="#">怎么在网上确认收货？</a></li>
+            <li><a href="#">为什么没有签收而订单中显示已签收的状态？</a></li>
+            <li><a href="#">如何查找我所在地区有现货的商品？</a></li>
+            <li><a href="#">为何有时在收到商品时未同时收到发票？</a></li>
+            <li><a href="#">为什么我选择库存本地有货，但却从其他地方发货？</a></li>
+        </ul>
+    </div>
+    <!--weibo start-->
+    <div class="weibo right">
+    	<img src="/assets/images/weibo.jpg" width="155" height="305">
+    </div>
 </div>
-
-{{ render(url('sylius_partial_product_latest', {'limit': 9, 'template': 'SyliusWebBundle:Frontend/Product:latest.html.twig'})) }}
 
 {% endblock %}
