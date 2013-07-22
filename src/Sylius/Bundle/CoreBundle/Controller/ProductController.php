@@ -42,7 +42,7 @@ class ProductController extends ResourceController
         }
 
 		// 如果是一级分类列表，则进行单独处理
-		if($taxon->getLevel() == 1) {
+		if($taxon->getLevel() == 1 && $taxon->getChildren()->isEmpty() == false) {
 			return $this->subIndex($taxon);
 		}
 
@@ -80,8 +80,13 @@ class ProductController extends ResourceController
 
 	public function renderBooksVideosIndex($taxon)
 	{
+		$category = array();
+		foreach($taxon->getChildren() as $row) {
+			$category[] = $row;
+		}
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
+			'category' => $category,
         ));
 	}
 

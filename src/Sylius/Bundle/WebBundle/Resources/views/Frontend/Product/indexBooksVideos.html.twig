@@ -47,107 +47,22 @@
     <div class="guide clearfix">
     	<nav id="nav-sub">
     	<h2 class="nav-hole">全部商品分类</h2>
-              <ul class="nav-list" style="display:none;">
-                  <li><a href="#">教会用品</a>
-                      <div id="submenu-wrap">
-                          <div class="smw-contents">
-                              <img src="/assets/images/submenu-img.jpg" border="0" usemap="#Map2" class="smw-img1" width="410" height="333" style="right:0; bottom:20px;">
-                              <map name="Map2" id="Map2">
-                                <area shape="rect" coords="57,18,397,319" href="#" alt="">
-                              </map>
-                              <div class="smw-text">
-                                  <h3><a href="#">教会用品</a></h3>
-                                  <ul>
-                                      <li><a href="#">圣诗服</a></li>
-                                      <li><a href="#">桌 椅</a></li>
-                                      <li><a href="#">板 凳</a></li>
-                                      <li><a href="#">餐 具</a></li>
-                                      <li><a href="#">丧 衣</a></li>
-                                      <li><a href="#">奉献袋</a></li>
-                                      <li><a href="#">饼 盘</a></li>
-                                      <li><a href="#">杯 盘</a></li>
-                                      <li><a href="#">圣经包</a></li>
-                                      <li><a href="#">读经卡</a></li>
-                                      <li><a href="#">祷告垫</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
-                  <li><a href="#">图书音像</a>
-                      <div id="submenu-wrap">
-                          <div class="smw-contents">
-                              <img src="/assets/images/submenu-img2.jpg" border="0" usemap="#Map" class="smw-img1" style="right:0; bottom:0px;">
-                              <map name="Map" id="Map">
-                                <area shape="rect" coords="57,18,397,319" href="#" alt="">
-                              </map>
-                              <div class="smw-text">
-                                  <h3><a href="#">图书音像</a></h3>
-                                  <ul>
-                                      <li><a href="#">圣诗服</a></li>
-                                      <li><a href="#">桌 椅</a></li>
-                                      <li><a href="#">板 凳</a></li>
-                                      <li><a href="#">餐 具</a></li>
-                                      <li><a href="#">丧 衣</a></li>
-                                      <li><a href="#">奉献袋</a></li>
-                                      <li><a href="#">饼 盘</a></li>
-                                      <li><a href="#">杯 盘</a></li>
-                                      <li><a href="#">圣经包</a></li>
-                                      <li><a href="#">读经卡</a></li>
-                                      <li><a href="#">祷告垫</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
-                  <li><a href="#">珠宝手表</a></li>
-                  <li><a href="#">手机数码</a></li>
-                  <li><a href="#">文具用品</a></li>
-                  <li><a href="#">赞美乐器</a></li>
-                  <li><a href="#">家居生活</a></li>
-                  <li><a href="#">艺术收藏</a></li>
-                  <li><a href="#">服饰鞋帽</a></li>
-              </ul>
-          </nav>
-        <div class="guide-sign">所在位置： <a href="#">首页</a> > <a href="#">家居生活</a></div>
+ 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
+        </nav>
+        <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> > <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></div>
     </div>
 	<!--nav-->
     <div class="sub-side-l clear">
         <nav id="subpage-nab">
-            <h3>家居生活</h3>
+            <h3>{{ taxon }}</h3>
+			{% for row in category %}
             <ul>
-            	<li>家居装饰</li>
-                <li><a href="#">墙 贴</a></li>
-                <li><a href="#">壁 画</a></li>
-                <li><a href="#">摆 件</a></li>
-                <li><a href="#">十字绣</a></li>
+                <li>{{ row }}</li>
+				{% for sub in row.children %}
+                <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: sub.permalink}) }}">{{ sub.name }}</a></li>
+				{% endfor %}
             </ul>
-            <ul>
-            	<li>厨房用品</li>
-                <li><a href="#">碗筷刀叉</a></li>
-                <li><a href="#">桌布杯垫</a></li>
-                <li><a href="#">套装餐具</a></li>
-                <li><a href="#">保鲜盒</a></li>
-                <li><a href="#">冰箱盒</a></li>
-            </ul>
-            <ul>
-            	<li>生活用品</li>
-                <li><a href="#">钥匙扣</a></li>
-                <li><a href="#">名片夹</a></li>
-                <li><a href="#">礼品盒</a></li>
-                <li><a href="#">收纳袋</a></li>
-                <li><a href="#">水 杯</a></li>
-                <li><a href="#">木 梳</a></li>
-                <li><a href="#">雨 伞</a></li>
-                <li><a href="#">毛 巾</a></li>
-                <li><a href="#">领 巾</a></li>
-                <li><a href="#">相 框</a></li>
-                <li><a href="#">贺 卡</a></li>
-                <li><a href="#">红 包</a></li>
-                <li><a href="#">手机套</a></li>
-                <li><a href="#">手机挂件</a></li>
-                <li><a href="#">公交卡套</a></li>
-            </ul>
+			{% endfor %}
         </nav>
         <div class="book-review">
         	<h5>读后分享</h5>
