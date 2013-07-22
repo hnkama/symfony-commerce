@@ -13,6 +13,8 @@ namespace Sylius\Bundle\CoreBundle\Repository;
 
 use Sylius\Bundle\AssortmentBundle\Entity\CustomizableProductRepository;
 use Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface;
+use Sylius\Bundle\AssortmentBundle\Entity\Property\ProductProperty;
+use Sylius\Bundle\CoreBundle\SyliusCoreBundle;
 
 /**
  * Product repository.
@@ -42,7 +44,11 @@ class ProductRepository extends CustomizableProductRepository
 			$queryBuilder->setMaxResults($maxResults);
 		}
 
-        return $this->getPaginator($queryBuilder);
+		if($maxResults) {
+        	return $queryBuilder->getQuery()->getResult();
+		} else {
+        	return $this->getPaginator($queryBuilder);
+		}
     }
 
     public function getQueryBuilder()
@@ -84,7 +90,7 @@ class ProductRepository extends CustomizableProductRepository
 		}
         $this->applySorting($queryBuilder, array('createdAt'=>'DESC', 'saleQuantity'=>'DESC'));
 
-        return $this->getPaginator($queryBuilder);
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
@@ -157,5 +163,29 @@ class ProductRepository extends CustomizableProductRepository
 		$queryBuilder->setMaxResults($number);
         $this->applySorting($queryBuilder, array('createdAt'=>'DESC', 'saleQuantity'=>'DESC'));
 		return $queryBuilder->getQuery()->getResult();
+    }
+
+    public function getByPropery(TaxonInterface $taxon, $property, $value, $number = 5)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+		$em = $queryBuilder->getEntityManager();
+		return $query = $em->createQuery(
+    'SELECT p
+    FROM SyliusCoreBundle:Product p
+	INNER JOIN p.taxons t
+	LEFT JOIN SyliusAssortmentBundle:Property\ProductProperty pp
+	WHERE t = :taxon AND pp.product = p
+	AND t = :taxon
+	AND pp.property = :property
+	AND pp.value = :value
+	ORDER BY p.saleQuantity DESC
+    '
+)
+				->setMaxResults(5)
+				->setParameter('taxon', $taxon)
+				->setParameter('property', $property)
+				->setParameter('value', $value)
+				->getResult();
+
     }
 }

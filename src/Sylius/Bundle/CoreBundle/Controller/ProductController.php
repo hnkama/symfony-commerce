@@ -89,11 +89,22 @@ class ProductController extends ResourceController
 		}
 
 		// fetch top 10
+		// 读取小编推荐内容
+		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
+		$taxonBook = $taxonomyRepository->findOneByName('图书');
+		$recommend = array();
+		foreach($taxonBook->getChildren() as $key => $taxon) {
+			$recommend[$key]['products'] = $productRepository->getByPropery($taxon, '小编推荐', 1);
+			$recommend[$key]['taxon'] = $taxon;
+		}
 
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
 			'category' => $category,
 			'top10' => $top10,
+			'recommendBooks' => $recommend,
+			'blank_form' => $this->createFormBuilder()
+            ->getForm()->createView(),
         ));
 	}
 
