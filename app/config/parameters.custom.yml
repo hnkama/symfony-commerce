@@ -4,4 +4,5 @@ parameters:
     banner.top: 1
     banner.main: 3
     banner.main_s: 4
+    banner.books: 6
     banner.path: uploads/documents

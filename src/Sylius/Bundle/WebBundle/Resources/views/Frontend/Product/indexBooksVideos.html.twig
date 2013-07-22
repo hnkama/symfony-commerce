@@ -79,16 +79,7 @@
     <div id="sub-wrap-r" class="right">
         <!--banner-->
         <section id="feature_list-tushu" class="left">
-            <ul id="tabs">
-                <li><a href="javascript:;">双立人不锈钢中式炒锅三件套</a></li>
-                <li><a href="javascript:;">钻技不粘锅锅盖三件套组 韩国进口</a></li>
-                <li><a href="javascript:;">赛普瑞斯 钻技不粘升级版煎炒3件套</a></li>
-            </ul>
-            <ul id="output">
-                <li><a href="#"><img src="/assets/images/bn-tushu1.jpg" width="343" height="447" alt=""></a></li>
-                <li><a href="#"><img src="/assets/images/bn-tushu2.jpg" width="343" height="447" alt=""></a></li>
-                <li><a href="#"><img src="/assets/images/bn-tushu3.jpg" width="343" height="447" alt=""></a></li>
-            </ul>
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.books, 'limit': 3, 'template' : 'nav.html'})) }}
         </section>
         <!--rank-->
         <div class="subpage-rank right">

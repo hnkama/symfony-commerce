@@ -47,6 +47,12 @@ class BannerRepository extends EntityRepository
 		return $banner;
 	}
 
+	public function findBanners(\Sylius\Bundle\TaxonomiesBundle\Model\Taxon $taxon)
+	{
+		$banner = '';
+		return $this->findByTaxon($taxon->getId());
+	}
+
     public function findTopBanner($category, $limit)
     {
 		if(is_object($category)) {

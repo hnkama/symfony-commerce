@@ -1,0 +1,14 @@
+            <ul id="tabs">
+				{% for row in entity %}
+                <li>
+					<a href="javascript:;">{{ row.name }}</a>
+				</li>
+				{% endfor %}
+            </ul>
+            <ul id="output">
+				{% for row in entity %}
+                <li>
+					<a href="{{ row.link }}" target="{{ category.target }}"><img src="{{ asset(banner.path ~ '/' ~ row.path) }}" width="{{ category.width }}" height="{{ category.height }}"></a>
+				</li>
+				{% endfor %}
+            </ul>
