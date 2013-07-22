@@ -82,88 +82,33 @@
 		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.books, 'limit': 3, 'template' : 'nav.html'})) }}
         </section>
         <!--rank-->
+		{% for tops in top10 %}
         <div class="subpage-rank right">
             <ul>
-                <li><a href="#"><img src="/assets/images/sub-rank1.jpg" width="130" height="130" alt=""></a><span class="icon-rank1 png"></span>
+				{% for product in tops %}
+                <li>
+					{% if loop.index == 1 %}
+					<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
+						<img src="{{ product.image.path|default('http://placehold.it/130')|imagine_filter('sylius_130x130') }}" alt="" />
+					</a>
+					<span class="icon-rank1 png"></span>
                     <div class="sr1-text">
-                        <p><a href="#">基督教礼品 喜乐草 提醒我们常常喜乐 养眼</a></p>
-                        <p class="price">￥23 </p>
-                        <p>售量: 998 </p>
+                        <p><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
+                        <p class="price">{{ product.price|sylius_money }} </p>
+                        <p>售量: {{ product.saleQuantity }} </p>
                     </div>
+					{% else %}
+						<span class="srnum">{{ loop.index }}.</span>
+						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
+						<img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="" />
+					</a>
+						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a>
+					{%endif %}
                 </li>
-                <li>
-                    <span class="srnum">2.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <a href="#">圣经仿真花画框 基督是我家之主</a>
-                </li>
-                <li>
-                    <span class="srnum">3.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">圣经仿真花画框 基督是我家之主</a></p>
-                </li>
-                <li>
-                    <span class="srnum">4.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
-                <li>
-                    <span class="srnum">5.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
-                <li>
-                    <span class="srnum">6.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">磁性冰箱贴 主与你同在 </a></p>
-                </li>
-                <li>
-                    <span class="srnum">7.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
+				{% endfor %}
             </ul>
         </div>
-        <div class="subpage-rank right">
-            <ul>
-                <li><a href="#"><img src="/assets/images/sub-rank1.jpg" width="130" height="130" alt=""></a><span class="icon-rank1 png"></span>
-                    <div class="sr1-text">
-                        <p><a href="#">基督教礼品 喜乐草 提醒我们常常喜乐 养眼</a></p>
-                        <p class="price">￥23 </p>
-                        <p>售量: 998 </p>
-                    </div>
-                </li>
-                <li>
-                    <span class="srnum">2.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <a href="#">圣经仿真花画框 基督是我家之主</a>
-                </li>
-                <li>
-                    <span class="srnum">3.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">圣经仿真花画框 基督是我家之主</a></p>
-                </li>
-                <li>
-                    <span class="srnum">4.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
-                <li>
-                    <span class="srnum">5.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
-                <li>
-                    <span class="srnum">6.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">磁性冰箱贴 主与你同在 </a></p>
-                </li>
-                <li>
-                    <span class="srnum">7.</span>
-                    <a href="#"><img src="/assets/images/img-index-bookrank-s.jpg" width="40" height="40" alt=""></a>
-                    <p><a href="#">生命豆 神豆 不住祷告 双面刻字 很神奇的哦</a></p>
-                </li>
-            </ul>
-        </div>
+		{% endfor %}
         <div style="clear:both;"></div>
         <!--section-->
         <div class="sec-space clear">

@@ -45,6 +45,11 @@ class ProductRepository extends CustomizableProductRepository
         return $this->getPaginator($queryBuilder);
     }
 
+    public function getQueryBuilder()
+    {
+        return $queryBuilder = $this->getCollectionQueryBuilder();
+    }
+
     /**
      * Create paginator for products categorized
      * under given taxon.
@@ -132,5 +137,25 @@ class ProductRepository extends CustomizableProductRepository
     public function findLatest($limit = 10)
     {
         return $this->findBy(array(), array('createdAt' => 'desc'), $limit);
+    }
+
+    public function getTop10(TaxonInterface $taxon, $number = 10)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+
+        $queryBuilder
+            ->innerJoin('product.taxons', 'taxon')
+            ->orWhere('taxon = :taxon')
+            ->setParameter('taxon', $taxon)
+        ;
+		foreach($taxon->getChildren() as $key => $taxon) {
+			$queryBuilder
+				->orWhere('taxon = :taxon'.$key)
+				->setParameter('taxon'.$key, $taxon)
+			;
+		}
+		$queryBuilder->setMaxResults($number);
+        $this->applySorting($queryBuilder, array('createdAt'=>'DESC', 'saleQuantity'=>'DESC'));
+		return $queryBuilder->getQuery()->getResult();
     }
 }

@@ -80,13 +80,20 @@ class ProductController extends ResourceController
 
 	public function renderBooksVideosIndex($taxon)
 	{
+		$productRepository = $this->container->get('sylius.repository.product');
 		$category = array();
+		$top10 = array();
 		foreach($taxon->getChildren() as $row) {
 			$category[] = $row;
+			$top10[] = $productRepository->getTop10($row, 7);
 		}
+
+		// fetch top 10
+
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
 			'category' => $category,
+			'top10' => $top10,
         ));
 	}
 
