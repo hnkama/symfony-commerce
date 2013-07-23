@@ -93,9 +93,9 @@ class ProductController extends ResourceController
 		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
 		$taxonBook = $taxonomyRepository->findOneByName('图书');
 		$recommend = array();
-		foreach($taxonBook->getChildren() as $key => $taxon) {
-			$recommend[$key]['products'] = $productRepository->getByPropery($taxon, '小编推荐', 1);
-			$recommend[$key]['taxon'] = $taxon;
+		foreach($taxonBook->getChildren() as $key => $staxon) {
+			$recommend[$key]['products'] = $productRepository->getByPropery($staxon, '小编推荐', 1);
+			$recommend[$key]['taxon'] = $staxon;
 		}
 
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(

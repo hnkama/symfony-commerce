@@ -172,16 +172,17 @@ class ProductRepository extends CustomizableProductRepository
 		return $query = $em->createQuery(
     'SELECT p
     FROM SyliusCoreBundle:Product p
-	INNER JOIN p.taxons t
+	LEFT JOIN p.taxons t
 	LEFT JOIN SyliusAssortmentBundle:Property\ProductProperty pp
-	WHERE t = :taxon AND pp.product = p
-	AND t = :taxon
+	WHERE
+	t = :taxon
+	AND pp.product = p
 	AND pp.property = :property
 	AND pp.value = :value
 	ORDER BY p.saleQuantity DESC
     '
 )
-				->setMaxResults(5)
+				->setMaxResults($number)
 				->setParameter('taxon', $taxon)
 				->setParameter('property', $property)
 				->setParameter('value', $value)
