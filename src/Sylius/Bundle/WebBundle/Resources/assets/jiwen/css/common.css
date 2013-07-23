@@ -50,6 +50,7 @@ form.search {clear:both;}
 
 #nav-index{ position:absolute; top:0; left:0; width:155px; border-bottom:3px solid #de282a; z-index:14;}
 #nav-sub{position:absolute; top:0px; left:0; width:155px; z-index:14; background:url(../images/bg-subnav.gif) repeat-y;}
+#nav-sub ul.nav-list{display:none;}
 .nav-sub-bb{ border-bottom:3px solid #de282a;}
 .nav-hole{ background-color:#de282a; background-position:135px -90px; width:140px; height:36px; font-size:16px; font-weight:bold; color:#fff; line-height:36px; padding-left:15px; letter-spacing:0.2em; position:relative;}
 ul.nav-list{ padding-top:10px;}
