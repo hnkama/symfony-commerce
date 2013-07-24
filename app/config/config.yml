@@ -33,6 +33,8 @@ twig:
                 main: "%banner.main%"
                 main_s: "%banner.main_s%"
                 books: "%banner.books%"
+                book_set: 8 
+                book_series: 9 
             path: "%banner.path%"
 
 assetic:

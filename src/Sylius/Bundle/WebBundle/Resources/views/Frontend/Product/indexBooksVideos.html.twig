@@ -12,15 +12,6 @@
 <div id="wrap" class="clearfix">
 	<!--sidebar-->
 	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
-    <div class="sidebar-l flue clearfix">
-        <p class="tilte-sr tilte-sl"></p>
-        <ul>
-            <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-            <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-            <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-            <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-        </ul>
-    </div>
     <!--guidie-->
     <div class="guide clearfix">
     	<nav id="nav-sub">
@@ -114,12 +105,11 @@
         <!--banner-small-->
         <div class="book-pack left">
         	<p>套餐搭配</p>
-        	<a href="#"><img src="/assets/images/bn-taocan.jpg" width="271" height="108" alt=""></a>
+			{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_set, 'limit': 1, 'template' : 'top.html'})) }}
         </div>
         <div class="book-congshu right">
         	<p>丛书系列</p>
-            <a href="#"><img src="/assets/images/bn-congshu1.jpg" width="271" height="108" align="" class="left"></a>
-            <a href="#"><img src="/assets/images/bn-congshu2.jpg" width="271" height="108" align="" class="right"></a>
+			{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_series, 'limit': 2, 'template' : 'top.html'})) }}
         </div>
         <div style="clear:both;"></div>
         <!--section-->
