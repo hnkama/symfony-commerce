@@ -200,7 +200,13 @@ $(document).ready(function() {
 			left: [end_x - start_x, 'sin'],
 			opacity: 0
 		}, 1000);
-		$.post($(this).closest('form').attr('action'), $(this).closest('form').serialize());
+		$.post($(this).closest('form').attr('action'), $(this).closest('form').serialize(), function(data) {
+			var re = /(\d*)个产品/;
+			var found = data.match(re);
+			$('.cs-mount').html('('+found[1]+')');
+		})
+		.error(function() {alert('请查看产品详细页面选择产品属性');})
+		;
 	});
 
 	// 添加到收藏夹

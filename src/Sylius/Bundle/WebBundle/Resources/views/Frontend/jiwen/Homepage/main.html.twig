@@ -10,31 +10,7 @@
 
 {% block content %}
 <div id="wrap" class="clearfix">
-	<div class="sidebar-r flue">
-    	<div class="side-inner">
-        	<p class="tilte-sr"></p>
-            <div class="si-rotete-out">
-                <ul class="si-rotete">
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                    <li><a href="#"><img src="/assets/images/img-recent.jpg" width="68" height="68" alt=""></a></li>
-                </ul>
-            </div>
-            <span class="prev left"></span>
-            <span class="next right"></span>
-            <div class="cart-side">
-            	<p>购物车</p>
-                <p class="cs-mount">(5)</p>
-				<form action="{{ path('sylius_cart_summary') }}">
-                <input type="submit" class="bt-cart-side" value="去结算">
-				</form>
-            </div>
-            <div class="service-side"><a href="#">售前服务</a></div>
-            <div class="service-side"><a href="#">售后服务</a></div>
-        </div>
-        <div class="to-top">TOP</div>
-    </div>
+	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
 	<nav id="nav-index">
     	<h2 class="png nav-hole">全部商品分类</h2>
  		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
