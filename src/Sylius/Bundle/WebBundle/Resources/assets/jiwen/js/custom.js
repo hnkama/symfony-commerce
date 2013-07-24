@@ -200,6 +200,7 @@ $(document).ready(function() {
 			left: [end_x - start_x, 'sin'],
 			opacity: 0
 		}, 1000);
+		$.post($(this).closest('form').attr('action'), $(this).closest('form').serialize());
 	});
 
 	// 添加到收藏夹

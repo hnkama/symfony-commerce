@@ -17,7 +17,7 @@
 						{% set form = sylius_cart_form({'product': product}) %}
 						{{ form_widget(form.quantity, {'attr': {'class': 'center-text hide'}, 'empty_value': '1'}) }}
 						{{ form_widget(form._token) }}
-					<input type="submit" class="cart-index" value="">
+					<input type="submit" class="cart-index add-to-cart" value="">
 					</form>
 				{% endif %}
 				<form action="{{ path('jiwen_bookmark_create') }}" method="post" class="left">
