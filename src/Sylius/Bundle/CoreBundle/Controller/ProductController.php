@@ -14,6 +14,7 @@ namespace Sylius\Bundle\CoreBundle\Controller;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Product controller.
@@ -127,5 +128,35 @@ class ProductController extends ResourceController
     private function getFormFactory()
     {
         return $this->get('form.factory');
+    }
+
+    /**
+     * Get single resource by its identifier.
+     */
+    public function showAction()
+    {
+		$entity = $this->findOr404();
+
+		$session = $this->getRequest()->getSession();
+		$productHistory = $session->get('productHistory', new \Symfony\Component\HttpFoundation\ParameterBag);
+		$productHistory->set($entity->getId(), array(
+			'id'=>$entity->getId(),
+			'slug'=>$entity->getSlug(),
+			'img'=>$entity->getImage()->getPath(),
+
+				));
+
+		$session->set('productHistory', $productHistory);
+
+        $config = $this->getConfiguration();
+
+        $view =  $this
+            ->view()
+            ->setTemplate($config->getTemplate('show.html'))
+            ->setTemplateVar($config->getResourceName())
+            ->setData($entity)
+        ;
+
+        return $this->handleView($view);
     }
 }
