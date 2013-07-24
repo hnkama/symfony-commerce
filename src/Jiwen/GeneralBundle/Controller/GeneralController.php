@@ -8,6 +8,11 @@ class GeneralController extends Controller
 {
 	public function floatCartAction()
 	{
-        return $this->render('JiwenGeneralBundle:General:floatCart.html.twig');
+		$provider = $this->get('sylius.cart_provider'); // Implements the CartProviderInterface.
+
+    	$currentCart = $provider->getCart();
+        return $this->render('JiwenGeneralBundle:General:floatCart.html.twig', array(
+			'cart' => $currentCart,
+		));
 	}
 }
