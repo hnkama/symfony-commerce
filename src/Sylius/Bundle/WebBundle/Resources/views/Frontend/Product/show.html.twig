@@ -11,6 +11,7 @@
     </div>
     <div class="span9">
         <a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="btn btn-link"><h3>{{ product.name }}</h3></a>
+		{% if is_granted('ROLE_SYLIUS_ADMIN') %}<a href="{{ path('sylius_backend_product_update', {'id': product.id}) }}" target="_blank" class="btn btn-link">编辑</a>{% endif %}
         <p>{{ product.shortDescription|default('sylius.product.no_description')|trans|raw }}</p>
     </div>
 </div>

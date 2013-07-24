@@ -167,26 +167,24 @@ class ProductRepository extends CustomizableProductRepository
 
     public function getByPropery(TaxonInterface $taxon, $property, $value, $number = 5)
     {
-        $queryBuilder = $this->getCollectionQueryBuilder();
+        $queryBuilder = $this->getQueryBuilder();
 		$em = $queryBuilder->getEntityManager();
-		return $query = $em->createQuery(
-    'SELECT p
-    FROM SyliusCoreBundle:Product p
-	LEFT JOIN p.taxons t
-	LEFT JOIN SyliusAssortmentBundle:Property\ProductProperty pp
-	WHERE
-	t = :taxon
-	AND pp.product = p
-	AND pp.property = :property
-	AND pp.value = :value
-	ORDER BY p.saleQuantity DESC
-    '
-)
-				->setMaxResults($number)
-				->setParameter('taxon', $taxon)
-				->setParameter('property', $property)
-				->setParameter('value', $value)
-				->getResult();
 
+		$sql = 'SELECT * FROM sylius_product_property pp LEFT JOIN sylius_product_taxon pt 
+			ON pp.product_id = pt.product_id
+			WHERE pp.property_id = '.$property->getId().'
+				AND pp.value = 1
+				AND pt.taxon_id = '.$taxon->getId().'
+			GROUP BY pp.product_id
+			ORDER BY pp.product_id DESC
+			LIMIT 0, '.$number.'
+			';
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = array();
+		foreach($stmt->fetchAll() as $row) {
+			$data[] = $this->find($row['product_id']);
+		}
+		return $data;
     }
 }

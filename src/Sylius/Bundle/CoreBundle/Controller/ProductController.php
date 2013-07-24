@@ -90,11 +90,13 @@ class ProductController extends ResourceController
 
 		// fetch top 10
 		// 读取小编推荐内容
+		$propertyRepository = $this->container->get('sylius.repository.property');
+		$property = $propertyRepository->findOneBy(array('name' => '小编推荐'));
 		$taxonomyRepository = $this->container->get('sylius.repository.taxon');
 		$taxonBook = $taxonomyRepository->findOneByName('图书');
 		$recommend = array();
 		foreach($taxonBook->getChildren() as $key => $staxon) {
-			$recommend[$key]['products'] = $productRepository->getByPropery($staxon, '小编推荐', 1);
+			$recommend[$key]['products'] = $productRepository->getByPropery($staxon, $property, 1);
 			$recommend[$key]['taxon'] = $staxon;
 		}
 
