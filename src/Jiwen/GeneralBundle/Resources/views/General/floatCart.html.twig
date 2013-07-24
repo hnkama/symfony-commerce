@@ -1,12 +1,12 @@
 	<div class="sidebar-r flue">
     	<div class="side-inner">
         	<p class="tilte-sr"></p>
-			{{ productHistory|length }}
             <div class="si-rotete-out" style="{% if productHistory|length == 0 %}height:0px;
 				{% elseif productHistory|length == 1 %}height: 70px;
 				{% endif %}">
 			
                 <ul class="si-rotete">
+					{% for product in productHistory %}
                     <li>
 						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
 							<img src="{{ product.img|default('http://placehold.it/68')|imagine_filter('sylius_68x68') }}" alt="" />
