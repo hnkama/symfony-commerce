@@ -35,6 +35,7 @@ twig:
                 books: "%banner.books%"
                 book_set: 8 
                 book_series: 9 
+                sections: 10 
             path: "%banner.path%"
 
 assetic:

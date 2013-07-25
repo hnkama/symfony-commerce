@@ -176,10 +176,10 @@ class BannerController extends Controller
         ));
     }
 
-	public function renderBannerAction($category, $limit, $template)
+	public function renderBannerAction($category, $limit, $template, $taxon = null)
 	{
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('JiwenBannerBundle:Banner')->findTopBanner($category, $limit);
+        $entity = $em->getRepository('JiwenBannerBundle:Banner')->findTopBanner($category, $limit, $taxon);
 		$category = $em->getRepository('JiwenBannerBundle:BannerCategory')->find($category);
         return $this->render('JiwenBannerBundle:Banner:'.$template.'.twig', array(
             'entity'      => $entity,

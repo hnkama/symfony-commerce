@@ -53,7 +53,7 @@ class BannerRepository extends EntityRepository
 		return $this->findByTaxon($taxon->getId());
 	}
 
-    public function findTopBanner($category, $limit)
+    public function findTopBanner($category, $limit, $taxon)
     {
 		if(is_object($category)) {
 			$category = $category->getId();
@@ -62,7 +62,13 @@ class BannerRepository extends EntityRepository
 		$today = new \DateTime();
 		$qb
 				->andWhere('q.category = :category')
-				->andWhere($qb->expr()->lte('q.startTime', ':now'))
+				->andWhere($qb->expr()->lte('q.startTime', ':now'));
+		if($taxon) {
+			$qb
+					->andWhere('q.taxon = '.$taxon);
+
+		}
+		$qb
 				->andWhere($qb->expr()->gte('q.endTime', ':now'))
 				->setMaxResults($limit)
 				->setParameter('category', $category)

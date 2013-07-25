@@ -6,3 +6,9 @@
 				{% endfor %}
 				</ul>
 			{% endblock %}
+
+		{% block section_banner %}
+        <section id="feature_list" class="left">
+		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.sections, 'limit': 5, 'template' : 'nav.html', 'taxon': taxon.id })) }}
+        </section>
+		{% endblock %}
