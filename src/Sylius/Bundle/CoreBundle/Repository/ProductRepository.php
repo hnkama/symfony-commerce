@@ -192,4 +192,81 @@ class ProductRepository extends CustomizableProductRepository
 		}
 		return $data;
     }
+
+	/**
+	 * 查询收藏最多的产品
+	 * @param \Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface $taxon
+	 * @param type $number
+	 * @param type $loop
+	 * @return type
+	 */
+	public function getMostBookmarkedProducts(TaxonInterface $taxon, $number = 5, $loop = false)
+	{
+        $queryBuilder = $this->getQueryBuilder();
+		$em = $queryBuilder->getEntityManager();
+		$taxons = array();
+		foreach($taxon->getChildren() as $sub) {
+			$taxons[] = $sub->getId();
+			if($loop) {
+				foreach($sub->getChildren() as $s_sub) {
+					$taxons[] = $s_sub->getId();
+				}
+			}
+		}
+		$ids = implode(',', $taxons);
+		$sql = 'SELECT DISTINCT b.product, t . * , COUNT( b.product ) count
+FROM sylius_bookmark b
+LEFT JOIN sylius_product_taxon t ON b.product = t.product_id
+WHERE t.taxon_id IN ('.$ids.')
+GROUP BY b.product
+ORDER BY count DESC 
+LIMIT 0, '.$number.'
+			';
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = array();
+		foreach($stmt->fetchAll() as $row) {
+			$data[] = $this->find($row['product_id']);
+		}
+		return $data;
+	}
+
+	/**
+	 * 查询好评最多的产品
+	 * @param \Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface $taxon
+	 * @param type $number
+	 * @param type $loop
+	 * @return type
+	 */
+	public function getMostCommentProducts(TaxonInterface $taxon, $number = 5, $loop = false)
+	{
+        $queryBuilder = $this->getQueryBuilder();
+		$em = $queryBuilder->getEntityManager();
+		$taxons = array();
+		foreach($taxon->getChildren() as $sub) {
+			$taxons[] = $sub->getId();
+			if($loop) {
+				foreach($sub->getChildren() as $s_sub) {
+					$taxons[] = $s_sub->getId();
+				}
+			}
+		}
+		$ids = implode(',', $taxons);
+		$sql = 'SELECT DISTINCT b.product, t . * , COUNT( b.product ) count
+FROM sylius_comment b
+LEFT JOIN sylius_product_taxon t ON b.product = t.product_id
+WHERE t.taxon_id IN ('.$ids.')
+	AND b.score > 2
+GROUP BY b.product
+ORDER BY count DESC 
+LIMIT 0, '.$number.'
+			';
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = array();
+		foreach($stmt->fetchAll() as $row) {
+			$data[] = $this->find($row['product_id']);
+		}
+		return $data;
+	}
 }

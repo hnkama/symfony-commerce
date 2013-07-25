@@ -117,8 +117,6 @@ class ProductController extends ResourceController
 			$recommend[$key]['taxon'] = $staxon;
 		}
 
-		// 新书试读,最新的图书
-
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
 			'category' => $category,
@@ -127,7 +125,9 @@ class ProductController extends ResourceController
 			'blank_form' => $this->createFormBuilder()
             ->getForm()->createView(),
 			'newestBooks' => $newestBooks,
-			'videosFocus' => $newestVideo
+			'videosFocus' => $newestVideo,
+			'mostBookmarked' => $productRepository->getMostBookmarkedProducts($taxon, 5, TRUE),
+			'mostComment' => $productRepository->getMostCommentProducts($taxon, 5, TRUE),
 			));
 	}
 
