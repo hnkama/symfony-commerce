@@ -1,0 +1,8 @@
+{% extends 'SyliusWebBundle:Frontend:Product/layout.indexSection.html.twig' %}
+			{% block navigation %}
+				<ul>
+				{% for row in category %}
+					<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.permalink}) }}">{{ row.name }}</a></li>
+				{% endfor %}
+				</ul>
+			{% endblock %}

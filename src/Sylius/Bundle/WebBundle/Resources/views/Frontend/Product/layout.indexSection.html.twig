@@ -1,0 +1,87 @@
+{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets output='assets/compiled/frontend-sub.css' filter='cssrewrite'
+		'@SyliusWebBundle/Resources/assets/jiwen/css/sub-css.css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block content %}
+<div id="wrap" class="clearfix">
+	<!--sidebar-->
+	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
+    <!--guidie-->
+    <div class="guide clearfix">
+    	<nav id="nav-sub">
+    	<h2 class="nav-hole">全部商品分类</h2>
+ 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
+        </nav>
+        <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> > <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></div>
+    </div>
+	<!--nav-->
+    <div class="sub-side-l clear">
+        <nav id="subpage-nab">
+            <h3>{{ taxon }}</h3>
+			{% block navigation %}
+				{% for row in category %}
+				<ul class="mul">
+					<li>{{ row }}</li>
+					{% for sub in row.children %}
+					<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: sub.permalink}) }}">{{ sub.name }}</a></li>
+					{% endfor %}
+				</ul>
+				{% endfor %}
+			{% endblock %}
+        </nav>
+		{% block sidebar_left %}
+		{% endblock %}
+    </div>
+    <div id="sub-wrap-r" class="right">
+        <!--banner-->
+		{% block section_banner %}
+		{% endblock %}
+        <!--rank-->
+		{% block top10 %}
+		{% endblock %}
+        <div style="clear:both;"></div>
+        <!--section-->
+		{% block main_content %}
+		{% endblock %}
+        <div class="sec-space clear">
+            <div class="subpage-sec-title tab-switcher">
+                <ul class="sst-rotate">
+                    <li><a href="#" title="" class="tabactive">好评最多</a></li>
+                    <li><a href="#" title="">最多收藏</a></li>
+                </ul>    
+            </div>
+            <div class="tab_content">
+				<div class="clear">
+					<ul class="list-index">
+						{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+						{{ list_p(mostBookmarked, blank_form) }}
+					</ul>
+				</div>
+                <div class="hide clear">
+					<ul class="list-index">
+						{{ list_p(mostComment, blank_form) }}
+					</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+	{% javascripts output='/assets/compiled/frontend-sub.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/jquery.featureList-1.0.0.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/custom_sub.js'
+
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}

@@ -145,9 +145,9 @@ class ProductRepository extends CustomizableProductRepository
         return $this->findBy(array(), array('createdAt' => 'desc'), $limit);
     }
 
-    public function getTop10(TaxonInterface $taxon, $number = 10, $order = array('createdAt'=>'DESC'))
+    public function getTop10(TaxonInterface $taxon, $number = 10)
     {
-		return $this->getByTaxon($taxon, $number, $order);
+		return $this->getByTaxon($taxon, $number, array('saleQuantity'=>'DESC'));
     }
 
 	public function getByTaxon(TaxonInterface $taxon, $number, $order) {
@@ -178,7 +178,7 @@ class ProductRepository extends CustomizableProductRepository
 		$sql = 'SELECT * FROM sylius_product_property pp LEFT JOIN sylius_product_taxon pt 
 			ON pp.product_id = pt.product_id
 			WHERE pp.property_id = '.$property->getId().'
-				AND pp.value = 1
+				AND pp.value = '.$value.'
 				AND pt.taxon_id = '.$taxon->getId().'
 			GROUP BY pp.product_id
 			ORDER BY pp.product_id DESC

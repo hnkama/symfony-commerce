@@ -1,38 +1,6 @@
-{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
-{% block stylesheets %}
-	{{ parent() }}
-	{% stylesheets output='assets/compiled/frontend-sub.css' filter='cssrewrite'
-		'@SyliusWebBundle/Resources/assets/jiwen/css/sub-css.css'
-	%}
-	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-	{% endstylesheets %}
-{% endblock %}
+{% extends 'SyliusWebBundle:Frontend:Product/layout.indexSection.html.twig' %}
 
-{% block content %}
-<div id="wrap" class="clearfix">
-	<!--sidebar-->
-	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
-    <!--guidie-->
-    <div class="guide clearfix">
-    	<nav id="nav-sub">
-    	<h2 class="nav-hole">全部商品分类</h2>
- 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
-        </nav>
-        <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> > <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></div>
-    </div>
-	<!--nav-->
-    <div class="sub-side-l clear">
-        <nav id="subpage-nab">
-            <h3>{{ taxon }}</h3>
-			{% for row in category %}
-            <ul>
-                <li>{{ row }}</li>
-				{% for sub in row.children %}
-                <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: sub.permalink}) }}">{{ sub.name }}</a></li>
-				{% endfor %}
-            </ul>
-			{% endfor %}
-        </nav>
+		{% block sidebar_left %}
         <div class="book-review">
         	<h5>读后分享</h5>
 			{% for row in comments %}
@@ -42,154 +10,123 @@
             </dl>
 			{% endfor %}
         </div>
-    </div>
-    <div id="sub-wrap-r" class="right">
-        <!--banner-->
+		{% endblock %}
+
+		{% block section_banner %}
         <section id="feature_list-tushu" class="left">
 		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.books, 'limit': 3, 'template' : 'nav.html'})) }}
         </section>
-        <!--rank-->
-		{% for tops in top10 %}
-        <div class="subpage-rank right">
-            <ul>
-				{% for product in tops %}
-                <li>
-					{% if loop.index == 1 %}
-					<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
-						<img src="{{ product.image.path|default('http://placehold.it/130')|imagine_filter('sylius_130x130') }}" alt="" />
-					</a>
-					<span class="icon-rank1 png"></span>
-                    <div class="sr1-text">
-                        <p><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
-                        <p class="price">{{ product.price|sylius_money }} </p>
-                        <p>售量: {{ product.saleQuantity }} </p>
-                    </div>
-					{% else %}
-						<span class="srnum">{{ loop.index }}.</span>
+		{% endblock %}
+
+		{% block top10 %}
+			{% for tops in top10 %}
+			<div class="subpage-rank right">
+				<ul>
+					{% for product in tops %}
+					<li>
+						{% if loop.index == 1 %}
 						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
-						<img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="" />
-					</a>
-						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a>
-					{%endif %}
-                </li>
-				{% endfor %}
-            </ul>
-        </div>
-		{% endfor %}
-        <div style="clear:both;"></div>
-        <!--section-->
-        <div class="sec-space clear">
-            <div class="subpage-sec-title tab-switcher">
-                <h3 class="sst-tile sst-bg-red left">小编推荐</h3>
-                <div class="list-subtitle left">
-                    <ul>
-						{% for row in recommendBooks %}
-                        <li><a href="#" title="" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
-						{% endfor %}
-                    </ul>    
-                </div>
-            </div>
-            <div class="tab_content">
-				{% for row in recommendBooks %}
-				<div class="clear {% if loop.index != 1 %}hide{% endif %}">
-					<ul class="list-index">
-						{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
-						{{ list_p(row.products, blank_form) }}
-					</ul>
-				</div>
-				{% endfor %}
-            </div>
-        </div>
-        <!--banner-small-->
-        <div class="book-pack left">
-        	<p>套餐搭配</p>
-			{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_set, 'limit': 1, 'template' : 'top.html'})) }}
-        </div>
-        <div class="book-congshu right">
-        	<p>丛书系列</p>
-			{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_series, 'limit': 2, 'template' : 'top.html'})) }}
-        </div>
-        <div style="clear:both;"></div>
-        <!--section-->
-        <div class="sec-space clear">
-            <div class="subpage-sec-title tab-switcher">
-                <h3 class="sst-tile sst-bg-red left">新书试读</h3>
-                <div class="list-subtitle left">
-                    <ul>
-						{% for row in newestBooks %}
-                        <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.taxon.permalink}) }}" title="{{ row.taxon }}" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
-						{% endfor %}
-                    </ul>    
-                </div>
-            </div>
-            <div class="tab_content">
-				{% for row in newestBooks %}
-				<div class="clear {% if loop.index != 1 %}hide{% endif %}">
-					<ul class="list-index">
-						{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
-						{{ list_p(row.products, blank_form) }}
-					</ul>
-				</div>
-				{% endfor %}
-            </div>
-        </div>
-        <!--section-->
-        <div class="sec-space clear">
-            <div class="subpage-sec-title tab-switcher">
-                <h3 class="sst-tile sst-bg-red left">音乐聚焦</h3>
-                <div class="list-subtitle left">
-                    <ul>
-						{% for row in videosFocus %}
-                        <li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.taxon.permalink}) }}" title="{{ row.taxon }}" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
-						{% endfor %}
-                    </ul>    
-                </div>
-            </div>
-            <div class="tab_content">
-				{% for row in videosFocus %}
-				<div class="clear {% if loop.index != 1 %}hide{% endif %}">
-					<ul class="list-index">
-						{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
-						{{ list_p(row.products, blank_form) }}
-					</ul>
-				</div>
-				{% endfor %}
-            </div>
-        </div>
-        <!--most-->
-        <div class="sec-space clear">
-            <div class="subpage-sec-title tab-switcher">
-                <ul class="sst-rotate">
-                    <li><a href="#" title="" class="tabactive">好评最多</a></li>
-                    <li><a href="#" title="">最多收藏</a></li>
-                </ul>    
-            </div>
-            <div class="tab_content">
-				<div class="clear">
-					<ul class="list-index">
-						{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
-						{{ list_p(mostBookmarked, blank_form) }}
-					</ul>
-				</div>
-                <div class="hide clear">
-					<ul class="list-index">
-						{{ list_p(mostComment, blank_form) }}
-					</ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+							<img src="{{ product.image.path|default('http://placehold.it/130')|imagine_filter('sylius_130x130') }}" alt="" />
+						</a>
+						<span class="icon-rank1 png"></span>
+						<div class="sr1-text">
+							<p><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
+							<p class="price">{{ product.price|sylius_money }} </p>
+							<p>售量: {{ product.saleQuantity }} </p>
+						</div>
+						{% else %}
+							<span class="srnum">{{ loop.index }}.</span>
+							<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
+							<img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="" />
+						</a>
+							<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a>
+						{%endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			{% endfor %}
+		{% endblock %}
 
-{% endblock %}
 
-{% block javascripts %}
-{{ parent() }}
-	{% javascripts output='/assets/compiled/frontend-sub.js'
-		'@SyliusWebBundle/Resources/assets/jiwen/js/jquery.featureList-1.0.0.js'
-		'@SyliusWebBundle/Resources/assets/jiwen/js/custom_sub.js'
-
-	%}
-	<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{% endblock %}
+		{% block main_content %}
+			<div class="sec-space clear">
+				<div class="subpage-sec-title tab-switcher">
+					<h3 class="sst-tile sst-bg-red left">小编推荐</h3>
+					<div class="list-subtitle left">
+						<ul>
+							{% for row in recommendBooks %}
+							<li><a href="#" title="" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
+							{% endfor %}
+						</ul>    
+					</div>
+				</div>
+				<div class="tab_content">
+					{% for row in recommendBooks %}
+					<div class="clear {% if loop.index != 1 %}hide{% endif %}">
+						<ul class="list-index">
+							{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+							{{ list_p(row.products, blank_form) }}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<!--banner-small-->
+			<div class="book-pack left">
+				<p>套餐搭配</p>
+				{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_set, 'limit': 1, 'template' : 'top.html'})) }}
+			</div>
+			<div class="book-congshu right">
+				<p>丛书系列</p>
+				{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.book_series, 'limit': 2, 'template' : 'top.html'})) }}
+			</div>
+			<div style="clear:both;"></div>
+			<!--section-->
+			<div class="sec-space clear">
+				<div class="subpage-sec-title tab-switcher">
+					<h3 class="sst-tile sst-bg-red left">新书试读</h3>
+					<div class="list-subtitle left">
+						<ul>
+							{% for row in newestBooks %}
+							<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.taxon.permalink}) }}" title="{{ row.taxon }}" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
+							{% endfor %}
+						</ul>    
+					</div>
+				</div>
+				<div class="tab_content">
+					{% for row in newestBooks %}
+					<div class="clear {% if loop.index != 1 %}hide{% endif %}">
+						<ul class="list-index">
+							{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+							{{ list_p(row.products, blank_form) }}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<!--section-->
+			<div class="sec-space clear">
+				<div class="subpage-sec-title tab-switcher">
+					<h3 class="sst-tile sst-bg-red left">音乐聚焦</h3>
+					<div class="list-subtitle left">
+						<ul>
+							{% for row in videosFocus %}
+							<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.taxon.permalink}) }}" title="{{ row.taxon }}" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
+							{% endfor %}
+						</ul>    
+					</div>
+				</div>
+				<div class="tab_content">
+					{% for row in videosFocus %}
+					<div class="clear {% if loop.index != 1 %}hide{% endif %}">
+						<ul class="list-index">
+							{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+							{{ list_p(row.products, blank_form) }}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<!--most-->
+		{% endblock %}

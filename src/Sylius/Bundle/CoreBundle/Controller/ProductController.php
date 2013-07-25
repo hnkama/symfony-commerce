@@ -49,7 +49,7 @@ class ProductController extends ResourceController
 
         $paginator = $this
             ->getRepository()
-            ->createInTaxonPaginator($taxon)
+            ->createByTaxonPaginator($taxon)
         ;
 
         $paginator->setCurrentPage($request->query->get('page', 1));
@@ -74,9 +74,36 @@ class ProductController extends ResourceController
 			return $this->renderBooksVideosIndex($taxon);
 		}
 
-        return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
+		$productRepository = $this->container->get('sylius.repository.product');
+		$propertyRepository = $this->container->get('sylius.repository.property');
+		
+		// 今日推荐产品
+		$property = $propertyRepository->findOneBy(array('name' => '今日推荐'));
+		$recommend = $productRepository->getByPropery($taxon, $property, 1, 15);
+
+		$category = array();
+		$top10 = $productRepository->getTop10($taxon, 7);
+
+		// 最新产品
+		$newest = array();
+		foreach($taxon->getChildren() as $key => $sub_taxon) {
+			$category[] = $sub_taxon;
+			$newest[$key]['taxon'] = $sub_taxon;
+			$newest[$key]['products'] = $productRepository->getByTaxon($sub_taxon, 5, array('createdAt'=>'DESC'));
+		}
+
+
+        return $this->renderResponse('Frontend/Product:indexSection.html', array(
             'taxon'    => $taxon,
-        ));
+			'category' => $category,
+			'top10' => $top10,
+			'recommend' => $recommend,
+			'blank_form' => $this->createFormBuilder()
+            ->getForm()->createView(),
+			'newest' => $newest,
+			'mostBookmarked' => $productRepository->getMostBookmarkedProducts($taxon, 5, TRUE),
+			'mostComment' => $productRepository->getMostCommentProducts($taxon, 5, TRUE),
+			));
 	}
 
 	/**
@@ -89,7 +116,7 @@ class ProductController extends ResourceController
 		$top10 = array();
 		foreach($taxon->getChildren() as $row) {
 			$category[] = $row;
-			$top10[] = $productRepository->getTop10($row, 7, array('saleQuantity'=>'DESC'));
+			$top10[] = $productRepository->getTop10($row, 7);
 			if($row->getName() == '图书') {
 				$newestBooks = array();
 				foreach($row->getChildren() as $key => $sub_taxon) {
