@@ -131,7 +131,7 @@ class ProductController extends ResourceController
 			'mostComment' => $productRepository->getMostCommentProducts($taxon, 5, TRUE),
 			'comments' => $this->getDoctrine()
 				->getRepository('JiwenCommentBundle:Comment')
-				->findNewest($taxon, $productRepository, 4),
+				->findNewest($taxon, $productRepository, 2),
 			));
 	}
 
