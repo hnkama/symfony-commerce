@@ -69,4 +69,27 @@
 				</div>
 			</div>
 			<div style="clear:both;"></div>
+
+			<div class="sec-space clear">
+				<div class="subpage-sec-title tab-switcher">
+					<h3 class="sst-tile sst-bg-red left">{{ taxon }}</h3>
+					<div class="list-subtitle left">
+						<ul>
+							{% for row in newest %}
+							<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: row.taxon.permalink}) }}" title="{{ row.taxon }}" class="{% if loop.index == 1 %}tabactive{% endif %}">{{ row.taxon }}</a></li>
+							{% endfor %}
+						</ul>    
+					</div>
+				</div>
+				<div class="tab_content">
+					{% for row in newest %}
+					<div class="clear {% if loop.index != 1 %}hide{% endif %}">
+						<ul class="list-index">
+							{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+							{{ list_p(row.products, blank_form) }}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
 		{% endblock %}
