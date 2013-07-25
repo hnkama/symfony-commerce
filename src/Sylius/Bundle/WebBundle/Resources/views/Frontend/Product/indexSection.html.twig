@@ -40,3 +40,33 @@
 				</ul>
 			</div>
 		{% endblock %}
+
+		{% block main_content %}
+			<div class="sec-space clear">
+				<div class="subpage-sec-title tab-switcher">
+					<h3 class="tabactive left">今日推荐</h3>
+					<div class="icon-rotate right">
+						<ul>
+							<li><a href="#" title="" class="tabactive">1</a></li>
+							{% if recommend|length > 1 %}
+							<li><a href="#" title="">2</a></li>
+							{% endif %}
+							{% if recommend|length > 2 %}
+							<li><a href="#" title="">3</a></li>
+							{% endif %}
+						</ul>    
+					</div>
+				</div>
+				<div class="tab_content">
+					{% for row in recommend %}
+					<div class="clear {% if loop.index != 1 %}hide{% endif %}">
+						<ul class="list-index">
+							{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_p %}
+							{{ list_p(row, blank_form) }}
+						</ul>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+		{% endblock %}

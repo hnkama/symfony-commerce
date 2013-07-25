@@ -79,7 +79,7 @@ class ProductController extends ResourceController
 		
 		// 今日推荐产品
 		$property = $propertyRepository->findOneBy(array('name' => '今日推荐'));
-		$recommend = $productRepository->getByPropery($taxon, $property, 1, 15);
+		$recommend = $productRepository->getByPropery($taxon, $property, '是', 15);
 
 		$category = array();
 		$top10 = $productRepository->getTop10($taxon, 7);
@@ -97,7 +97,7 @@ class ProductController extends ResourceController
             'taxon'    => $taxon,
 			'category' => $category,
 			'top10' => $top10,
-			'recommend' => $recommend,
+			'recommend' => array_chunk($recommend, 5),
 			'blank_form' => $this->createFormBuilder()
             ->getForm()->createView(),
 			'newest' => $newest,
