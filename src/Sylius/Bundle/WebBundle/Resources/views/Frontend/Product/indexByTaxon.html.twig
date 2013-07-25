@@ -25,10 +25,11 @@
         </nav>
         <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> 
 			{% if taxon.parent %}
-			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.parent.permalink}) }}">{{ taxon.parent }}</a></div>
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.parent.permalink}) }}">{{ taxon.parent }}</a>
 			{% endif %}
-			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></div>
-    </div>
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a>
+		</div>
+	</div>
 	<!--nav-->
     <div class="sub-side-l clear">
         <nav id="subpage-nab">
@@ -71,6 +72,10 @@
         <div class="list-content right">
 	<div class="page-header">
 		<h1>{{ 'sylius.product.index_by_taxon_header'|trans({'%taxon%': taxon.name})|raw }}</h1>
+
+	{{ pagination(products) }}
+	{{ list(products) }}
+	{{ pagination(products) }}
 	</div>
             <div style="clear:both;"></div>
             <div class="page-num">
@@ -85,11 +90,6 @@
             </div>
         </div>
     </div>
-
-	{{ pagination(products) }}
-	{{ list(products) }}
-	{{ pagination(products) }}
-
 </div>
 
 {% endblock %}
