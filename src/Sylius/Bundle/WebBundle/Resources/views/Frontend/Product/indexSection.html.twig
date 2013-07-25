@@ -12,3 +12,31 @@
 		{{ render(controller('JiwenBannerBundle:Banner:renderBanner', {'category':banner.category.sections, 'limit': 5, 'template' : 'nav.html', 'taxon': taxon.id })) }}
         </section>
 		{% endblock %}
+
+		{% block top10 %}
+			<div class="subpage-rank right">
+				<ul>
+					{% for product in top10 %}
+					<li>
+						{% if loop.index == 1 %}
+						<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
+							<img src="{{ product.image.path|default('http://placehold.it/130')|imagine_filter('sylius_130x130') }}" alt="" />
+						</a>
+						<span class="icon-rank1 png"></span>
+						<div class="sr1-text">
+							<p><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></p>
+							<p class="price">{{ product.price|sylius_money }} </p>
+							<p>售量: {{ product.saleQuantity }} </p>
+						</div>
+						{% else %}
+							<span class="srnum">{{ loop.index }}.</span>
+							<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">
+							<img src="{{ product.image.path|default('http://placehold.it/40')|imagine_filter('sylius_40x40') }}" alt="" />
+						</a>
+							<a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a>
+						{%endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endblock %}
