@@ -35,14 +35,12 @@
         </nav>
         <div class="book-review">
         	<h5>读后分享</h5>
+			{% for row in comments %}
             <dl>
-            	<dt><a href="#">强烈推荐小杨的这本书</a></dt>
-                <dd>当代华语文坛大师，其作品是真正深入街头巷尾的文学经典。成为中国人的口头禅，对当代中国人的价值观产生了深远的影响。</dd>
+            	<dt><a href="{{ path('sylius_product_show', {'slug': row.product.slug}) }}">{{ row.product.name }}</a></dt>
+                <dd>{{ row.comment }}</dd>
             </dl>
-            <dl>
-            	<dt><a href="#">强烈推荐小杨的这本书一本划时代的好书</a></dt>
-                <dd>当代华语文坛大师，其作品是真正深入街头巷尾的文学经典。成为中国人的口头禅，对当代中国人的价值观产生了深远的影响。</dd>
-            </dl>
+			{% endfor %}
         </div>
     </div>
     <div id="sub-wrap-r" class="right">

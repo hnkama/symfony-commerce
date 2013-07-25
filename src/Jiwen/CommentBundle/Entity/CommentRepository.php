@@ -3,6 +3,7 @@
 namespace Jiwen\CommentBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface;
 
 /**
  * CommentRepository
@@ -12,4 +13,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+	public function findNewest(TaxonInterface $taxon, $productRepository, $number = 2)
+	{
+		$taxons = array();
+		foreach($taxon->getChildren() as $sub) {
+			$taxons[] = $sub->getId();
+			foreach($sub->getChildren() as $s_sub) {
+				$taxons[] = $s_sub->getId();
+			}
+		}
+		$ids = implode(',', $taxons);
+		$sql = 'SELECT DISTINCT b.*  
+			FROM sylius_comment b
+			LEFT JOIN sylius_product_taxon t ON b.product = t.product_id
+			WHERE t.taxon_id IN ('.$ids.')
+				AND b.score > 2
+			GROUP BY b.product
+			ORDER BY b.id DESC 
+			LIMIT 0, '.$number.'
+			';
+        $queryBuilder = $this->createQueryBuilder('q');
+		$em = $queryBuilder->getEntityManager();
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = array();
+		foreach($stmt->fetchAll() as $key => $row) {
+			$data[$key]['product'] = $productRepository->find($row['product']);
+			$data[$key]['comment'] = $row['comment'];
+		}
+		return $data;
+	}
 }

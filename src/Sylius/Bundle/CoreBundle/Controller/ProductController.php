@@ -117,6 +117,7 @@ class ProductController extends ResourceController
 			$recommend[$key]['taxon'] = $staxon;
 		}
 
+
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
 			'category' => $category,
@@ -128,6 +129,9 @@ class ProductController extends ResourceController
 			'videosFocus' => $newestVideo,
 			'mostBookmarked' => $productRepository->getMostBookmarkedProducts($taxon, 5, TRUE),
 			'mostComment' => $productRepository->getMostCommentProducts($taxon, 5, TRUE),
+			'comments' => $this->getDoctrine()
+				->getRepository('JiwenCommentBundle:Comment')
+				->findNewest($taxon, $productRepository, 4),
 			));
 	}
 
