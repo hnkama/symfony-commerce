@@ -1,16 +1,110 @@
-{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
 
 {% import 'SyliusWebBundle:Frontend/Macros:buttons.html.twig' as buttons %}
 {% from 'SyliusWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
 {% from 'SyliusWebBundle:Frontend/Product:macros.html.twig' import list %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets output='assets/compiled/frontend-sub.css' filter='cssrewrite'
+		'@SyliusWebBundle/Resources/assets/jiwen/css/sub-css.css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
+{% endblock %}
+
 {% block content %}
-<div class="page-header">
-    <h1>{{ 'sylius.product.index_by_taxon_header'|trans({'%taxon%': taxon.name})|raw }}</h1>
+<div id="wrap" class="clearfix">
+	<!--sidebar-->
+	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
+    <!--guidie-->
+    <div class="guide clearfix">
+    	<nav id="nav-sub">
+    	<h2 class="nav-hole">全部商品分类</h2>
+ 		{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
+        </nav>
+        <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> 
+			{% if taxon.parent %}
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.parent.permalink}) }}">{{ taxon.parent }}</a></div>
+			{% endif %}
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></div>
+    </div>
+	<!--nav-->
+    <div class="sub-side-l clear">
+        <nav id="subpage-nab">
+            <h3>{{ taxon }}</h3>
+			{% block navigation %}
+				{% for row in category %}
+				<ul class="mul">
+					<li>{{ row }}</li>
+					{% for sub in row.children %}
+					<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: sub.permalink}) }}">{{ sub.name }}</a></li>
+					{% endfor %}
+				</ul>
+				{% endfor %}
+			{% endblock %}
+        </nav>
+		{% block sidebar_left %}
+		{% endblock %}
+    </div>
+    <div id="sub-wrap-r" class="right">
+        <!--list-icons-->
+        <div id="list-icon" class="right">
+        	<div class="list-style left">
+            	<p class="lstyle1-on"></p>
+                <p class="lstyle2"></p>
+            </div>
+            <div class="list-option left">
+            	<p class="on">销 量</p>
+                <p>价 格</p>
+                <p>评价数</p>
+                <p>上架时间</p>
+                <p>出版时间</p>
+            </div>
+            <div class="li-pages right">
+            	<p class="next">下一页</p>
+                <p class="prev-no">上一页</p>
+                <span>1/245</span>
+            </div>
+        </div>
+        <!--list-content-->
+        <div class="list-content right">
+	<div class="page-header">
+		<h1>{{ 'sylius.product.index_by_taxon_header'|trans({'%taxon%': taxon.name})|raw }}</h1>
+	</div>
+            <div style="clear:both;"></div>
+            <div class="page-num">
+                <p><a href="#">《上一页</a></p>
+                <b><a href="#" class="on">1</a></b>
+                <b><a href="#">2</a></b>
+                <b><a href="#">3</a></b>
+                <b><a href="#">4</a></b>
+                <b><a href="#">5</a></b>
+                <span>...</span>
+                <p><a href="#">下一页》</a></p>
+            </div>
+        </div>
+    </div>
+
+	{{ pagination(products) }}
+	{{ list(products) }}
+	{{ pagination(products) }}
+
 </div>
 
-{{ pagination(products) }}
-{{ list(products) }}
-{{ pagination(products) }}
+{% endblock %}
 
+{% block bottom_ads %}
+	{{ render(controller('JiwenGeneralBundle:General:giftRecommend')) }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+	{% javascripts output='/assets/compiled/frontend-sub.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/jquery.featureList-1.0.0.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/custom_sub.js'
+
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 {% endblock %}

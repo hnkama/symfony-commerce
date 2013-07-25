@@ -59,6 +59,7 @@ class ProductController extends ResourceController
         return $this->renderResponse('Frontend/Product:indexByTaxon.html', array(
             'taxon'    => $taxon,
             'products' => $paginator,
+			'category' => $taxon,
         ));
     }
 
