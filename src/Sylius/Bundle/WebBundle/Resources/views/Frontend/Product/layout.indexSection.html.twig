@@ -75,6 +75,10 @@
 
 {% endblock %}
 
+{% block bottom_ads %}
+	{{ render(controller('JiwenGeneralBundle:General:giftRecommend')) }}
+{% endblock %}
+
 {% block javascripts %}
 {{ parent() }}
 	{% javascripts output='/assets/compiled/frontend-sub.js'

@@ -170,21 +170,27 @@ class ProductRepository extends CustomizableProductRepository
 
 	}
 
-    public function getByPropery(TaxonInterface $taxon, $property, $value, $number = 5)
+    public function getByPropery(TaxonInterface $taxon = null, $property, $value, $number = 5)
     {
         $queryBuilder = $this->getQueryBuilder();
 		$em = $queryBuilder->getEntityManager();
 
-		$taxons = array($taxon->getId());
-		foreach($taxon->getChildren() as $row) {
-			$taxons[] = $row->getId();
+		if($taxon) {
+			$taxons = array($taxon->getId());
+			foreach($taxon->getChildren() as $row) {
+				$taxons[] = $row->getId();
+			}
 		}
 
 		$sql = 'SELECT * FROM sylius_product_property pp LEFT JOIN sylius_product_taxon pt 
 			ON pp.product_id = pt.product_id
 			WHERE pp.property_id = '.$property->getId().'
-				AND pp.value = "'.$value.'"
-				AND pt.taxon_id IN  ('.implode(',',$taxons).')
+				AND pp.value = "'.$value.'"';
+		if($taxon) {
+			$sql .= '
+					AND pt.taxon_id IN  ('.implode(',',$taxons).')';
+		}
+			$sql .= '
 			GROUP BY pp.product_id
 			ORDER BY pp.product_id DESC
 			LIMIT 0, '.$number.'
