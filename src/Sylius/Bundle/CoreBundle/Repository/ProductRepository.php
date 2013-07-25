@@ -145,8 +145,12 @@ class ProductRepository extends CustomizableProductRepository
         return $this->findBy(array(), array('createdAt' => 'desc'), $limit);
     }
 
-    public function getTop10(TaxonInterface $taxon, $number = 10)
+    public function getTop10(TaxonInterface $taxon, $number = 10, $order = array('createdAt'=>'DESC'))
     {
+		return $this->getByTaxon($taxon, $number, $order);
+    }
+
+	public function getByTaxon(TaxonInterface $taxon, $number, $order) {
         $queryBuilder = $this->getCollectionQueryBuilder();
 
         $queryBuilder
@@ -161,9 +165,10 @@ class ProductRepository extends CustomizableProductRepository
 			;
 		}
 		$queryBuilder->setMaxResults($number);
-        $this->applySorting($queryBuilder, array('createdAt'=>'DESC', 'saleQuantity'=>'DESC'));
+        $this->applySorting($queryBuilder, $order);
 		return $queryBuilder->getQuery()->getResult();
-    }
+
+	}
 
     public function getByPropery(TaxonInterface $taxon, $property, $value, $number = 5)
     {

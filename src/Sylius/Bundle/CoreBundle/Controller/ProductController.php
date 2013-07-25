@@ -79,6 +79,9 @@ class ProductController extends ResourceController
         ));
 	}
 
+	/**
+	 * 图书和视频的首页
+	 */
 	public function renderBooksVideosIndex($taxon)
 	{
 		$productRepository = $this->container->get('sylius.repository.product');
@@ -86,7 +89,20 @@ class ProductController extends ResourceController
 		$top10 = array();
 		foreach($taxon->getChildren() as $row) {
 			$category[] = $row;
-			$top10[] = $productRepository->getTop10($row, 7);
+			$top10[] = $productRepository->getTop10($row, 7, array('saleQuantity'=>'DESC'));
+			if($row->getName() == '图书') {
+				$newestBooks = array();
+				foreach($row->getChildren() as $key => $sub_taxon) {
+					$newestBooks[$key]['taxon'] = $sub_taxon;
+					$newestBooks[$key]['products'] = $productRepository->getByTaxon($sub_taxon, 5, array('createdAt'=>'DESC'));
+				}
+			} else if($row->getName() == '音像') {
+				$newestVideo = array();
+				foreach($row->getChildren() as $key => $sub_taxon) {
+					$newestVideo[$key]['taxon'] = $sub_taxon;
+					$newestVideo[$key]['products'] = $productRepository->getByTaxon($sub_taxon, 5, array('createdAt'=>'DESC'));
+				}
+			}
 		}
 
 		// fetch top 10
@@ -101,6 +117,8 @@ class ProductController extends ResourceController
 			$recommend[$key]['taxon'] = $staxon;
 		}
 
+		// 新书试读,最新的图书
+
         return $this->renderResponse('Frontend/Product:indexBooksVideos.html', array(
             'taxon'    => $taxon,
 			'category' => $category,
@@ -108,7 +126,9 @@ class ProductController extends ResourceController
 			'recommendBooks' => $recommend,
 			'blank_form' => $this->createFormBuilder()
             ->getForm()->createView(),
-        ));
+			'newestBooks' => $newestBooks,
+			'videosFocus' => $newestVideo
+			));
 	}
 
     /**
