@@ -5,3 +5,7 @@ services:
 #    jiwen_general.example:
 #        class: %jiwen_general.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    pagerfanta.view.jiwen:
+        class: Jiwen\GeneralBundle\View\JiwenView
+        public: false
+        tags: [{ name: pagerfanta.view, alias: jiwen }]

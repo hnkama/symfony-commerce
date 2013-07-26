@@ -108,13 +108,18 @@ ul#tabs li a.current{ background-position:-195px -578px; font-weight:bold;}
 .list-option p{ height:20px; padding:0 17px 0 10px; background-position:right -1137px; float:left; border-top:1px solid #e7e7e7; border-right:1px solid #cdcdcd; border-bottom:1px solid #bcbcbc; border-left:1px solid #d0d0d0; line-height:22px; margin-right:7px; cursor:pointer;}
 .list-option p:hover{ background-position:right -1158px;}
 .list-option p.on{ background-position:right -1179px; border:1px solid #de282a; color:#fff;}
+.li-pages{width: 180px; }
+.li-pages a{color: #222; }
+.li-pages .item{display:block;float:left;}
 .li-pages p{ height:20px; border-top:1px solid #e7e7e7; border-right:1px solid #cdcdcd; border-bottom:1px solid #bcbcbc; border-left:1px solid #d0d0d0; line-height:20px;cursor:pointer; float:right;}
 .li-pages p.prev{ background-position:0px -1205px; padding:0 10px 0 17px;}
 .li-pages p.prev:hover{ background-position:0 -1226px;}
 .li-pages p.prev-no{ background-position:0px -1137px; padding:0 10px 0 17px;}
+.li-pages .disabled p.prev{ background-position:0px -1137px; padding:0 10px 0 17px;}
 .li-pages p.next{ background-position:-53px -1205px; padding:0 17px 0 10px;}
 .li-pages p.next:hover{ background-position:-53px -1226px;}
 .li-pages p.next-no{ background-position:-53pxpx -1137px; padding:0 17px 0 10px;}
+.li-pages .disabled p.next{background-position:-53px -1137px; padding:0 17px 0 10px;}
 .li-pages span{ line-height:23px; padding-right:15px;}
 
 .list-content{ width:848px; padding-bottom:60px;}

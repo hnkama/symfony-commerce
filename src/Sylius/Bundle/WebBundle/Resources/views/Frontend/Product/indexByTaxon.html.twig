@@ -59,15 +59,14 @@
                 <p>上架时间</p>
                 <p>出版时间</p>
             </div>
-            <div class="li-pages right">
-            	<p class="next">下一页</p>
-                <p class="prev-no">上一页</p>
-                <span>1/245</span>
-            </div>
+        	<div class="li-pages right">
+				{% if products.haveToPaginate() %}
+				{{ pagerfanta(products, 'jiwen', {'position': 'top'}) }}
+				{% endif %}
+			</div>
         </div>
         <!--list-content-->
         <div class="list-content right">
-			{{ pagination(products) }}
 			<ul class="list-sub">
 				{{ list_grid(products) }}
 			</ul>
