@@ -127,6 +127,9 @@ liip_imagine:
         sylius_125x125:
             filters:
                 thumbnail: { size: [125, 125], mode: outbound }
+        sylius_190x190:
+            filters:
+                thumbnail: { size: [190, 190], mode: outbound }
         sylius_130x130:
             filters:
                 thumbnail: { size: [130, 130], mode: outbound }

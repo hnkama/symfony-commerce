@@ -2,7 +2,7 @@
 
 {% import 'SyliusWebBundle:Frontend/Macros:buttons.html.twig' as buttons %}
 {% from 'SyliusWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
-{% from 'SyliusWebBundle:Frontend/Product:macros.html.twig' import list %}
+{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_grid %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -67,23 +67,13 @@
         </div>
         <!--list-content-->
         <div class="list-content right">
-	<div class="page-header">
-		<h1>{{ 'sylius.product.index_by_taxon_header'|trans({'%taxon%': taxon.name})|raw }}</h1>
-
-	{{ pagination(products) }}
-	{{ list(products) }}
-	{{ pagination(products) }}
-	</div>
+			{{ pagination(products) }}
+			<ul class="list-sub">
+				{{ list_grid(products) }}
+			</ul>
             <div style="clear:both;"></div>
             <div class="page-num">
-                <p><a href="#">《上一页</a></p>
-                <b><a href="#" class="on">1</a></b>
-                <b><a href="#">2</a></b>
-                <b><a href="#">3</a></b>
-                <b><a href="#">4</a></b>
-                <b><a href="#">5</a></b>
-                <span>...</span>
-                <p><a href="#">下一页》</a></p>
+				{{ pagination(products) }}
             </div>
         </div>
     </div>
