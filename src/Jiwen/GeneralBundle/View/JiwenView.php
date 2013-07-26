@@ -110,7 +110,7 @@ class JiwenView implements ViewInterface
 		}
 
         return 
-			$this->previous().
+			'<p>'.$this->previous().'</p>'.
                $this->first().
                $this->secondIfStartIs3().
                $this->dotsIfStartIsOver3().
@@ -118,7 +118,8 @@ class JiwenView implements ViewInterface
                $this->dotsIfEndIsUnder3ToLast().
                $this->secondToLastIfEndIs3ToLast().
                $this->last().
-               $this->next();
+			'<p class="next">'.$this->next().'</p>'
+				;
     }
 
     private function calculateStartAndEndPage()
@@ -192,9 +193,12 @@ class JiwenView implements ViewInterface
     private function pages()
     {
         $pages = '';
-
         foreach (range($this->startPage, $this->endPage) as $page) {
-            $pages .= $this->page($page);
+			if(isset($this->options['position']) && $this->options['position'] == 'bottom') {
+            	$pages .= '<b>'.$this->page($page).'</b>';
+			} else {
+            	$pages .= $this->page($page);
+			}
         }
 
         return $pages;

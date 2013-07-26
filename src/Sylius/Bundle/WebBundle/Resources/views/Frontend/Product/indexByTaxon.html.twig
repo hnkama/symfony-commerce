@@ -59,11 +59,11 @@
                 <p>上架时间</p>
                 <p>出版时间</p>
             </div>
+			{% if products.haveToPaginate() %}
         	<div class="li-pages right">
-				{% if products.haveToPaginate() %}
 				{{ pagerfanta(products, 'jiwen', {'position': 'top'}) }}
-				{% endif %}
 			</div>
+			{% endif %}
         </div>
         <!--list-content-->
         <div class="list-content right">
@@ -71,9 +71,14 @@
 				{{ list_grid(products) }}
 			</ul>
             <div style="clear:both;"></div>
-            <div class="page-num">
-				{{ pagination(products) }}
+            {% if products.haveToPaginate() %}
+			<div class="page-num">
+				{{ pagerfanta(products, 'jiwen', {'previous_message':'《上一页',
+					'next_message':'下一页》',
+					'position': 'bottom'
+					}) }}
             </div>
+			{% endif %}
         </div>
     </div>
 </div>
