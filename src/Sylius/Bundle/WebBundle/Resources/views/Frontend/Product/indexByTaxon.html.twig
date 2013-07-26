@@ -33,16 +33,13 @@
 	<!--nav-->
     <div class="sub-side-l clear">
         <nav id="subpage-nab">
-            <h3>{{ taxon }}</h3>
+            <h3>{{ taxon.parent }}</h3>
 			{% block navigation %}
-				{% for row in category %}
-				<ul class="mul">
-					<li>{{ row }}</li>
-					{% for sub in row.children %}
+				<ul>
+					{% for sub in taxon.parent.children %}
 					<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: sub.permalink}) }}">{{ sub.name }}</a></li>
 					{% endfor %}
 				</ul>
-				{% endfor %}
 			{% endblock %}
         </nav>
 		{% block sidebar_left %}
