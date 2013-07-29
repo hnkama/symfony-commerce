@@ -1,0 +1,21 @@
+<li class="clearfix">
+	<p class="left"><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}"><img src="{{ product.image.path|default('http://placehold.it/190')|imagine_filter('sylius_130x130') }}" width="130" height="130" alt=""></a></p>
+	<div class="licontent-text left">
+		<h3><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.name }}</a></h3>
+		<p class="price">{{ product.price|sylius_money }}</p>
+		<p>售量: {{ product.saleQuantity }}</p>
+		<p class="star-list"><span class="level star{{ product.commentsAverageScore }}"></span><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}">{{ product.commentsCount }}人评价</a></p>
+	</div>
+	<div class="licon-bts right">
+		<form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="left">
+			{% set form = sylius_cart_form({'product': product}) %}
+			{{ form_widget(form.quantity, {'attr': {'class': 'center-text hide'}, 'empty_value': '1'}) }}
+			{{ form_widget(form._token) }}
+			<input type="submit" class="sub-cart right add-to-cart" value="加入购物车">
+		</form>
+		<form action="{{ path('jiwen_bookmark_create') }}" method="post" class="left">
+			<input type="button" class="right addToBookmark" value="收 藏" data="{{ product.id }}">
+		</form>
+		<input type="button" class="right" value="查 看">
+	</div>
+</li>

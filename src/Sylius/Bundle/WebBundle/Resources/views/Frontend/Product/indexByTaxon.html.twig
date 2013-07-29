@@ -2,7 +2,7 @@
 
 {% import 'SyliusWebBundle:Frontend/Macros:buttons.html.twig' as buttons %}
 {% from 'SyliusWebBundle:Frontend/Macros:misc.html.twig' import pagination %}
-{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_grid %}
+{% from 'SyliusWebBundle:Frontend/Product:macros.jiwen.html.twig' import list_grid, list_list %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -49,8 +49,8 @@
         <!--list-icons-->
         <div id="list-icon" class="right">
         	<div class="list-style left">
-            	<p class="lstyle1-on"></p>
-                <p class="lstyle2"></p>
+            	<a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, style:'grid'}) }}"><p class="lstyle1 {% if style == 'grid' %}lstyle1-on{% endif %}"></p></a>
+                <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, style:'list'}) }}"><p class="lstyle2 {% if style == 'list' %}lstyle2-on{% endif %}"></p></a>
             </div>
             <div class="list-option left">
             	<p class="on">销 量</p>
@@ -66,9 +66,14 @@
 			{% endif %}
         </div>
         <!--list-content-->
-        <div class="list-content right">
-			<ul class="list-sub">
-				{{ list_grid(products) }}
+		
+        <div class="list-content{% if style == 'list' %}2{% endif %} right">
+			<ul class="{% if style == 'grid' %}list-sub{% endif %}">
+				{% if style == 'grid' %}
+					{{ list_grid(products) }}
+				{% else %}
+					{{ list_list(products) }}
+				{% endif %}
 			</ul>
             <div style="clear:both;"></div>
             {% if products.haveToPaginate() %}

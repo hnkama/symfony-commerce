@@ -55,11 +55,20 @@ class ProductController extends ResourceController
         $paginator->setCurrentPage($request->query->get('page', 1));
         $paginator->setMaxPerPage($config->getPaginationMaxPerPage());
 
+		// 设置模板
+		$session = $this->getRequest()->getSession();
+		$style = $session->get('listStyle');
+		if(!$style) {
+			$style = 'grid';
+		}
+		$style = $this->getRequest()->get('style', $style);
+		$session->set('listStyle', $style);
 
         return $this->renderResponse('Frontend/Product:indexByTaxon.html', array(
             'taxon'    => $taxon,
             'products' => $paginator,
 			'category' => $taxon,
+			'style' => $style,
         ));
     }
 
