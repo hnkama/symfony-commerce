@@ -15,6 +15,7 @@ use Sylius\Bundle\AssortmentBundle\Entity\CustomizableProductRepository;
 use Sylius\Bundle\TaxonomiesBundle\Model\TaxonInterface;
 use Sylius\Bundle\AssortmentBundle\Entity\Property\ProductProperty;
 use Sylius\Bundle\CoreBundle\SyliusCoreBundle;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * Product repository.
@@ -31,15 +32,43 @@ class ProductRepository extends CustomizableProductRepository
      *
      * @return PagerfantaInterface
      */
-    public function createByTaxonPaginator(TaxonInterface $taxon, $maxResults = null)
+    public function createByTaxonPaginator(TaxonInterface $taxon, $maxResults = null, $request = null)
     {
         $queryBuilder = $this->getCollectionQueryBuilder();
 
         $queryBuilder
+			->select('product')
             ->innerJoin('product.taxons', 'taxon')
             ->andWhere('taxon = :taxon')
             ->setParameter('taxon', $taxon)
+			->distinct('product.id')
+			->groupBy('product.id')
+			->distinct()
         ;
+		if($request) {
+			if($request->get('sort') == 'sales') {
+				$queryBuilder
+						->orderBy('product.saleQuantity', 'DESC');
+			}
+			if($request->get('sort') == 'price') {
+				$queryBuilder
+				->leftJoin('SyliusCoreBundle:Variant', 'v', Join::WITH, 'v.product = product')
+						->orderBy('v.price', 'ASC');
+			}
+			if($request->get('sort') == 'comments') {
+				$queryBuilder
+					->addSelect('COUNT(c) as countComments')
+					->leftJoin('JiwenCommentBundle:Comment', 'c', Join::WITH, 'c.product = product')
+					->orderBy('countComments', 'DESC')
+				;
+			}
+			if($request->get('sort') == 'created') {
+				$queryBuilder->orderBy('product.createdAt', 'DESC');
+			}
+			if($request->get('sort') == 'published') {
+				$queryBuilder->orderBy('product.createdAt', 'DESC');
+			}
+		}
 		if(null !== $maxResults) {
 			$queryBuilder->setMaxResults($maxResults);
 		}

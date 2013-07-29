@@ -53,11 +53,11 @@
                 <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, style:'list'}) }}"><p class="lstyle2 {% if style == 'list' %}lstyle2-on{% endif %}"></p></a>
             </div>
             <div class="list-option left">
-            	<p class="on">销 量</p>
-                <p>价 格</p>
-                <p>评价数</p>
-                <p>上架时间</p>
-                <p>出版时间</p>
+            	<a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, sort:'sales'}) }}"><p class="{% if sort == 'sales' %}on{% endif %}">销 量</p></a>
+                <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, sort:'price'}) }}"><p class="{% if sort == 'price' %}on{% endif %}">价 格</p></a>
+                <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, sort:'comments'}) }}"><p class="{% if sort == 'comments' %}on{% endif %}">评价数</p></a>
+                <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, sort:'created'}) }}"><p class="{% if sort == 'created' %}on{% endif %}">上架时间</p></a>
+                <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink, sort:'published'}) }}"><p class="{% if sort == 'published' %}on{% endif %}">出版时间</p></a>
             </div>
 			{% if products.haveToPaginate() %}
         	<div class="li-pages right">

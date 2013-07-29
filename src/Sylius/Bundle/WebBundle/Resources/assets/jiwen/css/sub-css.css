@@ -105,7 +105,8 @@ ul#tabs li a.current{ background-position:-195px -578px; font-weight:bold;}
 .list-style .lstyle1-on{ background-position:-122px -828px;}
 .list-style .lstyle2{ background-position:-179px -828px;}
 .list-style .lstyle2-on{ background-position:-160px -828px;}
-.list-option p{ height:20px; padding:0 17px 0 10px; background-position:right -1137px; float:left; border-top:1px solid #e7e7e7; border-right:1px solid #cdcdcd; border-bottom:1px solid #bcbcbc; border-left:1px solid #d0d0d0; line-height:22px; margin-right:7px; cursor:pointer;}
+.list-option{width:500px; }
+.list-option p{ height:20px; color: #666; padding:0 17px 0 10px; background-position:right -1137px; float:left; border-top:1px solid #e7e7e7; border-right:1px solid #cdcdcd; border-bottom:1px solid #bcbcbc; border-left:1px solid #d0d0d0; line-height:22px; margin-right:7px; cursor:pointer;}
 .list-option p:hover{ background-position:right -1158px;}
 .list-option p.on{ background-position:right -1179px; border:1px solid #de282a; color:#fff;}
 .li-pages{width: 180px; }

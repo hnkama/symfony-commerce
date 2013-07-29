@@ -1,3 +1,6 @@
+{% if product[0] is defined %}
+	{% set product = product[0] %}
+{% endif %}
 <li class="">
 	<div class="inner {% if loop.index % 4 == 0 %}last-nob{% endif %}">
 		<p class="list-img"><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}" class="thumbnail">

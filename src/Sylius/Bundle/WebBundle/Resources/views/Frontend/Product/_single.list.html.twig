@@ -1,3 +1,6 @@
+{% if product[0] is defined %}
+	{% set product = product[0] %}
+{% endif %}
 <li class="clearfix">
 	<p class="left"><a href="{{ path('sylius_product_show', {'slug': product.slug}) }}"><img src="{{ product.image.path|default('http://placehold.it/190')|imagine_filter('sylius_130x130') }}" width="130" height="130" alt=""></a></p>
 	<div class="licontent-text left">

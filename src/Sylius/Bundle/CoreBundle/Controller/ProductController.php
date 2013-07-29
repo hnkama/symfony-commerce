@@ -49,7 +49,7 @@ class ProductController extends ResourceController
 
         $paginator = $this
             ->getRepository()
-            ->createByTaxonPaginator($taxon)
+            ->createByTaxonPaginator($taxon, null, $request)
         ;
 
         $paginator->setCurrentPage($request->query->get('page', 1));
@@ -69,6 +69,7 @@ class ProductController extends ResourceController
             'products' => $paginator,
 			'category' => $taxon,
 			'style' => $style,
+			'sort' => $request->get('sort'),
         ));
     }
 
