@@ -117,7 +117,7 @@ class JiwenView implements ViewInterface
                $this->pages().
                $this->dotsIfEndIsUnder3ToLast().
                $this->secondToLastIfEndIs3ToLast().
-               $this->last().
+               '<b>'.$this->last().'</b>'.
 			'<p class="next">'.$this->next().'</p>'
 				;
     }
@@ -172,21 +172,21 @@ class JiwenView implements ViewInterface
     private function first()
     {
         if ($this->startPage > 1) {
-            return $this->template->first();
+            return '<b>'.$this->template->first().'</b>';
         }
     }
 
     private function secondIfStartIs3()
     {
         if ($this->startPage == 3) {
-            return $this->template->page(2);
+            return '<b>'.$this->template->page(2).'</b>';
         }
     }
 
     private function dotsIfStartIsOver3()
     {
         if ($this->startPage > 3) {
-            return $this->template->separator();
+            return '<b class="dots">'.$this->template->separator().'</b>';
         }
     }
 
@@ -216,7 +216,7 @@ class JiwenView implements ViewInterface
     private function dotsIfEndIsUnder3ToLast()
     {
         if ($this->endPage < $this->toLast(3)) {
-            return $this->template->separator();
+            return '<b class="dots">'.$this->template->separator().'</b>';
         }
     }
 

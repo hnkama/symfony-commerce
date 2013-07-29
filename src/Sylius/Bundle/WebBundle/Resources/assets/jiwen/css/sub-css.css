@@ -144,6 +144,7 @@ ul#tabs li a.current{ background-position:-195px -578px; font-weight:bold;}
 .page-num b a.on{ color:#a9a6ad; background:#f2f2f2;}
 .page-num b .current{ color:#a9a6ad; background:#f2f2f2;}
 
+b.dots{border:none; border-right:1px solid #ccc; height: 33px;}
 .list-content2{ width:848px; padding-bottom:60px;}
 .list-content2 li{ border-bottom:1px solid #e4e4e4; padding-bottom:10px; margin-bottom:10px; width:838px; position:relative;}
 .licontent-text{ width:440px; padding-left:30px; color:#999; padding-top:20px;}
