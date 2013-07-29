@@ -214,9 +214,12 @@ class ProductController extends ResourceController
 
         $view =  $this
             ->view()
-            ->setTemplate($config->getTemplate('show.html'))
+            ->setTemplate('SyliusWebBundle:Frontend/Product:show.product.html.twig')
             ->setTemplateVar($config->getResourceName())
-            ->setData($entity)
+            ->setData( array(
+				'product' => $entity,
+				'taxon' => $entity->getTaxons(),
+			))
         ;
 
         return $this->handleView($view);

@@ -1,0 +1,438 @@
+{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
+{% set taxon = taxon.0 %}
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets output='assets/compiled/frontend-sub.css' filter='cssrewrite'
+		'@SyliusWebBundle/Resources/assets/jiwen/css/sub-css.css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% set form = sylius_cart_form({'product': product}) %}
+
+{% block content %}
+<div id="wrap" class="clearfix">
+	<!--sidebar-->
+	{{ render(controller('JiwenGeneralBundle:General:floatCart')) }}
+    <!--guidie-->
+    <div class="guide clearfix">
+    	<nav id="nav-sub">
+    	<h2 class="nav-hole">全部商品分类</h2>
+ 			{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.taxonomy.html.twig'}) }}
+        </nav>
+        <div class="guide-sign">所在位置： <a href="{{ path('sylius_homepage') }}">首页</a> 
+			{% if taxon.parent %}
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.parent.permalink}) }}">{{ taxon.parent }}</a>
+			{% endif %}
+			> <a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a>
+			> {{ product }}
+		</div>
+    </div>
+    <!--detail-top-->
+    <div id="detail-top" class="clearfix">
+    	<h2>{{ product }}</h2>
+		{% if is_granted('ROLE_SYLIUS_ADMIN') %}<a href="{{ path('sylius_backend_product_update', {'id': product.id}) }}" target="_blank" class="btn btn-link">编辑</a>{% endif %}
+        <div class="detail-img left">
+        	<div class="jqzoom" id="spec-n1">
+				<img jqimg="{{ product.image.path|default('http://placehold.it/600x600')|imagine_filter('sylius_600x600') }}" src="{{ product.image.path|default('http://placehold.it/343x343')|imagine_filter('sylius_343x343') }}" alt="" />
+			</div>
+			{% if product.images|length > 0 %}
+            <div id="spec-n5">
+				<div id="spec-list">
+					<ul class="clearfix">
+						{% for image in product.images %}
+						<li>
+							<img mimg="{{ product.image.path|default('http://placehold.it/343x343')|imagine_filter('sylius_343x343') }}" jqimg="{{ product.image.path|default('http://placehold.it/600x600')|imagine_filter('sylius_600x600') }}" class="img-polaroid" src="{{ image.path|imagine_filter('sylius_63x63') }}" alt="{{ product.name }}" />
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+            </div>
+			{% endif %}
+        </div>
+        <div class="detail-text right">
+        	<ul class="clearfix">
+            	<li class="jiwenprice clearfix">
+                	<div class="dt">基文价：</div>
+                    <div class="dd price"></div>
+                </li>
+    <div class="span6">
+        {% if product.hasOptions %}
+            {% if product.isVariantSelectionMethodChoice %}
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ 'sylius.variant.price'|trans }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variant in product.variants if variant.available %}
+                    <tr>
+                        <td>
+                            {% if variant.presentation is empty %}
+                            <ul class="unstyled">
+                                {% for option in variant.options %}
+                                <li><strong>{{ option.presentation }}</strong>: {{ option.value }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                                {{ variant.presentation }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="label label-success">{{ variant.price|sylius_money }}</span>
+                        </td>
+                        <td>
+                        {% if sylius_inventory_is_available(variant) %}
+                            {{ form_widget(form.variant[loop.index0]) }}
+                        {% else %}
+                            <span class="label label-important">{{ 'sylius.out_of_stock'|trans }}</span>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="well">
+                {{ form_widget(form.variant) }}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+                <li>
+                	<div class="dt">市场价：</div>
+                    <div class="dd marketprice"></div>
+                </li>
+                <li>
+                	<div class="dt">库   存：</div>
+                    <div class="dd">现 货</div>
+                </li>
+            </ul>
+            <ul class="detail-style">
+                <li id="account">
+                	<div class="dt">我要买：</div>
+                    <div class="dd">
+                    	<input type="number" class="form-account" min="1" value="1">
+                    </div>
+                </li>
+                <li id="detail-bts" class="clearfix">
+                	<input type="button" value="放入购物车" class="bt-cart">
+                    <input type="button" value="立即购买" class="bt-buy">
+                    <input type="button" value="收 藏" class="bt-like">
+                </li>
+            </ul>
+            <div class="bshare-custom"><div class="bsPromo bsPromo2"></div>分享到：<a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count" style="float: none; ">0</span></div>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+        </div>
+    </div>
+    <!--detail-side-->
+    <div id="detail-side" class="left">
+    	<div class="related-classify clearfix">
+        	<h3 class="menu">相关分类</h3>
+            <ul class="left">
+            	<li><a href="#">时尚品牌表</a></li>
+                <li><a href="#">日韩品牌表</a></li>
+                <li><a href="#">眼镜</a></li>
+            </ul>
+            <ul class="right">
+            	<li><a href="#">时尚品牌表</a></li>
+                <li><a href="#">日韩品牌表</a></li>
+                <li><a href="#">眼镜</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--detail-contents-->
+    <div id="detail-contents" class="right">
+        <!--detail-->
+        <section class="detail"> 
+        	<div class="tab">
+        		<h3 class="tab1 current">商品详情</h3>
+                <h3 class="tab2">客户评价 <span class="tab-count">(518)</span></h3>
+                <h3 class="tab2">成交记录 <span class="tab-count">(518)</span></h3>
+            </div>
+            <div class="tabcontent">
+            <div class="deatail-intro">
+            	<strong style="font-size:26px;">宝贝详情可在后台自行编辑</strong>
+            </div>
+            <div class="review clear hide">
+            	<div class="percentage clearfix">
+                	<div class="percent-num left">
+                    	<strong><span class="percent">92.6%</span> 强烈推荐购买</strong>
+                        <p>109人参与评分</p>
+                    </div>
+                    <ul class="percent-star right">
+                    	<li class="clearfix">
+                        	<div class="dt-star">推荐(5星、4星)</div>
+                            <div class="dd-percent left">
+                                <span style="width:98.2%; height:16px;" class="percent-bar">
+                                    <span class="pl-num">98.2%</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                        	<div class="dt-star">一般(3星、2星)</div>
+                            <div class="dd-percent left">
+                                <span style="width:2.2%" class="percent-bar">
+                                    <span class="pl-num">2.2%</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                        	<div class="dt-star">不推荐(1星)</div>
+                            <div class="dd-percent left">
+                                <span style="width:1.0%" class="percent-bar">
+                                    <span class="pl-num">1.0%</span>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="review-title">
+                	<p class="on">全部 (528)</p>
+                    <p>推荐 (108)</p>
+                    <p>一般 (10)</p>
+                    <p>不推荐 (0)</p>
+                </div>
+                <ul class="review-list">
+                	<li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
+                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
+                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
+                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
+                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
+                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
+                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
+                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
+                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                    <li class="clearfix">
+                    	<div class="left">
+                            <p>希望东西是正品，给全5星</p>
+                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                        </div>
+                        <div class="right">
+                        	<img src="images/touxiang.jpg" width="41" height="41">
+                            <p>奇异恩典</p>
+                        </div>
+                    </li>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="page-num">
+                    <p><a href="#" class="prenext">《上一页</a></p>
+                    <b><a href="#" class="on">1</a></b>
+                    <b><a href="#">2</a></b>
+                    <b><a href="#">3</a></b>
+                    <b><a href="#">4</a></b>
+                    <b><a href="#">5</a></b>
+                    <span>...</span>
+                    <p class="prenext"><a href="#">下一页》</a></p>
+            	</div>
+            </div>
+            <div class="history hide clear">
+            	<div class="history-title">
+                	<h4 class="buyer">买家</h4>
+                    <h4 class="product-name">宝贝名称</h4>
+                    <h4 class="his-price">价格</h4>
+                    <h4 class="his-count">购买数量</h4>
+                    <h4 class="his-time">成交时间</h4>
+                    <h4 class="his-status">状态</h4>
+                </div>
+                <ul>
+                	<li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                    <li class="clearfix">
+                    	<p class="buyer">奇异恩典</p>
+                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
+                        <p class="his-price">358</p>
+                        <p class="his-count">1</p>
+                        <p class="his-time">2013-04-12 12:47:09</p>
+                        <p class="his-status">成交</p>
+                    </li>
+                </ul>
+                <div class="page-num">
+                    <p><a href="#">《上一页</a></p>
+                    <b><a href="#" class="on">1</a></b>
+                    <b><a href="#">2</a></b>
+                    <b><a href="#">3</a></b>
+                    <b><a href="#">4</a></b>
+                    <b><a href="#">5</a></b>
+                    <span>...</span>
+                    <p><a href="#">下一页》</a></p>
+            	</div>
+            </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+	{% javascripts output='/assets/compiled/frontend-sub.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/jquery.featureList-1.0.0.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/jqzoom.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/custom.js'
+		'@SyliusWebBundle/Resources/assets/jiwen/js/custom_sub.js'
+
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
