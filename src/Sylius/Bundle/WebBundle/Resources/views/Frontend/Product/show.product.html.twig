@@ -149,7 +149,7 @@
         <section class="detail"> 
         	<div class="tab">
         		<h3 class="tab1 current">商品详情</h3>
-                <h3 class="tab2">客户评价 <span class="tab-count">(518)</span></h3>
+                <h3 class="tab2">客户评价 <span class="tab-count">({{ product.comments|length }})</span></h3>
                 <h3 class="tab2">成交记录 <span class="tab-count">(518)</span></h3>
             </div>
             <div class="tabcontent">
@@ -158,161 +158,29 @@
             	{{ product.description|default('sylius.product.no_description')|trans|raw }}
             </div>
             <div class="review clear hide">
-            	<div class="percentage clearfix">
-                	<div class="percent-num left">
-                    	<strong><span class="percent">92.6%</span> 强烈推荐购买</strong>
-                        <p>109人参与评分</p>
-                    </div>
-                    <ul class="percent-star right">
-                    	<li class="clearfix">
-                        	<div class="dt-star">推荐(5星、4星)</div>
-                            <div class="dd-percent left">
-                                <span style="width:98.2%; height:16px;" class="percent-bar">
-                                    <span class="pl-num">98.2%</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                        	<div class="dt-star">一般(3星、2星)</div>
-                            <div class="dd-percent left">
-                                <span style="width:2.2%" class="percent-bar">
-                                    <span class="pl-num">2.2%</span>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="clearfix">
-                        	<div class="dt-star">不推荐(1星)</div>
-                            <div class="dd-percent left">
-                                <span style="width:1.0%" class="percent-bar">
-                                    <span class="pl-num">1.0%</span>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+				{% if product.comments|length > 0 %}
+                <div class="review-title recommend-filter">
+					<p class="on recommend-all">全部 ({{ product.comments|length }})</p>
+                    <p class="recommend-yes">推荐 ({{ recommend.yes }})</p>
+                    <p class="recommend-normal">一般 ({{ recommend.normal }})</p>
+                    <p class="recommend-not">不推荐 ({{ recommend.not }})</p>
                 </div>
-                <div class="review-title">
-                	<p class="on">全部 (528)</p>
-                    <p>推荐 (108)</p>
-                    <p>一般 (10)</p>
-                    <p>不推荐 (0)</p>
-                </div>
+				{% endif %}
                 <ul class="review-list">
-                	<li class="clearfix">
+					{% for comment in product.comments %}
+                	<li class="clearfix star{{ comment.score }}">
                     	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
+                            <p>{{ comment.comment }}</p>
+                            <div class="star-date"><span class="level star{{ comment.score }}"></span>[{{ comment.created|date('Y-m-d') }}]</div>
                         </div>
                         <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
+                        	<img src="{{ asset('assets/images/touxiang.jpg') }}" width="41" height="41">
+                            <p>{{ comment.user.username }}</p>
                         </div>
                     </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
-                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
-                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
-                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
-                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
-                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
-                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>由于出差了，一直没有空来确认收货，已收到，味道很喜欢，但是留香不是想象中的那么给力，早上出门喷的，下午1点多开始，味道就已经闻不到了，物流很给力，很快就到了</p>
-                            <div class="star-date clearfix"><span class="level star4"></span>[2013.04.13]</div>
-                            <div class="reply">解释: 亲购买的这款是香水销量口碑都是很不错的。预祝您使用愉快</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
-                    <li class="clearfix">
-                    	<div class="left">
-                            <p>希望东西是正品，给全5星</p>
-                            <div class="star-date"><span class="level star4"></span>[2013.04.13]</div>
-                        </div>
-                        <div class="right">
-                        	<img src="images/touxiang.jpg" width="41" height="41">
-                            <p>奇异恩典</p>
-                        </div>
-                    </li>
+					{% endfor %}
                 </ul>
                 <div style="clear:both;"></div>
-                <div class="page-num">
-                    <p><a href="#" class="prenext">《上一页</a></p>
-                    <b><a href="#" class="on">1</a></b>
-                    <b><a href="#">2</a></b>
-                    <b><a href="#">3</a></b>
-                    <b><a href="#">4</a></b>
-                    <b><a href="#">5</a></b>
-                    <span>...</span>
-                    <p class="prenext"><a href="#">下一页》</a></p>
-            	</div>
             </div>
             <div class="history hide clear">
             	<div class="history-title">
@@ -420,6 +288,10 @@
         </section>
     </div>
 </div>
+{% endblock %}
+
+{% block bottom_ads %}
+	{{ render(controller('JiwenGeneralBundle:General:giftRecommend')) }}
 {% endblock %}
 
 {% block javascripts %}

@@ -209,6 +209,23 @@ $(document).ready(function() {
 		;
 	});
 
+	$('.recommend-filter p').click(function() {
+		$('.recommend-filter p').removeClass('on');
+		$(this).addClass('on');
+		if($(this).attr('class') === 'recommend-yes on') {
+			$('.review-list li').hide();
+			$('.star5, .star4').show();
+		}
+		if($(this).attr('class') === 'recommend-normal on') {
+			$('.review-list li').hide();
+			$('.star3').show();
+		}
+		if($(this).attr('class') === 'recommend-not on') {
+			$('.review-list li').hide();
+			$('.star2,.star1').show();
+		}
+	});
+
 	// 添加到收藏夹
 	$('.addToBookmark').click(function(e) {
 		var form = $(this).parent();

@@ -212,6 +212,34 @@ class ProductController extends ResourceController
 
         $config = $this->getConfiguration();
 
+		// 数点推荐次数
+		$recommend = array(
+			'yes' => 0,
+			'normal' => 0,
+			'not' => 0
+		);
+		foreach ($entity->getComments() as $comment) {
+			switch ($comment->getScore()) {
+				case 5:
+					$recommend['yes'] += 1;
+					break;
+				case 4:
+					$recommend['yes'] += 1;
+					break;
+				case 3:
+					$recommend['normal'] += 1;
+					break;
+				case 2:
+					$recommend['no'] += 1;
+					break;
+				case 1:
+					$recommend['no'] += 1;
+					break;
+				default:
+					break;
+			}
+		}
+
         $view =  $this
             ->view()
             ->setTemplate('SyliusWebBundle:Frontend/Product:show.product.html.twig')
@@ -219,6 +247,7 @@ class ProductController extends ResourceController
             ->setData( array(
 				'product' => $entity,
 				'taxon' => $entity->getTaxons(),
+				'recommend' => $recommend,
 			))
         ;
 
