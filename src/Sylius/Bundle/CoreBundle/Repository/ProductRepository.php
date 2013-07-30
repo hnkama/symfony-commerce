@@ -309,4 +309,25 @@ LIMIT 0, '.$number.'
 		}
 		return $data;
 	}
+
+	public function getOrders($product, $state = 1)
+	{
+        $queryBuilder = $this->getQueryBuilder();
+		$em = $queryBuilder->getEntityManager();
+
+		$sql = 'SELECT * FROM sylius_order_item oi LEFT JOIN sylius_variant v
+			ON oi.sellable_id = v.id
+			LEFT JOIN sylius_order o
+			ON o.id = oi.order_id
+			WHERE v.product_id = '.$product->getId().'
+				AND o.order_status = '.$state.'
+			';
+		$stmt = $em->getConnection()->prepare($sql);
+		$stmt->execute();
+		$data = array();
+		foreach($stmt->fetchAll() as $row) {
+			$data[] = $row;
+		}
+		return $data;
+	}
 }

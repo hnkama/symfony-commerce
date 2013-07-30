@@ -150,7 +150,7 @@
         	<div class="tab">
         		<h3 class="tab1 current">商品详情</h3>
                 <h3 class="tab2">客户评价 <span class="tab-count">({{ product.comments|length }})</span></h3>
-                <h3 class="tab2">成交记录 <span class="tab-count">(518)</span></h3>
+                <h3 class="tab2">成交记录 <span class="tab-count">({{ orders|length }})</span></h3>
             </div>
             <div class="tabcontent">
             <div class="deatail-intro">
@@ -192,97 +192,17 @@
                     <h4 class="his-status">状态</h4>
                 </div>
                 <ul>
+					{% for order in orders %}
                 	<li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
+                    	<p class="buyer">{{ order.a.user.username }}</p>
+                        <p class="product-name left">{{ product.name }}</p>
+                        <p class="his-price">{{ product.price|sylius_money }}</p>
+                        <p class="his-count">{{ order.o.quantity }}</p>
+                        <p class="his-time">{{ order.a.createdAt|date('Y-m-d H:m:i') }}</p>
                         <p class="his-status">成交</p>
                     </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
-                    <li class="clearfix">
-                    	<p class="buyer">奇异恩典</p>
-                        <p class="product-name left">专柜正品 Gucci Guilty Edt 古驰/古琦罪爱男士淡香水50ml</p>
-                        <p class="his-price">358</p>
-                        <p class="his-count">1</p>
-                        <p class="his-time">2013-04-12 12:47:09</p>
-                        <p class="his-status">成交</p>
-                    </li>
+					{% endfor %}
                 </ul>
-                <div class="page-num">
-                    <p><a href="#">《上一页</a></p>
-                    <b><a href="#" class="on">1</a></b>
-                    <b><a href="#">2</a></b>
-                    <b><a href="#">3</a></b>
-                    <b><a href="#">4</a></b>
-                    <b><a href="#">5</a></b>
-                    <span>...</span>
-                    <p><a href="#">下一页》</a></p>
-            	</div>
             </div>
             </div>
         </section>

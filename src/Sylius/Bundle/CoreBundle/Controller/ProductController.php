@@ -240,6 +240,16 @@ class ProductController extends ResourceController
 			}
 		}
 
+		// 得到相关的订单
+		$productRepository = $this->container->get('sylius.repository.product');
+		$orderRepository = $this->container->get('sylius.repository.order');
+		$orders = $productRepository->getOrders($entity);
+		$orders_data = array();
+		foreach($orders as $key => $order) {
+			$orders_data[$key]['a'] = $orderRepository->find($order['id']);
+			$orders_data[$key]['o'] = $order;
+		}
+
         $view =  $this
             ->view()
             ->setTemplate('SyliusWebBundle:Frontend/Product:show.product.html.twig')
@@ -248,6 +258,7 @@ class ProductController extends ResourceController
 				'product' => $entity,
 				'taxon' => $entity->getTaxons(),
 				'recommend' => $recommend,
+				'orders' => $orders_data,
 			))
         ;
 
