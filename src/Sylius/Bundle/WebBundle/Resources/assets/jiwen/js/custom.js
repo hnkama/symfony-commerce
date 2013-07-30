@@ -182,7 +182,7 @@ $(document).ready(function() {
 	};
 
 	//shoppingcart curve in,
-	$(".cart-index").click(function(e) {
+	$(".cart-index, .bt-cart").click(function(e) {
 		e.preventDefault();
 		var img = $(this).parents('.inner').find(".list-img img");
 		var img2 = img.clone();
@@ -210,18 +210,7 @@ $(document).ready(function() {
 	});
 
 	// 添加到收藏夹
-	function addToBookmark(product) {
-		var url = $("#myForm").attr("action");
-		$.post(url,
-				$("#myForm").serialize(),
-				function(data) {
-
-				}
-		);
-	}
-
 	$('.addToBookmark').click(function(e) {
-		addToBookmark($(this).attr('data'))
 		var form = $(this).parent();
 		var url = form.attr('action');
 		$.post(url,
@@ -230,6 +219,17 @@ $(document).ready(function() {
 				},
 				function(data) {
 					alert(data);
+				}
+		);
+	});
+	$('.addToBookmarkButton').click(function(e) {
+		$.post($(this).attr('action'),
+				{
+					'jiwen_bookmark[product]': $(this).attr('data')
+				},
+				function(data) {
+					alert(data);
+					return;
 				}
 		);
 	});

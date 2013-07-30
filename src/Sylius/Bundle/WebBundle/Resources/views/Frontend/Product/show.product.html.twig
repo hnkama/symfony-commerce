@@ -54,20 +54,22 @@
         <div class="detail-text right">
         	<ul class="clearfix">
             	<li class="jiwenprice clearfix">
-                	<div class="dt">基文价：</div>
-                    <div class="dd price"></div>
+                	<div class="dt">基文价：
+					</div>
+                    <div class="dd price">
+						{{ product.price|sylius_money }}
+					</div>
                 </li>
-    <div class="span6">
+			</ul>
+			<form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
+            <ul class="detail-style">
+            	<li id="choose">
+                	<div class="dt">款 式：</div>
+                    <div class="dd">
         {% if product.hasOptions %}
             {% if product.isVariantSelectionMethodChoice %}
             <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>{{ 'sylius.variant.price'|trans }}</th>
-                        <th></th>
-                    </tr>
-                </thead>
+                
                 <tbody>
                     {% for variant in product.variants if variant.available %}
                     <tr>
@@ -102,29 +104,29 @@
                 </div>
             {% endif %}
         {% endif %}
-    </div>
-                <li>
-                	<div class="dt">市场价：</div>
-                    <div class="dd marketprice"></div>
+                    </div>
                 </li>
-                <li>
-                	<div class="dt">库   存：</div>
-                    <div class="dd">现 货</div>
-                </li>
-            </ul>
-            <ul class="detail-style">
                 <li id="account">
                 	<div class="dt">我要买：</div>
                     <div class="dd">
-                    	<input type="number" class="form-account" min="1" value="1">
+						{{ form_widget(form.quantity, {'attr': {'class': 'form-account'}, 'empty_value': '1', 'min': '1'}) }}
                     </div>
                 </li>
                 <li id="detail-bts" class="clearfix">
+					{% if not product.hasOptions and not sylius_inventory_is_available(product.masterVariant) %}
+            <span class="label label-important">{{ 'sylius.out_of_stock'|trans }}</span>
+        {% else %}
+            
+            {{ form_widget(form._token) }}
+        {% endif %}
                 	<input type="button" value="放入购物车" class="bt-cart">
-                    <input type="button" value="立即购买" class="bt-buy">
-                    <input type="button" value="收 藏" class="bt-like">
+            		<button type="submit" class="bt-buy">立即购买</button>
+					<input action="{{ path('jiwen_bookmark_create') }}" type="button" value="收 藏" class="bt-like addToBookmarkButton" data="{{ product.id }}">
+                    
                 </li>
             </ul>
+				</form>
+            
             <div class="bshare-custom"><div class="bsPromo bsPromo2"></div>分享到：<a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count" style="float: none; ">0</span></div>
             <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
             <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
@@ -157,7 +159,8 @@
             </div>
             <div class="tabcontent">
             <div class="deatail-intro">
-            	<strong style="font-size:26px;">宝贝详情可在后台自行编辑</strong>
+				
+            	{{ product.description|default('sylius.product.no_description')|trans|raw }}
             </div>
             <div class="review clear hide">
             	<div class="percentage clearfix">
