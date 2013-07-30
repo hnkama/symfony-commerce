@@ -137,14 +137,9 @@
     	<div class="related-classify clearfix">
         	<h3 class="menu">相关分类</h3>
             <ul class="left">
-            	<li><a href="#">时尚品牌表</a></li>
-                <li><a href="#">日韩品牌表</a></li>
-                <li><a href="#">眼镜</a></li>
-            </ul>
-            <ul class="right">
-            	<li><a href="#">时尚品牌表</a></li>
-                <li><a href="#">日韩品牌表</a></li>
-                <li><a href="#">眼镜</a></li>
+				{% for taxon in product.taxons.0.parent.children %}
+            	<li><a href="{{ path('sylius_product_index_by_taxon', {permalink: taxon.permalink}) }}">{{ taxon }}</a></li>
+				{% endfor %}
             </ul>
         </div>
     </div>

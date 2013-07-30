@@ -220,8 +220,8 @@ b.dots{border:none; border-right:1px solid #ccc; height: 33px;}
 #detail-side{ width:220px;}
 #detail-side .menu{ height:35px; line-height:35px; border-bottom:1px solid #d2d2d2; font-size:14px; font-weight:bold; margin-bottom:10px;}
 .related-classify, .other-product{ padding:0 10px 0px 10px; border:1px solid #d2d2d2; margin-bottom:15px;}
-.related-classify ul{ width:94px; padding-bottom:15px;}
-.related-classify li{ line-height:24px;}
+.related-classify ul{ padding-bottom:15px;}
+.related-classify li{ line-height:24px; float: left; width: 45%;}
 .other-product li{line-height:14px; padding-bottom:7px; margin-bottom:7px; border-bottom:1px solid #d2d2d2;}
 .other-product li .right{ width:140px; padding-top:3px;}
 .other-product li .price{ color:#de282a; font-weight:bold; margin-top:5px;}
