@@ -212,12 +212,20 @@ class ProductRepository extends CustomizableProductRepository
 		}
 
 		$sql = 'SELECT * FROM sylius_product_property pp LEFT JOIN sylius_product_taxon pt 
-			ON pp.product_id = pt.product_id
-			WHERE pp.property_id = '.$property->getId().'
+			ON pp.product_id = pt.product_id';
+		if (is_object($property)) {
+			$sql .= ' WHERE pp.property_id = '.$property->getId().'
 				AND pp.value = "'.$value.'"';
+		}
 		if($taxon) {
-			$sql .= '
-					AND pt.taxon_id IN  ('.implode(',',$taxons).')';
+
+			if(is_object($property)) {
+				$sql .= '
+						AND pt.taxon_id IN  ('.implode(',',$taxons).')';
+			} else {
+				$sql .= '
+						WHERE pt.taxon_id IN  ('.implode(',',$taxons).')';
+			}
 		}
 			$sql .= '
 			GROUP BY pp.product_id
