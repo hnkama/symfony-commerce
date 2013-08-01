@@ -22,11 +22,6 @@
     <div class="fluid-row">
         <div class="span6 well">
         {% include 'SyliusWebBundle:Frontend/Form:_address.html.twig' with {'form': form.shippingAddress} %}
-        {{ form_row(form.differentBillingAddress, {'attr': {'class': 'sylius-different-billing-address-trigger'}}) }}
-        </div>
-        <div class="span6 well hide" id="sylius-billing-address-container">
-        <br />
-        {% include 'SyliusWebBundle:Frontend/Form:_address.html.twig' with {'form': form.billingAddress} %}
         </div>
     </div>
 </fieldset>
