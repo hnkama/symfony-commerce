@@ -6,6 +6,35 @@
         <source>---</source>
         <target>---</target>
       </trans-unit>
+
+      <trans-unit id="sylius.form.address.first_name" resname="sylius.form.address.first_name">
+        <source>sylius.form.address.first_name</source>
+        <target>姓名</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.last_name" resname="sylius.form.address.last_name">
+        <source>sylius.form.address.last_name</source>
+        <target>姓</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.country" resname="sylius.form.address.country">
+        <source>sylius.form.address.country</source>
+        <target>国家</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.province" resname="sylius.form.address.province">
+        <source>sylius.form.address.province</source>
+        <target>省</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.city" resname="sylius.form.address.city">
+        <source>sylius.form.address.city</source>
+        <target>城市</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.street" resname="sylius.form.address.street">
+        <source>sylius.form.address.street</source>
+        <target>街道</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.postcode" resname="sylius.form.address.postcode">
+        <source>sylius.form.address.postcode</source>
+        <target>街道</target>
+      </trans-unit>
       <trans-unit id="af5f81fbdd007eed41ece4ac53d44eb5" resname="sylius.form.checkout.addressing.different_billing_address">
         <source>sylius.form.checkout.addressing.different_billing_address</source>
         <target>Use different address for billing?</target>
