@@ -33,7 +33,15 @@
       </trans-unit>
       <trans-unit id="sylius.form.address.postcode" resname="sylius.form.address.postcode">
         <source>sylius.form.address.postcode</source>
-        <target>街道</target>
+        <target>邮编</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.country.select" resname="sylius.form.country.select">
+        <source>sylius.form.country.select</source>
+        <target>请选择</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.province.select" resname="sylius.form.province.select">
+        <source>sylius.form.province.select</source>
+        <target>请选择</target>
       </trans-unit>
       <trans-unit id="af5f81fbdd007eed41ece4ac53d44eb5" resname="sylius.form.checkout.addressing.different_billing_address">
         <source>sylius.form.checkout.addressing.different_billing_address</source>

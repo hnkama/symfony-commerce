@@ -47,11 +47,11 @@ class AddressingStepType extends AbstractType
                 }
             })
             ->add('shippingAddress', 'sylius_address')
-//            ->add('billingAddress', 'sylius_address')
-//            ->add('differentBillingAddress', 'checkbox', array(
-//                'mapped' => false,
-//                'label'  => 'sylius.form.checkout.addressing.different_billing_address'
-//            ))
+            ->add('billingAddress', 'sylius_address')
+            ->add('differentBillingAddress', 'checkbox', array(
+                'mapped' => false,
+                'label'  => 'sylius.form.checkout.addressing.different_billing_address'
+            ))
         ;
     }
 
