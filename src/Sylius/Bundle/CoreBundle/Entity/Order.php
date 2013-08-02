@@ -67,6 +67,8 @@ class Order extends BaseOrder implements OrderInterface
 	protected $paymentStatus;
 	protected $shippingStatus;
 
+	protected $paymentMethod;
+
 	protected $comments;
 
 	public static $orderStatuses = array(
@@ -399,6 +401,16 @@ class Order extends BaseOrder implements OrderInterface
     {
         $this->comments = $comments;
     }
+
+	public function setPaymentMethod($paymentMethod)
+	{
+		$this->paymentMethod = $paymentMethod;
+	}
+
+	public function getPaymentMethod()
+	{
+		return $this->paymentMethod;
+	}
 
 	public function __toString()
 	{

@@ -57,8 +57,7 @@
         "knplabs/knp-menu-bundle": "2.0.x-dev as v1.1.2",
         "liip/imagine-bundle":                  "0.9.*",
         "athari/yalinqo":                       "*",
-		"lexik/form-filter-bundle": "1.2.*",
-		"friendsofsymfony/comment-bundle": "2.0.*@dev"
+		"lexik/form-filter-bundle": "1.2.*"
     },
     "require-dev": {
         "behat/behat":                       "2.4.*",

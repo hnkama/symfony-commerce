@@ -272,7 +272,7 @@
       </trans-unit>
       <trans-unit id="f165afaa167c13b164df7a2d2319fc3f" resname="sylius.checkout.finalize.product.name">
         <source>sylius.checkout.finalize.product.name</source>
-        <target>姓名</target>
+        <target>产品名称</target>
       </trans-unit>
       <trans-unit id="2cf7082051f131d18f9ae375380cb728" resname="sylius.checkout.forward">
         <source>sylius.checkout.forward</source>

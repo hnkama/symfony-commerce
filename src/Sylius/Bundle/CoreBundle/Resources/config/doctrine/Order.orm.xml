@@ -47,6 +47,7 @@
         <field name="orderStatus" column="order_status" type="integer" nullable="true" />
         <field name="paymentStatus" column="payment_status" type="integer" nullable="true" />
         <field name="shippingStatus" column="shipping_status" type="integer" nullable="true" />
+        <field name="paymentMethod" column="payment_method" type="string" nullable="true" />
     </entity>
 
 </doctrine-mapping>
