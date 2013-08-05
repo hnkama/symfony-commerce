@@ -143,6 +143,8 @@ class AlipayController extends Controller
 		//计算得出通知验证结果
 		$alipayNotify = new AlipayNotify($alipay_config);
 		$verify_result = $alipayNotify->verifyNotify();
+		$logger = $this->get('logger');
+//    	$logger->info('Alipay result'.print_r($verify_result, true));
 
 		if ($verify_result) {//验证成功
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,10 +153,12 @@ class AlipayController extends Controller
 			//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
 			//商户订单号
 			$out_trade_no = $_POST['out_trade_no'];
+//    		$logger->info('Alipay: out_trade_no '.$out_trade_no);
 
 			//支付宝交易号
 
 			$trade_no = $_POST['trade_no'];
+//    		$logger->info('Alipay: trade_no '.$trade_no);
 
 			//交易状态
 			$trade_status = $_POST['trade_status'];
@@ -178,6 +182,7 @@ class AlipayController extends Controller
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
 				//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+    			$logger->info('Alipay: WAIT_SELLER_SEND_GOODS');
 			} else if ($_POST['trade_status'] == 'WAIT_BUYER_CONFIRM_GOODS') {
 				//该判断表示卖家已经发了货，但买家还没有做确认收货的操作
 				//判断该笔订单是否在商户网站中已经做过处理
@@ -187,6 +192,7 @@ class AlipayController extends Controller
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
 				//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+    			$logger->info('Alipay: WAIT_BUYER_CONFIRM_GOODS');
 			} else if ($_POST['trade_status'] == 'TRADE_FINISHED') {
 				//该判断表示买家已经确认收货，这笔交易完成
 				//判断该笔订单是否在商户网站中已经做过处理
@@ -195,6 +201,7 @@ class AlipayController extends Controller
 
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
+    			$logger->info('Alipay: TRADE_FINISHED');
 				//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
 			} else {
 				//其他状态判断
