@@ -22,28 +22,29 @@ class AlipayController extends Controller
 		$payment_type = "1";
 		//必填，不能修改
 		//服务器异步通知页面路径
-		$notify_url = "http://www.jiwenmall.com/alipay/danbao/demo/notify_url.php";
+		$base_url = 'http://'.$this->container->get('router')->getContext()->getHost();
+		$notify_url = $base_url . $this->generateUrl('alipay_notify');
 		//需http://格式的完整路径，不能加?id=123这类自定义参数
 		//页面跳转同步通知页面路径
-		$return_url = "http://www.jiwenmall.com/alipay/danbao/demo/return_url.php";
+		$return_url = $base_url . $this->generateUrl('alipay_return');
 		//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 		//卖家支付宝帐户
 		$seller_email = $this->container->getParameter('alipay.seller');
 		//必填
 		//商户订单号
-		$out_trade_no = $order->getId();
+		$out_trade_no = '#'.$order->getId();
 		//商户网站订单系统中唯一订单号，必填
 		//订单名称
-		$subject = $order->getId().' - 基文商城';
+		$subject = $order->getId(). ' - ' .$order->getCreatedAt()->format('Y-m-d H:m:s'). ' - 基文商城';
 		//必填
 		//付款金额
-		$price = $order->getTotal();
+		$price = $order->getTotal() / 100;
 		//必填
 		//商品数量
 		$quantity = "1";
 		//必填，建议默认为1，不改变值，把一次交易看成是一次下订单而非购买一件商品
 		//物流费用
-		$logistics_fee = "0.00";
+		$logistics_fee = "10.00";
 		//必填，即运费
 		//物流类型
 		$logistics_type = "EXPRESS";
@@ -55,13 +56,19 @@ class AlipayController extends Controller
 
 		$body = '基文商城';
 		//商品展示地址
-		$show_url = 'http://www.jiwenmall.com/';
+		$show_url = $base_url;
 		//需以http://开头的完整路径，如：http://www.jiwenmall.com/myorder.html
 		//收货人姓名
-		$receive_name = 'test';
+		$shippingAddress = $order->getShippingAddress();
+		$receive_name = $shippingAddress->getFirstName();
 		//如：张三
+//		error_reporting(E_ALL);
+//		ini_set('display_errors', TRUE);
 		//收货人地址
-		$receive_address = 'test';
+//		var_dump($shippingAddress->getProvince());
+		$receive_address = $shippingAddress->getCountry()
+				;
+		echo $receive_address;
 		//如：XX省XXX市XXX区XXX路XXX小区XXX栋XXX单元XXX号
 		//收货人邮编
 		$receive_zip = '123456';
@@ -112,6 +119,11 @@ class AlipayController extends Controller
 	}
 
 	public function notifyAction()
+	{
+
+	}
+
+	public function returnAction()
 	{
 
 	}
