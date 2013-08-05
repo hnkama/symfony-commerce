@@ -32,3 +32,7 @@ sylius_checkout_payment:
 sylius_checkout_finalize:
     pattern: /finalize
     defaults: { _controller: sylius.controller.process:displayAction, scenarioAlias: 'sylius_checkout', 'stepName': 'finalize' }
+
+sylius_checkout_pay:
+    pattern: /pay
+    defaults: { _controller: sylius.controller.process:displayAction, scenarioAlias: 'sylius_checkout', 'stepName': 'pay' }
