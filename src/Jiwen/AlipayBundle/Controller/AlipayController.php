@@ -35,7 +35,7 @@ class AlipayController extends Controller
 		$seller_email = $this->container->getParameter('alipay.seller');
 		//必填
 		//商户订单号
-		$out_trade_no = '#'.$order->getId();
+		$out_trade_no = $order->getId();
 		//商户网站订单系统中唯一订单号，必填
 		//订单名称
 		$subject = $order->getId(). ' - ' .$order->getCreatedAt()->format('Y-m-d H:m:s'). ' - 基文商城';
@@ -169,6 +169,17 @@ class AlipayController extends Controller
 				//判断该笔订单是否在商户网站中已经做过处理
 				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				//如果有做过处理，不执行商户的业务程序
+				// 修改order状态为已经支付
+				$orderRepository = $this->container->get('sylius.repository.order');
+				$order = $orderRepository->find($out_trade_no);
+    			$logger->info('Payment Status before payments: '.$order->getPaymentStatus());
+				$order->setPaymentStatus(1);
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($order);
+				$em->flush();
+    			$logger->info('Payment Status After payment: '.$order->getPaymentStatus());
+
+
 
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
@@ -188,11 +199,11 @@ class AlipayController extends Controller
 				//判断该笔订单是否在商户网站中已经做过处理
 				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				//如果有做过处理，不执行商户的业务程序
-
+				
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
 				//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
-    			$logger->info('Alipay: WAIT_BUYER_CONFIRM_GOODS');
+//    			$logger->info('Alipay: WAIT_BUYER_CONFIRM_GOODS');
 			} else if ($_POST['trade_status'] == 'TRADE_FINISHED') {
 				//该判断表示买家已经确认收货，这笔交易完成
 				//判断该笔订单是否在商户网站中已经做过处理
