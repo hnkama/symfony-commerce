@@ -174,6 +174,7 @@ class AlipayController extends Controller
 				$order = $orderRepository->find($out_trade_no);
     			$logger->info('Payment Status before payments: '.$order->getPaymentStatus());
 				$order->setPaymentStatus(1);
+				$order->setOrderStatus(1);
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($order);
 				$em->flush();
