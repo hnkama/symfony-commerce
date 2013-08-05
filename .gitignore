@@ -4,6 +4,7 @@ app/cache/*
 app/logs/*
 
 app/config/parameters.yml
+app/config/parameters.*
 app/config/*.local.yml
 app/config/deploy.rb
 behat.yml
