@@ -31,6 +31,14 @@
         <source>sylius.form.address.city</source>
         <target>城市</target>
       </trans-unit>
+      <trans-unit id="sylius.form.address.phone" resname="sylius.form.address.phone">
+        <source>sylius.form.address.phone</source>
+        <target>电话</target>
+      </trans-unit>
+      <trans-unit id="sylius.form.address.cellphone" resname="sylius.form.address.cellphone">
+        <source>sylius.form.address.cellphone</source>
+        <target>手机</target>
+      </trans-unit>
       <trans-unit id="sylius.form.address.street" resname="sylius.form.address.street">
         <source>sylius.form.address.street</source>
         <target>街道</target>
