@@ -18,6 +18,7 @@
         <parameter key="sylius.checkout_step.shipping.class">Sylius\Bundle\CoreBundle\Checkout\Step\ShippingStep</parameter>
         <parameter key="sylius.checkout_step.payment.class">Sylius\Bundle\CoreBundle\Checkout\Step\PaymentStep</parameter>
         <parameter key="sylius.checkout_step.finalize.class">Sylius\Bundle\CoreBundle\Checkout\Step\FinalizeStep</parameter>
+        <parameter key="sylius.checkout_step.pay.class">Sylius\Bundle\CoreBundle\Checkout\Step\PayStep</parameter>
 
         <parameter key="sylius.order_processing.inventory_units_factory.class">Sylius\Bundle\CoreBundle\OrderProcessing\InventoryUnitsFactory</parameter>
         <parameter key="sylius.order_processing.shipment_factory.class">Sylius\Bundle\CoreBundle\OrderProcessing\ShipmentFactory</parameter>
@@ -96,6 +97,13 @@
                 <argument type="service" id="service_container" />
             </call>
             <tag name="sylius.process.step" alias="sylius_checkout_finalize" />
+        </service>
+
+        <service id="sylius.checkout_step.pay" class="%sylius.checkout_step.pay.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="sylius.process.step" alias="sylius_checkout_pay" />
         </service>
 
         <!-- checkout forms -->

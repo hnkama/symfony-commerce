@@ -19,3 +19,4 @@ bin/doctrine*
 bin/phpspe*
 vendor/*
 
+src/Jiwen/AlipayBundle/*

@@ -15,6 +15,10 @@
         <source>sylius.form.address.last_name</source>
         <target>姓</target>
       </trans-unit>
+      <trans-unit id="b35abff3ac27033d049562863e7e61d1" resname="sylius.checkout.success">
+        <source>sylius.checkout.success</source>
+        <target>感谢您的订购！</target>
+      </trans-unit>
       <trans-unit id="sylius.form.address.country" resname="sylius.form.address.country">
         <source>sylius.form.address.country</source>
         <target>国家</target>
