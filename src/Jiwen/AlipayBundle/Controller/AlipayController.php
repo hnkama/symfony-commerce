@@ -26,7 +26,7 @@ class AlipayController extends Controller
 		$notify_url = $base_url . $this->generateUrl('alipay_notify');
 		//需http://格式的完整路径，不能加?id=123这类自定义参数
 		//页面跳转同步通知页面路径
-		$return_url = $base_url . $this->generateUrl('alipay_return');
+		$return_url = $base_url . $this->generateUrl('sylius_account_order_show', array('id'=>$order->getId()));
 		//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 		//卖家支付宝帐户
 		$seller_email = $this->container->getParameter('alipay.seller');
@@ -39,12 +39,19 @@ class AlipayController extends Controller
 		//必填
 		//付款金额
 		$price = $order->getTotal() / 100;
+		$tesMode = $this->container->getParameter('alipay.seller');
+		if($tesMode) {
+			$price = 0.01;
+		}
 		//必填
 		//商品数量
 		$quantity = "1";
 		//必填，建议默认为1，不改变值，把一次交易看成是一次下订单而非购买一件商品
 		//物流费用
 		$logistics_fee = "10.00";
+		if($tesMode) {
+			$logistics_fee = 0.01;
+		}
 		//必填，即运费
 		//物流类型
 		$logistics_type = "EXPRESS";
