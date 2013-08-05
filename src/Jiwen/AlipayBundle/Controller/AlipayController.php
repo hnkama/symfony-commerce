@@ -62,22 +62,23 @@ class AlipayController extends Controller
 		$shippingAddress = $order->getShippingAddress();
 		$receive_name = $shippingAddress->getFirstName();
 		//如：张三
-//		error_reporting(E_ALL);
-//		ini_set('display_errors', TRUE);
+		error_reporting(E_ALL);
+		ini_set('display_errors', TRUE);
 		//收货人地址
-//		var_dump($shippingAddress->getProvince());
-		$receive_address = $shippingAddress->getCountry()
+		$receive_address = $shippingAddress->getCountry(). ' ' .
+				$shippingAddress->getProvince() . ' ' .
+				$shippingAddress->getCity() . ' ' .
+				$shippingAddress->getStreet(). ' '
 				;
-		echo $receive_address;
 		//如：XX省XXX市XXX区XXX路XXX小区XXX栋XXX单元XXX号
 		//收货人邮编
-		$receive_zip = '123456';
+		$receive_zip = $shippingAddress->getPostcode();
 		//如：123456
 		//收货人电话号码
-		$receive_phone = '123456';
+		$receive_phone = $shippingAddress->getPhone();
 		//如：0571-88158090
 		//收货人手机号码
-		$receive_mobile = '123456';
+		$receive_mobile = $shippingAddress->getCellphone();
 		//如：13312341234
 
 
@@ -115,6 +116,7 @@ class AlipayController extends Controller
 		// redirect to alipay page
 		return $this->render('JiwenAlipayBundle:Default:index.html.twig', array(
 					'order' => $order,
+					'html' => $html_text,
 		));
 	}
 
