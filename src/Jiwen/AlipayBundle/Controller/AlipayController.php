@@ -42,10 +42,12 @@ class AlipayController extends Controller
 		//必填
 		//付款金额
 		$price = $order->getTotal() / 100;
-		$tesMode = $this->container->getParameter('alipay.seller');
+		$tesMode = $this->container->getParameter('alipay.test.mode');
 		if($tesMode) {
 			$price = 0.01;
 		}
+		$alipay_config['partner'] = $this->container->getParameter('alipay.partner');
+		$alipay_config['key'] = $this->container->getParameter('alipay.key');
 		//必填
 		//商品数量
 		$quantity = "1";
@@ -133,7 +135,12 @@ class AlipayController extends Controller
 	public function notifyAction()
 	{
 		require_once("alipay.config.php");
-//计算得出通知验证结果
+		//合作身份者id，以2088开头的16位纯数字
+		$alipay_config['partner'] = $this->container->getParameter('alipay.partner');
+
+		//安全检验码，以数字和字母组成的32位字符
+		$alipay_config['key'] = $this->container->getParameter('alipay.key');
+		//计算得出通知验证结果
 		$alipayNotify = new AlipayNotify($alipay_config);
 		$verify_result = $alipayNotify->verifyNotify();
 
