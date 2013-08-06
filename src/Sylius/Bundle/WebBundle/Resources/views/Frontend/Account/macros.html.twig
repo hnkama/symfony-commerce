@@ -28,7 +28,7 @@
             </td>
             <td>
 				<span class="label {% if order.orderStatus == 1 %}label-success{% else %} label-important{% endif %} ">
-					{{ 'sylius.order.orderStatusList'|transchoice(order.orderStatus) }}
+					{{ 'sylius.account.order.orderStatusList'|transchoice(order.orderStatus) }}
 				</span>
 			</td>
             <td><a href="mailto:{{ order.user.email|default('john@example.com') }}" class="btn btn-link">{{ order.user.email|default('john@example.com') }}</a></td>
@@ -37,6 +37,13 @@
                 <div class="pull-right">
                 {{ buttons.show(path('sylius_account_order_show', {'id': order.id})) }}
                 </div>
+				{% if order.paymentStatus == 0 %}
+                <div class="pull-right">
+					<a href="{% if order.tradeNo %}https://lab.alipay.com/consume/record/buyerConfirmTrade.htm?tradeNo={{ order.tradeNo }}&window=new{% else %}{{ path('jiwen_alipay_homepage', {order_id: order.id})}}{% endif %}" class="btn btn-primary">
+						付款
+					</a>
+                </div>
+				{% endif %}
             </td>
         </tr>
         {% endfor %}

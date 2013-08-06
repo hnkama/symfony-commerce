@@ -14,12 +14,12 @@ class AlipayController extends Controller
 	{
 	}
 
-	public function indexAction()
+	public function indexAction($order_id)
 	{
 		require_once("alipay.config.php");
 		// prepare the payment information
-		$session = $this->getRequest()->getSession();
-		$order = $session->get('order');
+		$orderRepository = $this->container->get('sylius.repository.order');
+		$order = $orderRepository->find($order_id);
 
 		//支付类型
 		$payment_type = "1";
@@ -74,8 +74,6 @@ class AlipayController extends Controller
 		$shippingAddress = $order->getShippingAddress();
 		$receive_name = $shippingAddress->getFirstName();
 		//如：张三
-		error_reporting(E_ALL);
-		ini_set('display_errors', TRUE);
 		//收货人地址
 		$receive_address = $shippingAddress->getCountry(). ' ' .
 				$shippingAddress->getProvince() . ' ' .
@@ -144,7 +142,7 @@ class AlipayController extends Controller
 		$alipayNotify = new AlipayNotify($alipay_config);
 		$verify_result = $alipayNotify->verifyNotify();
 		$logger = $this->get('logger');
-//    	$logger->info('Alipay result'.print_r($verify_result, true));
+    	$logger->info('Alipay result'.print_r($verify_result, true));
 
 		if ($verify_result) {//验证成功
 			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +156,7 @@ class AlipayController extends Controller
 			//支付宝交易号
 
 			$trade_no = $_POST['trade_no'];
-//    		$logger->info('Alipay: trade_no '.$trade_no);
+    		$logger->info('Alipay: trade_no '.$trade_no);
 
 			//交易状态
 			$trade_status = $_POST['trade_status'];
@@ -172,9 +170,7 @@ class AlipayController extends Controller
 				// 修改order状态为已经支付
 				$orderRepository = $this->container->get('sylius.repository.order');
 				$order = $orderRepository->find($out_trade_no);
-    			$logger->info('Payment Status before payments: '.$order->getPaymentStatus());
-				$order->setPaymentStatus(1);
-				$order->setOrderStatus(1);
+				$order->setTradeNo($trade_no);
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($order);
 				$em->flush();
@@ -190,6 +186,13 @@ class AlipayController extends Controller
 				//判断该笔订单是否在商户网站中已经做过处理
 				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				//如果有做过处理，不执行商户的业务程序
+				$orderRepository = $this->container->get('sylius.repository.order');
+				$order = $orderRepository->find($out_trade_no);
+				$order->setOrderStatus(1);
+				$order->setPaymentStatus(1);
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($order);
+				$em->flush();
 
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常
@@ -200,6 +203,12 @@ class AlipayController extends Controller
 				//判断该笔订单是否在商户网站中已经做过处理
 				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 				//如果有做过处理，不执行商户的业务程序
+				$orderRepository = $this->container->get('sylius.repository.order');
+				$order = $orderRepository->find($out_trade_no);
+				$order->setShippingStatus(1);
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($order);
+				$em->flush();
 				
 				echo "success";  //请不要修改或删除
 				//调试用，写文本函数记录程序运行情况是否正常

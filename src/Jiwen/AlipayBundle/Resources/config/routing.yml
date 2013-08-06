@@ -1,5 +1,5 @@
 jiwen_alipay_homepage:
-    pattern:  /
+    pattern:  /account/alipay/{order_id}
     defaults: { _controller: JiwenAlipayBundle:Alipay:index }
 
 alipay_notify:

@@ -1,6 +1,6 @@
 jiwen_alipay:
     resource: "@JiwenAlipayBundle/Resources/config/routing.yml"
-    prefix:   /payment-alipay
+    prefix:   /
 
 jiwen_bookmark:
     resource: "@JiwenBookmarkBundle/Resources/config/routing.yml"

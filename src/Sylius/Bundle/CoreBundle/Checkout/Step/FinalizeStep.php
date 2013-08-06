@@ -39,9 +39,6 @@ class FinalizeStep extends CheckoutStep
     {
         $order = $this->createOrder($context);
 
-		$session = $this->getRequest()->getSession();
-		$session->set('order', $order);
-
         $this->saveOrder($order);
         $this->getCartProvider()->abandonCart();
 
@@ -49,7 +46,7 @@ class FinalizeStep extends CheckoutStep
         $this->get('session')->getFlashBag()->add('success', $translator->trans('sylius.checkout.success', array(), 'flashes'));
 
 		
-		return $this->redirect($this->generateUrl('jiwen_alipay_homepage'));
+		return $this->redirect($this->generateUrl('jiwen_alipay_homepage', array('order_id'=>$order->getId())));
     }
 
     private function renderStep(ProcessContextInterface $context, OrderInterface $order)

@@ -68,6 +68,8 @@ class Order extends BaseOrder implements OrderInterface
 	protected $shippingStatus;
 
 	protected $paymentMethod;
+	
+	protected $tradeNo;
 
 	protected $comments;
 
@@ -415,6 +417,16 @@ class Order extends BaseOrder implements OrderInterface
 	public function getPaymentMethod()
 	{
 		return $this->paymentMethod;
+	}
+
+	public function setTradeNo($tradeNo)
+	{
+		$this->tradeNo = $tradeNo;
+	}
+
+	public function getTradeNo()
+	{
+		return $this->tradeNo;
 	}
 
 	public function __toString()
