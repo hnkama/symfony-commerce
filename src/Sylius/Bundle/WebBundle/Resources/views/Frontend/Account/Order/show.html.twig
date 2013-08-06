@@ -21,6 +21,14 @@
                 <td>{{ order.id }}</td>
             </tr>
             <tr>
+                <td><strong>状态</strong></td>
+                <td>
+				<span class="label {% if order.orderStatus == 1 %}label-success{% else %} label-important{% endif %} ">
+					{% if order.paymentStatus  %}已付款{% else %}未付款{% endif %}
+				</span>
+					</td>
+            </tr>
+            <tr>
                 <td><strong>{{ 'sylius.order.number'|trans }}</strong></td>
                 <td>#{{ order.number }}</td>
             </tr>
