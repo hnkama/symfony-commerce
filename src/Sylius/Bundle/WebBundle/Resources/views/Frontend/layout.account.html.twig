@@ -1,0 +1,25 @@
+{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
+        {% block stylesheets %}
+        {% stylesheets output='assets/compiled/frontend-account.css' filter='cssrewrite'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css'
+            '//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css'
+            '@SyliusWebBundle/Resources/assets/css/frontend.css'
+            '@SyliusWebBundle/Resources/assets/css/bootstrap-image-gallery.css'
+        %}
+<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+			{{ parent() }}
+        {% endstylesheets %}
+        {% endblock %}
+
+
+{% block sidebar %}
+<div class="span3">
+	<h4>{{ 'sylius.shop_by'|trans }}</h4>
+	{{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.html.twig'}) }}
+	{{ render(url('sylius_partial_product_latest', {'limit': 5, 'template': 'SyliusWebBundle:Frontend/Product:latestSidebar.html.twig'})) }}
+</div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
