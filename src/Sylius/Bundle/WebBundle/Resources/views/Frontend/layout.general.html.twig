@@ -1,0 +1,14 @@
+{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
+{% block stylesheets %}
+        {% stylesheets output='assets/compiled/frontend.css' filter='cssrewrite'
+            '//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css'
+            '//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css'
+            '@SyliusWebBundle/Resources/assets/css/frontend.css'
+            '@SyliusWebBundle/Resources/assets/css/bootstrap-image-gallery.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+			{{ parent() }}
+        {% endstylesheets %}
+        {% endblock %}
+{% block content %}
+{% endblock %}

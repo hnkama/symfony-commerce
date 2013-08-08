@@ -1,5 +1,4 @@
-{% extends 'SyliusWebBundle:Frontend:layout.jiwen.html.twig' %}
-
+{% extends 'SyliusWebBundle:Frontend:layout.general.html.twig' %}
 {% block content %}
 
 <div id="wrap" class="clearfix">
@@ -16,25 +15,25 @@
 				<form action="{{ path('fos_user_security_check') }}" method="post">
 					<fieldset>
 						<div class="control-group">
-							<label for="username" class="control-label">Login</label>
+							<label for="username" class="control-label">用户名</label>
 							<div class="controls">
 								<input type="text" id="username" name="_username" value="{{ last_username }}" />
 							</div>
 						</div>
 						<div class="control-group">
-							<label for="password" class="control-label">Password</label>
+							<label for="password" class="control-label">密码</label>
 							<div class="controls">
 								<input type="password" id="password" name="_password" />
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								Remember me? <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+								记住密码 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
 							</div>
 						</div>
 					</fieldset>
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary btn-large" name="login"><i class="icon-lock"></i> Login</button>
+						<button type="submit" class="btn btn-primary btn-large" name="login"><i class="icon-lock"></i> 登录</button>
 					</div>
 				</form>
 			<!--qa start-->
