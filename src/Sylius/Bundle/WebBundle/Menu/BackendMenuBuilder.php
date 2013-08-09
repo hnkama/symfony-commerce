@@ -51,6 +51,7 @@ class BackendMenuBuilder extends MenuBuilder
         $this->addAssortmentMenu($menu, $childOptions, 'main');
         $this->addSalesMenu($menu, $childOptions, 'main');
         $this->addBannerMenu($menu, $childOptions, 'main');
+        $this->addBlogMenu($menu, $childOptions, 'main');
         $this->addConfigurationMenu($menu, $childOptions, 'main');
 
         $menu->addChild('homepage', array(
@@ -281,6 +282,30 @@ class BackendMenuBuilder extends MenuBuilder
             'route' => 'bannercategory',
             'labelAttributes' => array('icon' => 'icon-cog'),
         ))->setLabel('广告分类');
+
+    }
+
+	/**
+     * Add configuration menu.
+     *
+     * @param ItemInterface $menu
+     * @param array         $childOptions
+     */
+    protected function addBlogMenu(ItemInterface $menu, array $childOptions, $section)
+    {
+        $child = $menu
+            ->addChild('banner', $childOptions)
+            ->setLabel('文章管理')
+        ;
+
+        $child->addChild('blog_index', array(
+            'route' => 'blogger_admin_homepage',
+            'labelAttributes' => array('icon' => 'icon-cog'),
+        ))->setLabel('文章列表');
+        $child->addChild('blogger_classify_homepage', array(
+            'route' => 'blogger_classify_homepage',
+            'labelAttributes' => array('icon' => 'icon-cog'),
+        ))->setLabel('文章分类');
 
     }
 }

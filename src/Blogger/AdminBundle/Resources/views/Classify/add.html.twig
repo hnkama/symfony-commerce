@@ -1,11 +1,9 @@
-{% extends 'BloggerAdminBundle::layout.html.twig' %}
-{%block active%}
+{% extends 'SyliusWebBundle:Backend:layout.html.twig' %}
+{%block content%}
 	<li><a href="{{ path('blogger_admin_homepage')}}">文章列表</a></li>
 	<li><a href="{{ path('blogger_classify_homepage')}}">文章分类</a></li>
 	<li class="active"><a href="{{ path('blogger_classify_addpage')}}">添加分类</a></li>
 	<li><a href="{{ path('blogger_admin_addpage')}}">添加文章</a></li>
-{%endblock%}
-{% block show %}
 <h3>分类添加</h3>
 <hr>
 <form action="{{ path('blogger_classify_addpage') }}" method="post">
