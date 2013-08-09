@@ -1,0 +1,21 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+    <article class="blog">
+        <header>
+            <h2>{{ blog.title }}</h2>
+            <div class="date">
+            作者：{{ blog.author }}
+           创建时间： <time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time>
+            </div>
+        </header>
+            <p>{{ blog.content }}</p>
+        <hr>
+	<div>
+		<label class='text-left'>{%if pre=='error'%}上一篇：没有了{%else%}上一篇：<a href="{{ path('blogger_blog_show',{id:pre.id}) }}">{{ pre.title}}</a>{%endif%}</label>
+		<label class='text-right'>{%if next=='error'%}下一篇：没有了{%else%}上一篇：<a href="{{ path('blogger_blog_show',{id:next.id}) }}">{{ next.title}}</a>{%endif%}</label>
+	</div>        
+    </article>
+{% endblock %}

@@ -46,3 +46,11 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /account
+
+blogger_admin:
+    resource: "@BloggerAdminBundle/Resources/config/routing.yml"
+    prefix:   /administration/blog
+
+blogger_blog:
+    resource: "@BloggerBlogBundle/Resources/config/routing.yml"
+    prefix:   /blog

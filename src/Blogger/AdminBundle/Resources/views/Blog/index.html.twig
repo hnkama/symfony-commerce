@@ -1,0 +1,30 @@
+{% extends 'BloggerAdminBundle::layout.html.twig' %}
+{%block show%}
+    <table class="table table-hover">
+        <thead>
+			<tr>
+				<th>编号</th>
+				<th>文章标题</th>
+				<th>文章分类</th>
+				<th>是否显示</th>
+				<th>文章重要性</th>
+				<th>添加日期</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		 {%for list in list %}
+			<tr>
+				<td>{{list.id}}</td>
+				<td>{{list.title}}</td>
+				<td>{{list.classify}}</td>
+				<td>{%if list.IsOpen==1%}是{%else%}否{%endif%}</td>
+				<td>{%if list.important==1%}置顶{%else%}普通{%endif%}</td>
+				<td>{{list.created|date('l, F j, Y')}}</td>
+				<td><a href="{{ path('blogger_admin_deletepage',{ 'id': list.id})}}">删除</a>&nbsp;<a href="{{ path('blogger_admin_modpage',{ 'id': list.id})}}">修改</a></td>
+			</tr>
+		{%endfor%}
+		</tbody>
+	</table>
+	{{ pagerfanta(mypager, 'twitter_bootstrap_translated') }}
+{%endblock%}

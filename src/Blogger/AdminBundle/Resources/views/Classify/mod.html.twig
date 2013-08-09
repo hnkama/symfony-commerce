@@ -1,0 +1,17 @@
+{% extends 'BloggerAdminBundle::layout.html.twig' %}
+{%block active%}
+	<li><a href="{{ path('blogger_admin_homepage')}}">文章列表</a></li>
+	<li class="active"><a href="{{ path('blogger_classify_homepage')}}">文章分类</a></li>
+	<li><a href="{{ path('blogger_classify_addpage')}}">添加分类</a></li>
+	<li><a href="{{ path('blogger_admin_addpage')}}">添加文章</a></li>
+{%endblock%}
+{% block show %}
+<h3>文章修改</h3>
+<hr>
+<form action="{{ path('blogger_classify_modpage',{'id':product.id}) }}" method="post">
+<input type="text" name="classify" value="{{product.classify}}">
+<input type="hidden" name="id" value="{{product.id}}">
+<button type="submit" class="btn btn-primary">修改</button>
+<button type="reset" class="btn btn-warning">重置</button>
+</form>
+{%endblock%}

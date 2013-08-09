@@ -1,0 +1,12 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+{% block body %}
+{%for list in list %}
+{%if list.Isopen==1%}
+<h3><a href="{{ path('blogger_blog_show',{ 'id':list.id})}}">{{list.title}}</a></h3>
+{{list.author}}&nbsp;<time datetime="{{ list.created|date('c') }}">{{ list.created|date('l, F j, Y') }}</time>
+<p>{{list.description}}</p>
+<hr>
+{%endif%}
+{%endfor%}
+{{ pagerfanta(mypager, 'twitter_bootstrap_translated') }}
+{% endblock %}

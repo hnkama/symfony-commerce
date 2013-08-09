@@ -76,6 +76,8 @@ class SyliusKernel extends Kernel
             new Jiwen\CommentBundle\JiwenCommentBundle(),
             new Jiwen\BookmarkBundle\JiwenBookmarkBundle(),
             new Jiwen\AlipayBundle\JiwenAlipayBundle(),
+			new Blogger\BlogBundle\BloggerBlogBundle(),
+			new Blogger\AdminBundle\BloggerAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

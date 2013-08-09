@@ -1,0 +1,10 @@
+$(document).ready(function(){
+	$('#contact_created').hide();
+	$('#artdel').click(){
+		if(confirm("您真的要删除吗？")){
+			go();
+        }else{
+        	stop();
+        }
+	}
+});

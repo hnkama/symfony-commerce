@@ -1,0 +1,43 @@
+blogger_admin_homepage:
+    pattern:  /admin/{page}
+    defaults: { _controller: BloggerAdminBundle:Blog:index,page:1}
+    requirements:
+        _method:  GET
+        page:	\d+
+blogger_admin_addpage:
+    pattern:  /admin/add
+    defaults: { _controller: BloggerAdminBundle:Blog:add}
+    requirements:
+        _method:  GET|POST
+blogger_admin_deletepage:
+    pattern:  /admin/del/{id}
+    defaults: { _controller: BloggerAdminBundle:Blog:delete}
+    requirements:
+        _method:  GET
+        id:	\d+
+blogger_admin_modpage:
+    pattern:  /admin/mod/{id}
+    defaults: { _controller: BloggerAdminBundle:Blog:mod}
+    requirements:
+        _method:  GET|POST
+        id:	\d+
+blogger_classify_homepage:
+    pattern:  /classify
+    defaults: { _controller: BloggerAdminBundle:Classify:index}
+blogger_classify_deletepage:
+    pattern:  /classify/del/{id}
+    defaults: { _controller: BloggerAdminBundle:Classify:delete}
+    requirements:
+        _method:  GET
+        id:	\d+
+blogger_classify_addpage:
+    pattern:  /classify/add
+    defaults: { _controller: BloggerAdminBundle:Classify:add}
+    requirements:
+        _method:  GET|POST
+blogger_classify_modpage:
+    pattern:  /classify/mod/{id}
+    defaults: { _controller: BloggerAdminBundle:Classify:mod}
+    requirements:
+        _method:  GET|POST
+        id:	\d+

@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+{%block nav%}
+    <ul class="nav">
+      <li><a href="{{ path('blogger_blog_homepage')}}">前台</a></li>
+      <li class="active"><a href="{{ path('blogger_admin_homepage')}}">后台</a></li>
+    </ul>
+    {%endblock%}
+{% block body %}
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">文章管理</li>
+          {%block active%}
+          <li class="active"><a href="{{ path('blogger_admin_homepage')}}">文章列表</a></li>
+          <li><a href="{{ path('blogger_classify_homepage')}}">文章分类</a></li>
+          <li><a href="{{ path('blogger_classify_addpage')}}">添加分类</a></li>
+          <li><a href="{{ path('blogger_admin_addpage')}}">添加文章</a></li>
+          {%endblock%}
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span9">
+	    {%block show%}
+	        
+	   	{%endblock%}
+    </div><!--/span-->
+  </div><!--/row-->
+ </div>
+{%endblock%}

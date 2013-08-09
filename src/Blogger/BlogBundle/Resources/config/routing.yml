@@ -1,0 +1,12 @@
+blogger_blog_homepage:
+    pattern:  /home/{page}
+    defaults: { _controller: BloggerBlogBundle:Default:index,page:1 }
+    requirements:
+        _method:  GET
+        page:  \d+
+blogger_blog_show:
+    pattern:  /{id}
+    defaults: { _controller: BloggerBlogBundle:Default:show }
+    requirements:
+        _method:  GET
+        id:	\d+
